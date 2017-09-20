@@ -30,9 +30,6 @@
     "node": "4.1.1",
     "npm": "2.1.x"
   },
-  "scripts": {
-    "postinstall": "webpack"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC"
