@@ -1,7 +1,6 @@
 {
   "name": "soundcrown_app",
   "private": true,
-
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -9,6 +8,7 @@
     "babel-preset-react": "^6.24.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-modal": "^2.3.2",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
@@ -19,7 +19,6 @@
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
   "main": "index.js",
-
   "directories": {
     "test": "test"
   },
