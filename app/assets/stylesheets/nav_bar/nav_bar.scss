@@ -1,0 +1,63 @@
+.nav-header {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(60,60,60,1);
+  font-family: 'Source Sans Pro', sans-serif;
+  max-width: 1240px;
+  width: 100%;
+  min-width: 860px;
+}
+
+.nav-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.nav-logo {
+  background-image: url('soundcrown-logo-wide.jpg');
+  width: 62.5px;
+  height: 50px;
+  background-size: 100%;
+}
+.nav-logo:hover {
+  background-size: 102%;
+  -webkit-filter: brightness(110%) contrast(100%)
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-btn {
+  color: #e6e6e6;
+  text-decoration: none;
+  font-size: 16px;
+  background-color: rgba(60,60,60,1);
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 15px 20px 15px 20px;
+  border: none;
+}
+
+.nav-user {
+  color: #e6e6e6;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: rgba(60,60,60,1);
+  font-family: 'Source Sans Pro', sans-serif;
+  border: none;
+  padding: 15px 20px 15px 20px;
+}
+
+.nav-btn:hover {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}

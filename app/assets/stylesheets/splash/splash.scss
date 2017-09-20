@@ -1,0 +1,114 @@
+.splash-header {
+  background-size: 100%;
+   background-image: url('splash-bg-2.jpg');
+   background-position: bottom;
+   max-width: 1240px;
+   min-width: 860px;
+   width: 100%;
+   height: 520px;
+
+   -webkit-filter: brightness(130%) contrast(120%)
+   //-webkit-filter: brightness(100%);
+}
+
+.splash-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.splash-nav-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.splash-nav-logo {
+  background-image: url('soundcrown-logo-wide.jpg');
+  width: 62.5px;
+  height: 50px;
+  background-size: 100%;
+  -webkit-filter: brightness(80%);
+}
+.splash-nav-word-logo {
+  color: white;
+  font-size: 15px;
+  background-color: none;
+  font-family: 'Righteous', cursive;
+  width: auto;
+  background-size: 100%;
+  -webkit-filter: brightness(80%);
+  padding: 13.6px 20px 13.6px 20px;
+  border: 2px solid white;
+}
+.splash-nav-btn-login {
+  color: rgb(180,180,180);
+  text-decoration: none;
+  font-size: 16px;
+  background-color: none;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid rgb(180,180,180);
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.splash-nav-btn-login:hover {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.splash-nav-btn-signup {
+  color: rgb(220,220,220);
+  text-decoration: none;
+  font-size: 16px;
+  background-color: rgb(0,200,255);
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid rgb(220,220,220);
+  border-radius: 8px;
+  margin-right: 10px;
+  -webkit-filter: brightness(80%);
+}
+
+.splash-nav-btn-signup:hover {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.splash-title {
+  display: flex;
+  justify-content: center;
+  font-size: 44px;
+}
+.splash-hook {
+  color: white;
+  font-size: 26px;
+  text-align: center;
+  padding-left: 140px;
+  padding-right: 140px;
+  vertical-align: bottom;
+}
+
+.splash-main-btn {
+  color: rgba(240,240,240,1);
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 8px;
+  background-color: rgba(0,200,255,1);
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 15px 20px 15px 20px;
+  border: none;
+   -webkit-filter: brightness(80%)
+}
+
+.splash-main-btn:hover {
+  color: white;
+  font-size: 21px;
+  text-decoration: none;
+  cursor: pointer;
+}
