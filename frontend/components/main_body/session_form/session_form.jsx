@@ -33,7 +33,6 @@ class SessionForm extends React.Component {
     const user = Object.assign({}, this.state);
     this.props.processForm(user);
     this.setState({ fireRedirect: true });
-    console.log(window.currentUser);
   }
 
   renderErrors() {

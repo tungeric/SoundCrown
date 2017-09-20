@@ -4,13 +4,12 @@ import ReactDOM from 'react-dom';
 class StreamPage extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   render () {
     return (
       <div>
-        <div className="test">
+        <div className="stream">
           <h1>Streaming</h1>
         </div>
       </div>
