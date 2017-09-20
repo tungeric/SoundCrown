@@ -5,21 +5,13 @@ import SessionForm from './session_form';
 
 const mapStateToProps = ({session, errors}, {location}) => ({
   loggedIn: Boolean(session.currentUser),
-  errors: errors, 
-  formType: ( location ? location.pathname.slice(1) : null )
+  errors: errors,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const formType = ( location ? ownProps.location.pathname.slice(1) : null );
-  if (formType === 'login') {
-    return {
-      processForm: (user) => dispatch(login(user))
-    };
-  } else {
-    return {
-      processForm: (user) => dispatch(signup(user))
-    };
-  }
+  return{
+    processForm: (user) => dispatch(login(user))
+  };
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SessionForm));

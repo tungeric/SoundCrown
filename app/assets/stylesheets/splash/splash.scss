@@ -22,6 +22,11 @@
   justify-content: flex-start;
   align-items: center;
 }
+.splash-nav-right {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 
 .splash-nav-logo {
   background-image: url('soundcrown-logo-wide.jpg');
@@ -95,7 +100,7 @@
 }
 
 .splash-main-btn {
-  color: rgba(240,240,240,1);
+  color: rgb(220,220,220);
   text-decoration: none;
   font-size: 20px;
   border-radius: 8px;
@@ -108,7 +113,6 @@
 
 .splash-main-btn:hover {
   color: white;
-  font-size: 21px;
   text-decoration: none;
   cursor: pointer;
 }

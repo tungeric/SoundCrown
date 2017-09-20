@@ -21,7 +21,6 @@ class SessionForm extends React.Component {
 
 
   componentDidUpdate() {
-    // console.log(Boolean(this.state.fireRedirect && this.props.errors.session.length === 0));
     if(this.state.fireRedirect && this.props.errors.session.length === 0) {
       return <Redirect to="/stream"/>;
     }
@@ -64,7 +63,7 @@ class SessionForm extends React.Component {
     return(
       <div>
         { this.renderErrors() }
-        <form onSubmit={ this.handleSubmit }>
+        <form className="form" onSubmit={ this.handleSubmit }>
           <label>Username:
             <input onChange={ this.update('username') } type="text" value={this.state.username}></input>
           </label>

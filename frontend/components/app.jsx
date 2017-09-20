@@ -1,7 +1,8 @@
 import React from 'react';
 import SplashPageContainer from './main_body/splash/splash_page_container';
 import StreamPageContainer from './main_body/stream/stream_page_container';
-import SessionFormContainer from './main_body/session_form/session_form_container';
+import LoginFormContainer from './main_body/session_form/login_form_container';
+import SignupFormContainer from './main_body/session_form/signup_form_container';
 import {
   Route,
   Redirect,
@@ -17,8 +18,8 @@ const App = () => (
       <Switch>
         <AuthRoute exact path="/" component={SplashPageContainer} />
         <ProtectedRoute path="/stream" component={StreamPageContainer} />
-        <AuthRoute path="/login" component={SessionFormContainer} />
-        <AuthRoute path="/signup" component={SessionFormContainer} />
+        <AuthRoute path="/login" component={LoginFormContainer} />
+        <AuthRoute path="/signup" component={SignupFormContainer} />
       </Switch>
     </div>
   </div>

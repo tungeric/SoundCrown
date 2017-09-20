@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
-import { logout } from '../../../actions/session_actions';
+import { logout, login } from '../../../actions/session_actions';
 import SplashPage from './splash_page';
 
 const mapDispatchToProps = dispatch => {
   return {
+    login: (user) => dispatch(login(user)),
     logout: () => dispatch(logout())
   };
 };
