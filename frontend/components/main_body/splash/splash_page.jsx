@@ -11,7 +11,8 @@ class SplashPage extends React.Component {
     return (
       <div>
         <div className="test">
-          <h1>Splashing</h1>
+          <h1>Connect on SoundCrown</h1>
+          <p className="splash-hook">Discover, stream, and share a constantly expanding mix of music from emerging and major artists around the world.</p>
         </div>
       </div>
     );

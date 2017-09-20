@@ -17,6 +17,7 @@
 .main-body {
   display: flex;
   justify-content: center;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .test {
@@ -24,9 +25,14 @@
    background-image: url('splash-bg.jpg');
    max-width: 100%;
    width: 960px;
-   height: 320px;
+   height: 400px;
    display: flex;
    justify-content: center;
    -webkit-filter: hue-rotate(90deg) brightness(120%) contrast(120%)
   //  -webkit-filter: brightness(100%);
+}
+
+.splash-hook {
+  width: 50%
+
 }
