@@ -10,9 +10,6 @@ class StreamPage extends React.Component {
   render () {
     return (
       <div>
-        <nav>
-          <NavBarContainer />
-        </nav>
         <div className="stream">
           <h1>Streaming</h1>
         </div>

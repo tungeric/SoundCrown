@@ -36,13 +36,17 @@ class SessionForm extends React.Component {
 
   renderErrors() {
     return (
-      <ul>
-        {this.props.errors.session.map((error, i) => (
-            <li key={`error-${i}`}>
-              {error}
-            </li>
-        ))}
-      </ul>
+      <div>
+        <br/>
+          <ul>
+            {this.props.errors.session.map((error, i) => (
+                <li key={`error-${i}`}>
+                  {error}
+                </li>
+            ))}
+          </ul>
+        <br/>
+      </div>
     );
   }
 
@@ -50,18 +54,25 @@ class SessionForm extends React.Component {
     return event => this.setState({ [field]: event.target.value });
   }
 
-  renderOtherLink() {
-    switch(this.props.formType) {
-      case 'login':
-        return <Link to="/signup">No account? Sign up</Link>;
-      case 'signup':
-        return <Link to="/login">Have an account? Log in</Link>;
-    }
-  }
-
   render() {
+    const altRoute = {
+      route: this.props.match.path==="/login" ? "/signup" : "/login",
+      text: this.props.match.path==="/login" ?
+                                "Don't have an account? Sign up" :
+                                "Already have an account? Sign in",
+    };
+
+    let buttonText="";
+    if(this.props !== undefined) {
+      if (this.props.match.path.includes("in")) {
+        buttonText = "Sign in";
+      } else {
+        buttonText = "Sign up";
+      }
+    }
     return(
       <div>
+        <div className="form-header"><h1 className="form-label">{buttonText}</h1></div>
         { this.renderErrors() }
         <form className="form" onSubmit={ this.handleSubmit }>
           <label>Username:
@@ -72,7 +83,7 @@ class SessionForm extends React.Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
-        {this.renderOtherLink()}
+        <Link to={altRoute.route}>{altRoute.text}</Link>
       </div>
     );
   }

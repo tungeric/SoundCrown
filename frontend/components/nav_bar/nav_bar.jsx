@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loggedOut: false
+    };
   }
 
   renderSessionButtons() {
@@ -14,7 +17,7 @@ class NavBar extends React.Component {
       return (
         <div>
           <Link className="nav-user" to={`/${currentUser.username}`}>{capitalUser}</Link>
-          <button className="nav-btn" onClick={this.props.logout}>Logout</button>
+          <button className="nav-btn" onClick={ this.props.logout }>Logout</button>
         </div>
       );
     } else {
@@ -28,19 +31,23 @@ class NavBar extends React.Component {
   }
 
   render() {
-    return (
-      <header className='nav-header'>
-        <nav className="nav-bar">
-          <div className="nav-left">
-            <Link className="nav-logo" to="/stream"></Link>
-            <Link className="nav-btn" to="/stream">Home</Link>
-          </div>
-          <div className="nav-buttons">
-            { this.renderSessionButtons() }
-          </div>
-        </nav>
-      </header>
-    );
+    if(this.props.location.pathname === "/") {
+      return <div></div>;
+    } else {
+      return (
+        <header className='nav-header'>
+          <nav className="nav-bar">
+            <div className="nav-left">
+              <Link className="nav-logo" to="/stream"></Link>
+              <Link className="nav-btn" to="/stream">Home</Link>
+            </div>
+            <div className="nav-buttons">
+              { this.renderSessionButtons() }
+            </div>
+          </nav>
+        </header>
+      );
+    }
   }
 }
 

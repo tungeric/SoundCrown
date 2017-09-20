@@ -53,18 +53,6 @@ class AppModal extends React.Component {
 
 
   render() {
-    const altRoute = {
-      formType: this.props.formType==="login" ? "signup" : "login",
-      text: this.props.formType==="login" ?
-                                "Don't have an account? Sign up <--THIS IS BROKEN" :
-                                "Already have an account? Sign in <--THIS IS BROKEN",
-    };
-    let buttonText="";
-    if (this.props.text.includes("in")) {
-      buttonText = "Sign in";
-    } else {
-      buttonText = "Sign up";
-    }
     return (
       <div>
         <button className={this.props.className}
@@ -77,11 +65,9 @@ class AppModal extends React.Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <div className="form-header"><h1 className="form-label">{buttonText}</h1></div>
+
           <br/>
           { this.renderSessionForm() }
-
-          <AppModal formType={altRoute.formType} className="" text={altRoute.text}/>
 
         </Modal>
       </div>
