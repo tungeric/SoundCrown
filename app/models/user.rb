@@ -19,6 +19,14 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  # paperclip
+  has_attached_file :avatar,
+                    default_url: "http://res.cloudinary.com/dfafbqoxx/image/upload/v1505940306/soundcrown-logo_ueiofl.jpg",
+                    :storage => :s3,
+                    :bucket => "soundcrown-pro"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     user && user.is_password?(password) ? user : nil

@@ -29,7 +29,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
 
-gem 'paperclip'
+gem 'paperclip', '~> 4.3.6'
+gem 'figaro'
+gem 'aws-s3'
+gem 'aws-sdk', '< 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
