@@ -13,10 +13,10 @@ export const deleteTrack = (id) => (
   })
 );
 
-export const getUserTracks = (user) => (
+export const getUserTracks = (id) => (
   $.ajax({
     method: 'GET',
-    url: `api/users/${user.id}/tracks`,
+    url: `api/users/${id}/tracks`,
   })
 );
 

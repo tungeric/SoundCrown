@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import LoginFormContainer from '../main_body/session_form/login_form_container';
 import SignupFormContainer from '../main_body/session_form/signup_form_container';
+import UploadTrackFormContainer from '../main_body/upload_track_form/upload_track_form_container';
 
 const customStyles = {
   content : {
@@ -15,6 +16,10 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)'
   }
 };
+
+const LOGIN = "login";
+const SIGNUP = "signup";
+const UPLOAD = "upload";
 
 class AppModal extends React.Component {
   constructor() {
@@ -43,11 +48,16 @@ class AppModal extends React.Component {
     this.setState({modalIsOpen: false});
   }
 
-  renderSessionForm() {
-    if(this.props.formType==="login") {
-      return <LoginFormContainer />;
-    } else {
-      return <SignupFormContainer />;
+  renderForm() {
+    switch(this.props.formType) {
+      case LOGIN:
+        return <LoginFormContainer action="login"/>;
+      case SIGNUP:
+        return <SignupFormContainer action="signup"/>;
+      case UPLOAD:
+        return <UploadTrackFormContainer action="upload"/>;
+      default:
+        return <div></div>;
     }
   }
 
@@ -67,7 +77,7 @@ class AppModal extends React.Component {
         >
 
           <br/>
-          { this.renderSessionForm() }
+          { this.renderForm() }
 
         </Modal>
       </div>

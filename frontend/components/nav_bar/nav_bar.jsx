@@ -16,8 +16,10 @@ class NavBar extends React.Component {
       const capitalUser = currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1);
       return (
         <div className="nav-right">
-
-          <Link className="nav-user-container" to={`/${currentUser.username}`}><img className="nav-user-avatar" src={currentUser.avatar_url}/><div className="nav-user">{capitalUser}</div></Link>
+          <Link className="nav-user-container" to={`/${currentUser.username}`}>
+            <img className="nav-user-avatar" src={currentUser.avatar_url}/>
+            <div className="nav-user">{capitalUser}</div>
+          </Link>
           <button className="nav-btn" onClick={ this.props.logout }>Logout</button>
         </div>
       );

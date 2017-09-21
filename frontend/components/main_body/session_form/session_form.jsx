@@ -55,21 +55,26 @@ class SessionForm extends React.Component {
   }
 
   render() {
+
+
+    let buttonText="";
+    let formAction="";
+    if(this.props.action) {
+      formAction = "/"+this.props.action;
+    } else {
+      formAction = this.props.match.path;
+    }
+    if (formAction==="/login") {
+      buttonText = "Sign in";
+    } else {
+      buttonText = "Sign up";
+    }
     const altRoute = {
-      route: this.props.match.path==="/login" ? "/signup" : "/login",
-      text: this.props.match.path==="/login" ?
+      route: formAction==="/login" ? "/signup" : "/login",
+      text: formAction==="/login" ?
                                 "Don't have an account? Sign up" :
                                 "Already have an account? Sign in",
     };
-
-    let buttonText="";
-    if(this.props !== undefined) {
-      if (this.props.match.path.includes("in")) {
-        buttonText = "Sign in";
-      } else {
-        buttonText = "Sign up";
-      }
-    }
     return(
       <div>
         <div className="form-header"><h1 className="form-label">{buttonText}</h1></div>

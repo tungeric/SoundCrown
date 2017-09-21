@@ -1,6 +1,6 @@
 class Api::TracksController < ApplicationController
   def index
-    @tracks = User.find_by(id: params[:creator_id]).tracks
+    @tracks = User.find_by(id: params[:user_id]).tracks
     render :index
   end
 
