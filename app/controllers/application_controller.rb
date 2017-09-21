@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :verify_logged_in
 
   def login!(user)
     @current_user = user
@@ -19,5 +19,13 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     !!current_user
+  end
+
+  def verify_logged_in
+    unless logged_in?
+      render json: ["You must be logged in"], status: 403
+      false
+    end
+    true
   end
 end

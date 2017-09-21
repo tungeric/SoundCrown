@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+
   namespace :api, defaults: { format: :json } do
-    resources :users, only: [:create, :show]
+    resources :users, only: [:create, :show] do
+      resources :tracks, only: [:index]
+    end
     resource :session, only: [:create, :destroy]
+    resources :tracks, only: [:show, :create, :destroy]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

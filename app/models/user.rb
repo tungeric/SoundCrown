@@ -19,6 +19,11 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :tracks,
+    class_name: :Track,
+    primary_key: :id,
+    foreign_key: :creator_id
+
   # paperclip
   has_attached_file :avatar,
                     default_url: "http://res.cloudinary.com/dfafbqoxx/image/upload/v1505940306/soundcrown-logo_ueiofl.jpg"
