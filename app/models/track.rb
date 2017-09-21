@@ -8,4 +8,9 @@ class Track < ApplicationRecord
     primary_key: id,
     foreign_key: creator_id
 
+  # paperclip
+  # has_attached_file :trackFile,
+  #                   default_url: ""
+  # validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
 end
