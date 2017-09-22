@@ -20,7 +20,7 @@ export const removeTrack = (track) => ({
   track
 });
 
-export const receiveErrors = (errors) => ({
+export const receiveTrackErrors = (errors) => ({
   type: RECEIVE_TRACK_ERRORS,
   errors
 });
@@ -29,23 +29,27 @@ export const getAllUserTracks = (username) => dispatch => {
   let test = TrackApiUtil.getUserTracks(username);
   return TrackApiUtil.getUserTracks(username)
       .then( response => dispatch(receiveAllTracks(response)),
-             errors => dispatch(receiveErrors(errors.responseJSON)));
+             errors => dispatch(receiveTrackErrors(errors.responseJSON)));
 };
 
 export const getTrack = (id) => dispatch => {
   return TrackApiUtil.getTrack(id)
     .then( response => dispatch(receiveTrack(response)),
-           errors => dispatch(receiveErrors(errors.responseJSON)));
+           errors => dispatch(receiveTrackErrors(errors.responseJSON)));
 };
 
 export const createTrack = (track) => dispatch => {
   return TrackApiUtil.createTrack(track)
-    .then( response => dispatch(receiveTrack(response)),
-           errors => dispatch(receiveErrors(errors.responseJSON)));
-};
+    .then(response => {
+      dispatch(receiveTrack(response));
+      location.hash=`/tracks/${response.id}`;
+    },
+      errors => dispatch(receiveTrackErrors(errors.responseJSON))
+    );
+  };
 
 export const deleteTrack = (id) => dispatch => (
   TrackApiUtil.deleteTrack(id)
     .then( response => dispatch(removeTrack(response)),
-           errors => dispatch(receiveErrors(errors.responseJSON)))
+           errors => dispatch(receiveTrackErrors(errors.responseJSON)))
 );

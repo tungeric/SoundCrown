@@ -7,7 +7,8 @@ class SessionForm extends React.Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      // fireRedirect: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -17,11 +18,18 @@ class SessionForm extends React.Component {
   //     this.props.history.push('/');
   //   }
   // }
+  // componentDidUpdate() {
+  //   if(this.state.fireRedirect===true && this.props.errors.length===0){
+  //     return <Redirect to="/stream"/>;
+  //   }
+  // }
 
   handleSubmit(e) {
     e.preventDefault();
     const user = this.state;
-    this.props.processForm({user});
+    console.log(user);
+    this.props.processForm(user);
+    // this.setState({fireRedirect: true});
   }
 
   renderErrors() {
@@ -65,8 +73,6 @@ class SessionForm extends React.Component {
                                 "Don't have an account? Sign up" :
                                 "Already have an account? Sign in",
     };
-    console.log(this.state.username);
-    console.log(this.state.password);
     return(
       <div>
         <div className="form-header"><h1 className="form-label">{buttonText}</h1></div>

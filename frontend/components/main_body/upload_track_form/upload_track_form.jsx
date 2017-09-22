@@ -23,9 +23,17 @@ class UploadTrackForm extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    const track = Object.assign({}, this.state);
-    this.props.createTrack(track);
-    this.setState({ creator_id: 0 });
+    const formData = new FormData();
+    formData.append("track[title]", this.state.title);
+    formData.append("track[description]", this.state.description);
+    formData.append("track[creator_id]", this.state.creator_id);
+    console.log(formData.get("track[title]"));
+    console.log(this.state);
+    if (this.state.audio) {
+      formData.append("track[audio]", this.state.audio);
+      console.log(formData);
+      this.props.createTrack(formData);
+    }
   }
 
   update(field) {
@@ -38,9 +46,9 @@ class UploadTrackForm extends React.Component {
     fileReader.onloadend = () => {
       this.setState({ audio: file });
     };
-    if (file) {
-      fileReader.readAsDataURL(file);
-    }
+    // if (file) {
+    //   fileReader.readAsDataURL(file);
+    // }
 
   }
 

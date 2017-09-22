@@ -5,6 +5,7 @@ import configureStore from './store/store';
 // for testing purposes
 import { signup, login, logout } from './actions/session_actions';
 import { createTrack } from './actions/track_actions';
+import * as SessionAPIUtil from './util/session_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -25,4 +26,5 @@ document.addEventListener('DOMContentLoaded', () => {
   window.logout = logout;
   window.signup = signup;
   window.createTrack = createTrack;
+  window.utillogin = SessionAPIUtil.login;
 });
