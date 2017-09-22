@@ -26,7 +26,7 @@ class App extends React.Component {
         <Route path='/' component={NavBarContainer} />
         <div className="main-body">
           <Switch>
-            <Route exact path="/" component={SplashPageContainer} />
+            <AuthRoute exact path="/" component={SplashPageContainer} />
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <ProtectedRoute exact path="/stream" component={StreamPageContainer} />

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, withRouter, Redirect } from 'react-router-dom';
-import { loadSpecificSection } from '../../../actions/general_actions';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -13,17 +12,16 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.loggedIn) {
-      this.props.history.push('/');
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.loggedIn) {
+  //     this.props.history.push('/');
+  //   }
+  // }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.processForm(user);
-    this.props.loadSpecificSection('stream');
+  handleSubmit(e) {
+    e.preventDefault();
+    const user = this.state;
+    this.props.processForm({user});
   }
 
   renderErrors() {
@@ -67,6 +65,8 @@ class SessionForm extends React.Component {
                                 "Don't have an account? Sign up" :
                                 "Already have an account? Sign in",
     };
+    console.log(this.state.username);
+    console.log(this.state.password);
     return(
       <div>
         <div className="form-header"><h1 className="form-label">{buttonText}</h1></div>

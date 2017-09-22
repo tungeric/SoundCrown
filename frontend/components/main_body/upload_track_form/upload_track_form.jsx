@@ -8,9 +8,11 @@ class UploadTrackForm extends React.Component {
       title: "",
       description: "",
       creator_id: props.currentUser.id,
+      audio: null
       // fireRedirect: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setAudio = this.setAudio.bind(this);
   }
 
   componentDidUpdate() {
@@ -30,12 +32,25 @@ class UploadTrackForm extends React.Component {
     return event => this.setState({ [field]: event.target.value });
   }
 
+  setAudio (event) {
+    const file = event.currentTarget.files[0];
+    let fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({ audio: file });
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+
+  }
+
   render () {
     return (
       <div>
         <form onSubmit={ this.handleSubmit }>
           <div className="form-header"><h1 className="form-label">Upload Track</h1></div>
           <br/>
+          <input className="upload-input" type="file" onChange={this.setAudio}/>
           <label>Title:
             <input type="text"
                    onChange={ this.update('title') }

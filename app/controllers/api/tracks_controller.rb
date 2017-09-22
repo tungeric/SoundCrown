@@ -22,9 +22,14 @@ class Api::TracksController < ApplicationController
     @track = Track.find_by(id: params[:id])
   end
 
+  def all_tracks
+    @tracks = Track.all
+    render :index
+  end
+
   private
 
   def track_params
-    params.require(:track).permit(:title, :description, :creator_id)
+    params.require(:track).permit(:title, :description, :creator_id, :audio)
   end
 end
