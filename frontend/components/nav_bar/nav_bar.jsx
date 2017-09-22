@@ -43,6 +43,7 @@ class NavBar extends React.Component {
     } else {
       return (
         <header className='nav-header'>
+          <LoadingBar />
           <nav className="nav-bar">
             <div className="nav-left">
               <Link className="nav-logo" to="/stream"></Link>
@@ -52,7 +53,6 @@ class NavBar extends React.Component {
               { this.renderSessionButtons() }
             </div>
           </nav>
-          <LoadingBar />
         </header>
       );
     }

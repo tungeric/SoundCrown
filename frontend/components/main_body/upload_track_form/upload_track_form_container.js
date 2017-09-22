@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import UploadTrackForm from './upload_track_form';
 import { createTrack } from '../../../actions/track_actions';
+import { clearErrors } from '../../../actions/session_actions';
 
 const mapStateToProps = ({session, errors}, props) => {
   let track = {title: "", description: ""};
@@ -11,7 +12,8 @@ const mapStateToProps = ({session, errors}, props) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    createTrack: post => dispatch(createTrack(post))
+    createTrack: post => dispatch(createTrack(post)),
+    clearErrors: () => dispatch(clearErrors())
   };
 };
 
