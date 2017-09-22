@@ -84,3 +84,41 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.nav-btn-login {
+  color: rgb(180,180,180);
+  text-decoration: none;
+  font-size: 16px;
+  background-color: none;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid rgb(180,180,180);
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.nav-btn-login:hover {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.nav-btn-signup {
+  color: rgb(220,220,220);
+  text-decoration: none;
+  font-size: 16px;
+  background-color: rgb(0,200,255);
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid rgb(220,220,220);
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.nav-btn-signup:hover {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid white;
+}

@@ -9,7 +9,15 @@ class UserPageMain extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllUserTracks(this.props.currentUser.id);
+    let pageUser = this.props.match.params.username;
+    this.props.getAllUserTracks(pageUser);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.match.params.username!==this.props.match.params.username) {
+      let pageUser = nextProps.match.params.username;
+      this.props.getAllUserTracks(pageUser);
+    }
   }
 
   render () {

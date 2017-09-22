@@ -25,10 +25,10 @@ export const receiveErrors = (errors) => ({
   errors
 });
 
-export const getAllUserTracks = (id) => dispatch => {
-  console.log(TrackApiUtil.getUserTracks(id));
+export const getAllUserTracks = (username) => dispatch => {
+  let test = TrackApiUtil.getUserTracks(username);
   return(
-    TrackApiUtil.getUserTracks(id)
+    TrackApiUtil.getUserTracks(username)
       .then( response => dispatch(receiveAllTracks(response)),
              errors => dispatch(receiveErrors(errors.responseJSON)))
         );

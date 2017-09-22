@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, Redirect } from 'react-router-dom';
+import AppModal from '../misc_tools/modal';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -25,9 +26,9 @@ class NavBar extends React.Component {
       );
     } else {
       return (
-        <div>
-          <Link className="nav-btn" to="/signup">Sign Up</Link>
-          <Link className="nav-btn" to="/login">Log In</Link>
+        <div className="nav-right">
+          <AppModal formType="login" className="nav-btn-login" text="Sign in"/>
+          <AppModal formType="signup" className="nav-btn-signup" text="Create account"/>
         </div>
       );
     }

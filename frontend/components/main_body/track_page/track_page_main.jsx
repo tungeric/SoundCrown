@@ -5,14 +5,14 @@ import ReactDOM from 'react-dom';
 class TrackPageMain extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
   }
 
   componentDidMount() {
-    this.props.getTrack(this.props.track.id);
+    this.props.getTrack(this.props.match.params.trackId);
   }
 
   render () {
-    console.log(this.props.track);
     return (
       <div>
         <div>

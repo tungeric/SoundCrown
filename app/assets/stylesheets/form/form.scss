@@ -7,6 +7,15 @@ input[type=text], input[type=password] {
     border-radius: 6px;
 }
 
+textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 6px;
+}
+
 input[type="submit"] {
   width: 30%;
   color: white;

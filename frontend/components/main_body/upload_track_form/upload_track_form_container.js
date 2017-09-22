@@ -4,7 +4,6 @@ import UploadTrackForm from './upload_track_form';
 import { createTrack } from '../../../actions/track_actions';
 
 const mapStateToProps = (state, props) => {
-  // console.log(props);
   let track = {title: "", description: ""};
   return { track };
 };
