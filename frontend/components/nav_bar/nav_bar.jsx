@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, Redirect } from 'react-router-dom';
 import AppModal from '../misc_tools/modal';
+import LoadingBar from 'react-redux-loading-bar';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class NavBar extends React.Component {
               { this.renderSessionButtons() }
             </div>
           </nav>
+          <LoadingBar />
         </header>
       );
     }
