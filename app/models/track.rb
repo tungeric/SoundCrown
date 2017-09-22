@@ -34,4 +34,8 @@ class Track < ApplicationRecord
   #                      'audio/x-mpg',
   #                      'audio/x-mpegaudio' ]
  validates_with AttachmentSizeValidator, attributes: :audio, less_than: 40.megabytes
+
+ has_attached_file :cover_art,
+                   default_url: "http://res.cloudinary.com/dfafbqoxx/image/upload/v1505940306/soundcrown-logo_ueiofl.jpg"
+ validates_attachment_content_type :cover_art, content_type: /\Aimage\/.*\Z/
 end

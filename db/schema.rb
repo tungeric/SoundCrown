@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170922065117) do
+ActiveRecord::Schema.define(version: 20170922210909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,10 @@ ActiveRecord::Schema.define(version: 20170922065117) do
     t.string "audio_content_type"
     t.integer "audio_file_size"
     t.datetime "audio_updated_at"
+    t.string "cover_art_file_name"
+    t.string "cover_art_content_type"
+    t.integer "cover_art_file_size"
+    t.datetime "cover_art_updated_at"
     t.index ["creator_id"], name: "index_tracks_on_creator_id"
     t.index ["title"], name: "index_tracks_on_title"
   end

@@ -23,6 +23,7 @@ class NavBar extends React.Component {
             <img className="nav-user-avatar" src={currentUser.avatar_url}/>
             <div className="nav-user">{capitalUser}</div>
           </Link>
+          <AppModal formType="upload" className="nav-upload-track-btn" text="Upload Track"/>
           <button className="nav-btn" onClick={ this.props.logout }>Logout</button>
         </div>
       );

@@ -8,15 +8,17 @@ class UploadTrackForm extends React.Component {
       title: "",
       description: "",
       creator_id: props.currentUser.id,
-      audio: null
+      audio: null,
+      cover_art_url: "http://res.cloudinary.com/dfafbqoxx/image/upload/v1505940306/soundcrown-logo_ueiofl.jpg",
+      cover_art: null
       // fireRedirect: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setAudio = this.setAudio.bind(this);
+    this.setCoverArt = this.setCoverArt.bind(this);
   }
 
   componentDidUpdate() {
-    console.log(this.state.creator_id);
     if(this.state.creator_id === 0) {
       return <Redirect to="/stream"/>;
     }
@@ -27,25 +29,10 @@ class UploadTrackForm extends React.Component {
     formData.append("track[title]", this.state.title);
     formData.append("track[description]", this.state.description);
     formData.append("track[creator_id]", this.state.creator_id);
-    // if (this.state.audio) {
-      formData.append("track[audio]", this.state.audio);
-      // console.log(formData);
-      this.props.createTrack(formData);
-    // }
-
-    // const request = new XMLHttpRequest();
-    // request.onreadystatechange = () => {
-    //   if(request.readyState === 4) {
-    //     try {
-    //       let resp = JSON.parse(request.response);
-    //     } catch (e) {
-    //       let resp = {
-    //         status: 'error',
-    //         data: 'Unknown error occurred: [' + request.responseText + ']'
-    //       };
-    //     }
-    //   }
-    // };
+    formData.append("track[audio]", this.state.audio);
+    formData.append("track[cover_art]", this.state.cover_art);
+    console.log(this.state);
+    this.props.createTrack(formData);
   }
 
   renderErrors() {
@@ -68,6 +55,17 @@ class UploadTrackForm extends React.Component {
     return event => this.setState({ [field]: event.target.value });
   }
 
+  setCoverArt (event) {
+    const file = event.currentTarget.files[0];
+    let fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({ cover_art_url: fileReader.result, cover_art: file });
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  }
+
   setAudio (event) {
     const file = event.currentTarget.files[0];
     let fileReader = new FileReader();
@@ -86,7 +84,10 @@ class UploadTrackForm extends React.Component {
           <div className="form-header"><h1 className="form-label">Upload Track</h1></div>
           <br/>
           {this.renderErrors()}
-          <input className="upload-input" type="file" onChange={this.setAudio}/>
+          <label>Upload Cover Art<input className="upload-input" type="file" onChange={this.setCoverArt}/></label>
+          <label>Upload Track<input className="upload-input" type="file" onChange={this.setAudio}/></label>
+          <img className="upload-image-preview" src={this.state.cover_art_url}/>
+          <br/>
           <label>Title:
             <input type="text"
                    onChange={ this.update('title') }
