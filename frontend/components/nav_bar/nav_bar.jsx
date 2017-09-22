@@ -14,6 +14,7 @@ class NavBar extends React.Component {
 
   renderSessionButtons() {
     const currentUser = this.props.currentUser;
+    const demoUser = {username:"demo", password: "password"};
     if (currentUser) {
       const capitalUser = currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1);
       return (
@@ -28,6 +29,7 @@ class NavBar extends React.Component {
     } else {
       return (
         <div className="nav-right">
+          <button className="splash-nav-btn-login" onClick={()=> {this.props.login(demoUser);}}>Demo</button>
           <AppModal formType="login" className="nav-btn-login" text="Sign in"/>
           <AppModal formType="signup" className="nav-btn-signup" text="Create account"/>
         </div>

@@ -32,6 +32,12 @@ class SessionForm extends React.Component {
     // this.setState({fireRedirect: true});
   }
 
+  componentWillUnmount() {
+    console.log(this.props);
+    console.log("hhahahahahahahaha");
+      this.props.clearErrors();
+    }
+
   renderErrors() {
     return (
       <div>
@@ -84,7 +90,7 @@ class SessionForm extends React.Component {
           <label>Password:
             <input onChange={ this.update('password') } type="password" value={this.state.password}></input>
           </label>
-          <input type="submit" value="Submit" />
+          <input type="submit" value={buttonText} />
         </form>
         <Link to={altRoute.route}>{altRoute.text}</Link>
       </div>
