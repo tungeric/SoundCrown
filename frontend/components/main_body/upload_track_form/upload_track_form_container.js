@@ -3,9 +3,10 @@ import { withRouter } from 'react-router-dom';
 import UploadTrackForm from './upload_track_form';
 import { createTrack } from '../../../actions/track_actions';
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = ({session, errors}, props) => {
   let track = {title: "", description: ""};
-  return { track };
+  let currentUser = session.currentUser;
+  return { currentUser, track, errors };
 };
 
 const mapDispatchToProps = (dispatch, props) => {

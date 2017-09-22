@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 class UploadTrackForm extends React.Component {
   constructor(props) {
@@ -6,16 +7,23 @@ class UploadTrackForm extends React.Component {
     this.state = {
       title: "",
       description: "",
-      fireRedirect: false
+      creator_id: props.currentUser.id,
+      // fireRedirect: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidUpdate() {
+    console.log(this.state.creator_id);
+    if(this.state.creator_id === 0) {
+      return <Redirect to="/stream"/>;
+    }
+  }
   handleSubmit(event) {
     event.preventDefault();
     const track = Object.assign({}, this.state);
     this.props.createTrack(track);
-    this.setState({ fireRedirect: true });
+    this.setState({ creator_id: 0 });
   }
 
   update(field) {

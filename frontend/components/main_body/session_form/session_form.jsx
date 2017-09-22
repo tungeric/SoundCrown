@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, withRouter, Redirect } from 'react-router-dom';
+import { loadSpecificSection } from '../../../actions/general_actions';
 
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
-      password: "",
-      fireRedirect: false
+      password: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -19,19 +19,11 @@ class SessionForm extends React.Component {
     }
   }
 
-
-  componentDidUpdate() {
-    if(this.state.fireRedirect && this.props.errors.session.length === 0) {
-      return <Redirect to="/stream"/>;
-    }
-  }
-
-
   handleSubmit(event) {
     event.preventDefault();
     const user = Object.assign({}, this.state);
     this.props.processForm(user);
-    this.setState({ fireRedirect: true });
+    this.props.loadSpecificSection('stream');
   }
 
   renderErrors() {

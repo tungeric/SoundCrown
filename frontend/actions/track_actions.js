@@ -27,24 +27,22 @@ export const receiveErrors = (errors) => ({
 
 export const getAllUserTracks = (username) => dispatch => {
   let test = TrackApiUtil.getUserTracks(username);
-  return(
-    TrackApiUtil.getUserTracks(username)
+  return TrackApiUtil.getUserTracks(username)
       .then( response => dispatch(receiveAllTracks(response)),
-             errors => dispatch(receiveErrors(errors.responseJSON)))
-        );
+             errors => dispatch(receiveErrors(errors.responseJSON)));
 };
 
-export const getTrack = (id) => dispatch => (
-  TrackApiUtil.getTrack(id)
+export const getTrack = (id) => dispatch => {
+  return TrackApiUtil.getTrack(id)
     .then( response => dispatch(receiveTrack(response)),
-           errors => dispatch(receiveErrors(errors.responseJSON)))
-);
+           errors => dispatch(receiveErrors(errors.responseJSON)));
+};
 
-export const createTrack = (track) => dispatch => (
-  TrackApiUtil.createTrack(track)
+export const createTrack = (track) => dispatch => {
+  return TrackApiUtil.createTrack(track)
     .then( response => dispatch(receiveTrack(response)),
-           errors => dispatch(receiveErrors(errors.responseJSON)))
-);
+           errors => dispatch(receiveErrors(errors.responseJSON)));
+};
 
 export const deleteTrack = (id) => dispatch => (
   TrackApiUtil.deleteTrack(id)

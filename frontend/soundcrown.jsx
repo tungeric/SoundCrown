@@ -4,6 +4,7 @@ import Root from './components/root';
 import configureStore from './store/store';
 // for testing purposes
 import { signup, login, logout } from './actions/session_actions';
+import { createTrack } from './actions/track_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -23,4 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
   window.login = login;
   window.logout = logout;
   window.signup = signup;
+  window.createTrack = createTrack;
 });

@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 class TrackPageMain extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   componentDidMount() {
@@ -13,6 +12,7 @@ class TrackPageMain extends React.Component {
   }
 
   render () {
+    console.log(this.props.track);
     return (
       <div>
         <div>
