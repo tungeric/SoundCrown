@@ -27,7 +27,7 @@ class SplashPage extends React.Component {
           </div>
             <h1 className="splash-title">Connect on SoundCrown</h1>
             <div className="splash-hook">
-              <br/><br/><br/><br/><br/><br/>
+              <br/><br/><br/><br/><br/><br/><br/><br/>
               <AppModal formType="signup" className="splash-main-btn" text="Sign up for free"/>
               <br/>
               <p>Discover, stream, and share a constantly expanding mix of music

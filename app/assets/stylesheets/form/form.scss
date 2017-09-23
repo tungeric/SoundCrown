@@ -29,16 +29,50 @@ input[type="submit"] {
 .form-header {
   padding: 0;
   margin: 0;
-  background-color: rgb(0,200,255);
+  // background-color: rgb(0,200,255);
 }
 
 .form-label {
-  color: white;
+  color: black;
   font-size: 30px;
   text-align: center;
 }
 
 .upload-image-preview {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
+}
+
+.track-upload-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+label.track-upload-label {
+  width: 300px;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: rgba(0,200,255,1);
+  padding: 15px 20px 15px 20px;
+  border: 2px solid white;
+  text-align: center;
+  cursor: pointer;
+}
+
+label.track-img-upload-label {
+  width: 300px;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: rgba(0,200,255,1);
+  padding: 15px 20px 15px 20px;
+  border: 2px solid white;
+  text-align: center;
+  cursor: pointer;
 }

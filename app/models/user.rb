@@ -31,6 +31,7 @@ class User < ApplicationRecord
   # paperclip
   has_attached_file :avatar,
                     default_url: "http://res.cloudinary.com/dfafbqoxx/image/upload/v1505940306/soundcrown-logo_ueiofl.jpg"
+                    # url: ":s3_us_west_url"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
 

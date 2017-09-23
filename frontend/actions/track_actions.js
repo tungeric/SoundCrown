@@ -42,8 +42,6 @@ export const createTrack = (track) => dispatch => {
   return TrackApiUtil.createTrack(track)
     .then(response => {
       dispatch(receiveTrack(response));
-      location.hash=`/tracks/${response.id}`;
-
     },
       errors => dispatch(receiveTrackErrors(errors.responseJSON))
     );

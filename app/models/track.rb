@@ -21,7 +21,10 @@ class Track < ApplicationRecord
     primary_key: :id
 
   # paperclip
-  has_attached_file :audio, presence: true
+  has_attached_file :audio,
+                    # url: ":s3_us_west_url",
+                    # you can specify s3_credentials file here!
+                    presence: true
   validates_attachment_content_type :audio, content_type: /\Aaudio\/.*\z/
   # validates_attachment_content_type :audio,
   #   :content_type => [ 'audio/mpeg',

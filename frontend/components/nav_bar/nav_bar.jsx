@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, Redirect } from 'react-router-dom';
 import AppModal from '../misc_tools/modal';
-import LoadingBar from 'react-redux-loading-bar';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -44,7 +43,7 @@ class NavBar extends React.Component {
     } else {
       return (
         <header className='nav-header'>
-          <LoadingBar />
+
           <nav className="nav-bar">
             <div className="nav-left">
               <Link className="nav-logo" to="/stream"></Link>

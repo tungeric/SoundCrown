@@ -32,6 +32,16 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+.track-cover-art {
+  width: 200px;
+  height: 200px;
+}
+
+.track-header {
+  display: flex;
+  justify-content: flex-start;
+}
+
 
 // SPLASH
 @import "splash/splash.scss";
