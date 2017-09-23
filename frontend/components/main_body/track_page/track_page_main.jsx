@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import { Link } from 'react-router-dom';
 
 class TrackPageMain extends React.Component {
   constructor(props) {
@@ -13,6 +13,32 @@ class TrackPageMain extends React.Component {
       .then( response => this.setState(response.track));
   }
 
+  renderElapsedTime() {
+    let seconds = Math.floor((new Date() - this.state.created_at) / 1000);
+    let interval = Math.floor(seconds / 31536000);
+    if (interval > 1) {
+      return interval + " years";
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval > 1) {
+      return interval + " months";
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval > 1) {
+      return interval + " days";
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) {
+      return interval + " hours";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) {
+      return interval + " minutes";
+    }
+    return Math.floor(seconds) + " seconds";
+  }
+
+
   render () {
     if(this.state) {
       if (this.state.title.length > 0) {
@@ -21,10 +47,19 @@ class TrackPageMain extends React.Component {
                       +this.state.cover_art_url.slice(9);
         return (
           <div>
-            <div className="track-header">
-              <img className="track-cover-art" src={fixedUrl}/>
-              <h1>{this.state.title}</h1>
-              <a>{this.state.description}</a>
+            <div className="track-header-bg">
+              <div className="track-header-data">
+                <Link className="track-header-username" to={`/${this.state.creator}/`}>{this.state.creator}</Link>
+                <div className="track-header-trackname">{this.state.title}</div>
+                <a>{this.state.description}</a>
+              </div>
+              <div className="track-header-right">
+                <div className="track-header-time">{ this.renderElapsedTime()}{' ago'}</div>
+                <div className="track-cover-art-container">
+                  <img className="track-cover-art" src={fixedUrl}/>
+                </div>
+              </div>
+
             </div>
           </div>
         );
