@@ -1,12 +1,12 @@
 import * as TrackApiUtil from '../util/track_api_util';
 
-export const RECEIVE_ALL_TRACKS = "RECEIVE_ALL_TRACKS";
+export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
 export const RECEIVE_TRACK = "RECEIVE_TRACK";
 export const REMOVE_TRACK = "REMOVE_TRACK";
 export const RECEIVE_TRACK_ERRORS = "RECEIVE_TRACK_ERRORS";
 
-export const receiveAllTracks = (tracks) => ({
-  type: RECEIVE_ALL_TRACKS,
+export const receiveTracks = (tracks) => ({
+  type: RECEIVE_TRACKS,
   tracks
 });
 
@@ -26,11 +26,17 @@ export const receiveTrackErrors = (errors) => ({
 });
 
 export const getAllUserTracks = (username) => dispatch => {
-  let test = TrackApiUtil.getUserTracks(username);
   return TrackApiUtil.getUserTracks(username)
-      .then( response => dispatch(receiveAllTracks(response)),
+      .then( response => dispatch(receiveTracks(response)),
              errors => dispatch(receiveTrackErrors(errors.responseJSON)));
 };
+
+export const getAllTracks = () => dispatch => {
+  return TrackApiUtil.getAllTracks()
+      .then( response => dispatch(receiveTracks(response)),
+             errors => dispatch(receiveTrackErrors(errors.responseJSON)));
+};
+
 
 export const getTrack = (id) => dispatch => {
   return TrackApiUtil.getTrack(id)
@@ -45,7 +51,16 @@ export const createTrack = (track) => dispatch => {
     },
       errors => dispatch(receiveTrackErrors(errors.responseJSON))
     );
-  };
+};
+
+export const updateTrack = (track) => dispatch => {
+  return TrackApiUtil.updateTrack(track)
+    .then(response => {
+      dispatch(receiveTrack(response));
+    },
+      errors => dispatch(receiveTrackErrors(errors.responseJSON))
+    );
+};
 
 export const deleteTrack = (id) => dispatch => (
   TrackApiUtil.deleteTrack(id)

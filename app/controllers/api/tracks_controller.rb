@@ -1,6 +1,11 @@
 class Api::TracksController < ApplicationController
   def index
-    @tracks = User.find_by(username: params[:user_username]).tracks
+    user = User.find_by(username: params[:user_username])
+    if user
+      @tracks = user.tracks
+    else
+      @tracks = Track.all
+    end
     render :index
   end
 
@@ -12,6 +17,15 @@ class Api::TracksController < ApplicationController
   def create
     @track = Track.new(track_params)
     if @track.save
+      render :show
+    else
+      render json: @track.errors.full_messages
+    end
+  end
+
+  def update
+    @track = Track.find_by(id: params[:id])
+    if @track.update_attributes
       render :show
     else
       render json: @track.errors.full_messages

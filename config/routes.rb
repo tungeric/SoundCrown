@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :tracks, only: [:index]
     end
     resource :session, only: [:create, :destroy]
-    resources :tracks, only: [:show, :create, :destroy]
+    resources :tracks, only: [:index, :show, :create, :destroy]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

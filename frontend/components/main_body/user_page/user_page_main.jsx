@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import UserTrackItem from './user_track_item';
+import TrackIndexItem from '../tracks/track_index_item';
 import AppModal from '../../misc_tools/modal';
 
 class UserPageMain extends React.Component {
@@ -21,16 +21,17 @@ class UserPageMain extends React.Component {
   }
 
   render () {
+    console.log(this.props);
     return (
       <div>
         <div className="user-tracklist">
+          <h1>Tracks by {this.props.match.params.username}</h1>
           <ul>
             {
-              this.props.tracks.map((track, idx) => <UserTrackItem key={idx} track={track}/>)
+              this.props.tracks.map((track, idx) => <TrackIndexItem key={idx} track={track}/>)
             }
           </ul>
         </div>
-        <AppModal formType="upload" className="upload-track-btn" text="Upload Track"/>
       </div>
     );
   }

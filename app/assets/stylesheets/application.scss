@@ -23,13 +23,26 @@
 
 // form
 @import "form/form.scss";
-
 // MAIN BODY
+
+.main-body {
+  display: flex;
+  justify-content: flex-start;
+  font-family: 'Source Sans Pro', sans-serif;
+  max-width: 1240px;
+  min-width: 1080px;
+  width: 100%;
+
+}
 
 .main-body {
   display: flex;
   justify-content: center;
   font-family: 'Source Sans Pro', sans-serif;
+  max-width: 1240px;
+  min-width: 1080px;
+  width: 100%;
+
 }
 
 .track-cover-art {

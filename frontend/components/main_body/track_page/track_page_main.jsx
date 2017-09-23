@@ -42,9 +42,12 @@ class TrackPageMain extends React.Component {
   render () {
     if(this.state) {
       if (this.state.title.length > 0) {
-        let fixedUrl = this.state.cover_art_url.slice(0,9)
-                      +"-us-west-1"
-                      +this.state.cover_art_url.slice(9);
+        let fixedUrl = this.state.cover_art_url;
+        if (this.state.cover_art_url.slice(7,9) === "s3") {
+          fixedUrl = this.state.cover_art_url.slice(0,9)
+                        +"-us-west-1"
+                        +this.state.cover_art_url.slice(9);
+        }
         return (
           <div>
             <div className="track-header-bg">

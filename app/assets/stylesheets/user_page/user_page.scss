@@ -15,3 +15,13 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.track-index-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.track-index-data {
+  display: flex;
+  flex-direction: column;
+}

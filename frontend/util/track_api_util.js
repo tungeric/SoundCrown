@@ -8,6 +8,14 @@ export const createTrack = (formData) => (
   })
 );
 
+export const updateTrack = (track) => (
+  $.ajax({
+    method: 'POST',
+    url: `api/tracks/${track.id}`,
+    data: track,
+  })
+);
+
 export const deleteTrack = (id) => (
   $.ajax({
     method: 'DELETE',
@@ -19,6 +27,13 @@ export const getUserTracks = (username) => (
   $.ajax({
     method: 'GET',
     url: `api/users/${username}/tracks`,
+  })
+);
+
+export const getAllTracks = () => (
+  $.ajax({
+    method: 'GET',
+    url: `api/users/tracks`,
   })
 );
 
