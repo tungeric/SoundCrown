@@ -25,7 +25,11 @@ class Track < ApplicationRecord
                     # url: ":s3_us_west_url",
                     # you can specify s3_credentials file here!
                     presence: true
-  validates_attachment_content_type :audio, content_type: /\Aaudio\/.*\z/
+  validates_attachment_content_type :audio,
+                                    content_type: /\Aaudio\/.*\z/,
+                                    :storage => :s3,
+                                    :bucket => ENV["s3_bucket"],
+                                    :path => ":env_folder/LOOKATMENOW/:attachment/:id/:style/:filename.:extension"
   # validates_attachment_content_type :audio,
   #   :content_type => [ 'audio/mpeg',
   #                      'audio/x-mpeg',
@@ -42,6 +46,12 @@ class Track < ApplicationRecord
                    default_url: "http://res.cloudinary.com/dfafbqoxx/image/upload/v1505940306/soundcrown-logo_ueiofl.jpg"
  validates_attachment_content_type :cover_art, content_type: /\Aimage\/.*\Z/
 
+ private
+
+ # interpolate in paperclip
+ Paperclip.interpolates :env_folder  do |attachment, style|
+   Rails.env.production? ? 'production' : 'development'
+ end
 
 
 end

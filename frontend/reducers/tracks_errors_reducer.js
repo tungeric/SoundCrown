@@ -1,10 +1,9 @@
 import { merge } from 'lodash';
-import * as SessionAPIUtil from '../util/session_api_util';
 import {
   RECEIVE_TRACKS,
   RECEIVE_TRACK,
   RECEIVE_TRACK_ERRORS
-} from '../actions/session_actions';
+} from '../actions/track_actions';
 
 const _noErrors = [];
 

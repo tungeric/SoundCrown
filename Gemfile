@@ -30,6 +30,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
 
 gem "paperclip"
+gem 'attachment_on_the_fly'
 gem 'figaro'
 gem 'aws-sdk', '~> 2.3'
 gem 'ruby-mp3info', require: 'mp3info'

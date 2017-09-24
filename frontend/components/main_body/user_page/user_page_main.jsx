@@ -11,18 +11,43 @@ class UserPageMain extends React.Component {
   componentDidMount() {
     let pageUser = this.props.match.params.username;
     this.props.getAllUserTracks(pageUser);
+    this.props.getUser(pageUser);
   }
 
   componentWillUpdate(nextProps) {
     if(nextProps.match.params.username!==this.props.match.params.username) {
       let pageUser = nextProps.match.params.username;
+      this.props.getUser(pageUser);
       this.props.getAllUserTracks(pageUser);
+    }
+  }
+
+  renderUserHeader() {
+    if (this.props.users.length === 1) {
+      let user = this.props.users[0];
+      console.log(user[0]);
+      return (
+        <div className="user-header-bg">
+          <div className="user-header-left">
+            <div className="user-avatar-container">
+              <img className="user-avatar" src={user.avatar_url}/>
+            </div>
+            <div className="user-header-username-container">
+              <div className="user-header-username">{user.username}</div>
+            </div>
+          </div>
+          <div className="user-header-right"></div>
+        </div>
+      );
+    } else {
+      return <div></div>;
     }
   }
 
   render () {
     return (
       <div>
+        { this.renderUserHeader() }
         <div className="user-tracklist">
           <h1>Tracks by {this.props.match.params.username}</h1>
           <ul>
