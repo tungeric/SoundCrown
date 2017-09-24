@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+// import ReactMusicPlayer from '../../misc_tools/react_music_player';
+import MusicPlayer from '../../misc_tools/music_player';
+import { getTrack} from '../../../actions/track_actions';
 
 class TrackIndexItem extends React.Component{
   constructor(props) {
@@ -46,6 +49,7 @@ class TrackIndexItem extends React.Component{
               <div className="track-index-data">
                 <Link to={`/${this.state.creator}/`}>{this.state.creator}</Link>
                 <Link to={`/tracks/${this.state.id}`}>{this.state.title}</Link>
+                <MusicPlayer songs={[this.state.dataForRPM]} />
                 <a>{this.state.description}</a>
               </div>
               <div>{ this.renderElapsedTime()}{' ago'}</div>
