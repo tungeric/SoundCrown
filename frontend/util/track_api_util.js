@@ -8,13 +8,14 @@ export const createTrack = (formData) => (
   })
 );
 
-export const updateTrack = (track) => (
-  $.ajax({
-    method: 'POST',
+export const updateTrack = (track) => {
+  console.log(track);
+  return $.ajax({
+    method: 'PATCH',
     url: `api/tracks/${track.id}`,
     data: track,
-  })
-);
+  });
+};
 
 export const deleteTrack = (id) => (
   $.ajax({

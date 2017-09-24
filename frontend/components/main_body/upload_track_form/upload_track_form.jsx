@@ -32,7 +32,6 @@ class UploadTrackForm extends React.Component {
     formData.append("track[creator_id]", this.state.creator_id);
     formData.append("track[audio]", this.state.audio);
     formData.append("track[cover_art]", this.state.cover_art);
-    console.log(this.state);
     this.props.createTrack(formData);
   }
 
@@ -73,13 +72,11 @@ class UploadTrackForm extends React.Component {
     let fileReader = new FileReader();
 
     fileReader.onprogress = function(data) {
-      console.log(data.total);
       if (data.lengthComputable) {
           let progress = parseInt( ((data.loaded / data.total) * 100), 10 );
-          console.log(progress);
       }
     };
-    
+
     fileReader.onloadend = () => {
       this.setState({ audio: file });
     };

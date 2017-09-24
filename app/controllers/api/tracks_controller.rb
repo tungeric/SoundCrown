@@ -24,6 +24,7 @@ class Api::TracksController < ApplicationController
   end
 
   def update
+    debugger;
     @track = Track.find_by(id: params[:id])
     if @track.update_attributes
       render :show
@@ -44,6 +45,6 @@ class Api::TracksController < ApplicationController
   private
 
   def track_params
-    params.require(:track).permit(:title, :description, :creator_id, :audio, :cover_art)
+    params.require(:track).permit(:title, :description, :creator_id, :audio, :cover_art, :audio_url, :cover_art_url)
   end
 end

@@ -47,6 +47,8 @@ export const getTrack = (id) => dispatch => {
 export const createTrack = (track) => dispatch => {
   return TrackApiUtil.createTrack(track)
     .then(response => {
+      // response.audio_url = response.audio_url.slice(0,9) + "-us-west-1" + response.audio_url.slice(9);
+      // response.cover_art_url = response.cover_art_url.slice(0,9) + "-us-west-1" + response.cover_art_url.slice(9);
       dispatch(receiveTrack(response));
     },
       errors => dispatch(receiveTrackErrors(errors.responseJSON))

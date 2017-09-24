@@ -35,18 +35,12 @@ class TrackIndexItem extends React.Component{
   render() {
     if(this.state) {
       if (this.state.title.length > 0) {
-        let fixedUrl = this.state.cover_art_url;
-        if (this.state.cover_art_url.slice(7,9) === "s3") {
-          fixedUrl = this.state.cover_art_url.slice(0,9)
-                        +"-us-west-1"
-                        +this.state.cover_art_url.slice(9);
-        }
         return (
           <div>
             <div className="track-index-container">
               <div>
                 <div>
-                  <img className="track-cover-art" src={fixedUrl}/>
+                  <img className="track-cover-art" src={this.state.cover_art_url}/>
                 </div>
               </div>
               <div className="track-index-data">
