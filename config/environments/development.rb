@@ -32,10 +32,10 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   Paperclip.options[:command_path] = "/usr/local/bin/"
-  
+
   config.paperclip_defaults = {
     storage: :s3,
-    :url => "s3_host_name",
+    # :url => "s3_host_name",
     :s3_host_name => "s3-us-west-1.amazonaws.com",
     s3_credentials: {
       bucket: ENV['s3_bucket'],

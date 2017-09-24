@@ -28,8 +28,8 @@ class Track < ApplicationRecord
   validates_attachment_content_type :audio,
                                     content_type: /\Aaudio\/.*\z/,
                                     :storage => :s3,
-                                    :bucket => ENV["s3_bucket"],
-                                    :path => ":env_folder/LOOKATMENOW/:attachment/:id/:style/:filename.:extension"
+                                    :bucket => ENV["s3_bucket"]
+                                    # :path => ":env_folder/LOOKATMENOW/:attachment/:id/:style/:filename.:extension"
   # validates_attachment_content_type :audio,
   #   :content_type => [ 'audio/mpeg',
   #                      'audio/x-mpeg',
