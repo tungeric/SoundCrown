@@ -8,7 +8,6 @@ class SessionForm extends React.Component {
     this.state = {
       username: "",
       password: "",
-      // fireRedirect: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,7 +26,11 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = this.state;
-    this.props.processForm(user);
+    this.props.processForm(user)
+    .then(() =>{
+      this.props.history.push(`/stream`);
+      this.props.closeModal();
+    });
     // this.setState({fireRedirect: true});
   }
 

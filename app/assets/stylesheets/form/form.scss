@@ -49,6 +49,11 @@ input[type="submit"] {
   flex-direction: column;
 }
 
+.upload-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 input[type="file"] {
     display: none;
 }
@@ -66,13 +71,21 @@ label.track-upload-label {
 }
 
 label.track-img-upload-label {
-  width: 300px;
+  width: 200px;
   color: white;
   font-size: 16px;
   border-radius: 8px;
   background-color: rgba(0,200,255,1);
-  padding: 15px 20px 15px 20px;
+  padding: 10px 15px 10px 15px;
   border: 2px solid white;
   text-align: center;
   cursor: pointer;
+}
+
+.loader {
+  background: url('http://res.cloudinary.com/dfafbqoxx/image/upload/v1506377535/loading_numhph.gif');
+  width: 56px;
+  height: 56px;
+  background-repeat: no-repeat;
+  margin: 0 auto;
 }

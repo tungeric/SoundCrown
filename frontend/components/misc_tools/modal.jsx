@@ -51,11 +51,11 @@ class AppModal extends React.Component {
   renderForm() {
     switch(this.props.formType) {
       case LOGIN:
-        return <LoginFormContainer action="login"/>;
+        return <LoginFormContainer action="login" closeModal={this.closeModal}/>;
       case SIGNUP:
-        return <SignupFormContainer action="signup"/>;
+        return <SignupFormContainer action="signup" closeModal={this.closeModal}/>;
       case UPLOAD:
-        return <UploadTrackFormContainer action="upload"/>;
+        return <UploadTrackFormContainer action="upload" closeModal={this.closeModal}/>;
       default:
         return <div></div>;
     }
@@ -73,7 +73,7 @@ class AppModal extends React.Component {
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
-          contentLabel="Example Modal"
+          contentLabel="Modal"
         >
 
           <br/>

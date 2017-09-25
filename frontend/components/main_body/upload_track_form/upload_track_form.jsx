@@ -11,8 +11,9 @@ class UploadTrackForm extends React.Component {
       audio: null,
       cover_art_url: "http://res.cloudinary.com/dfafbqoxx/image/upload/v1505940306/soundcrown-logo_ueiofl.jpg",
       cover_art: null,
-      fireRedirect: false,
-      uploadedFileName: null
+      fireRestOfForm: false,
+      uploadedFileName: null,
+      formSubmitted: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setAudio = this.setAudio.bind(this);
@@ -24,7 +25,17 @@ class UploadTrackForm extends React.Component {
       return <Redirect to="/stream"/>;
     }
   }
+
+  renderLoadingGif() {
+    if (this.state.formSubmitted === true) {
+      return <div className="loader"></div>;
+    } else {
+      return <br/>;
+    }
+
+  }
   handleSubmit(event) {
+    this.setState({formSubmitted: true});
     event.preventDefault();
     const formData = new FormData();
     formData.append("track[title]", this.state.title);
@@ -32,7 +43,11 @@ class UploadTrackForm extends React.Component {
     formData.append("track[creator_id]", this.state.creator_id);
     formData.append("track[audio]", this.state.audio);
     formData.append("track[cover_art]", this.state.cover_art);
-    this.props.createTrack(formData);
+    this.props.createTrack(formData)
+      .then(() =>{
+        this.props.history.push(`/${this.props.currentUser.username}`);
+        this.props.closeModal();
+      });
   }
 
   renderErrors() {
@@ -83,22 +98,24 @@ class UploadTrackForm extends React.Component {
     if (file) {
       fileReader.readAsDataURL(file);
     }
-    this.setState({fireRedirect: true});
+    this.setState({fireRestOfForm: true});
   }
 
   renderRestOfForm() {
-    if(this.state.fireRedirect === true) {
+    if(this.state.fireRestOfForm === true) {
       return (
         <form onSubmit={ this.handleSubmit }>
           <br/>
-          <a>Uploading {this.state.uploadedFileName}...</a>
+          <br/>
           <br/>
           <input className="upload-input" type="file" onChange={this.setCoverArt}/>
-          <img className="upload-image-preview" src={this.state.cover_art_url}/>
-          <label htmlFor="track-img-upload" className="track-img-upload-label">
-            Choose track cover art
-          </label>
-          <input id="track-img-upload" type="file" onChange={this.setCoverArt}/>
+          <div className="upload-image">
+            <img className="upload-image-preview" src={this.state.cover_art_url}/>
+            <label htmlFor="track-img-upload" className="track-img-upload-label">
+              Choose track cover art
+            </label>
+            <input id="track-img-upload" type="file" onChange={this.setCoverArt}/>
+          </div>
           <br/>
           <label>Title:
             <input type="text"
@@ -125,7 +142,9 @@ class UploadTrackForm extends React.Component {
     return (
       <div className="track-upload-form">
         <div className="form-header"><h1 className="form-label">Upload to SoundCrown</h1></div>
-        <br/><br/><br/>
+        <br/>
+        {this.renderLoadingGif()}
+        <br/>
           <label htmlFor="track-upload" className="track-upload-label">
             Choose a file to upload
           </label>
