@@ -1,3 +1,9 @@
+// .nav-bar-container {
+//     width: 100%;
+//     max-width: 1240px;
+//     margin: auto;
+// }
+
 .nav-header {
   display: flex;
   justify-content: center;
@@ -10,13 +16,14 @@
   font-family: 'Source Sans Pro', sans-serif;
   max-width: 1240px;
   width: 100%;
-  min-width: 860px;
+  min-width: 1080px;
 }
 
 .nav-left {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin: 0;
 }
 .nav-logo {
   background-image: url('http://res.cloudinary.com/dfafbqoxx/image/upload/v1505940306/soundcrown-logo-wide_ywv1z8.jpg');
@@ -47,8 +54,9 @@
 
 .nav-right {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
+  margin: 0;
 }
 
 .nav-user-container {

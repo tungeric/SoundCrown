@@ -36,7 +36,9 @@ class App extends React.Component {
     console.log(this.state);
     return (
       <div>
-        <Route path='/' component={NavBarContainer} />
+        <div className="nav-bar-container">
+          <Route path='/' component={NavBarContainer} />
+        </div>
         <div className="main-body">
           <Switch>
             <AuthRoute exact path="/" component={SplashPageContainer} />

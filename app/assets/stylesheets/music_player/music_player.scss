@@ -1,0 +1,171 @@
+// THIS CODE IS MODIFIED FROM REACTMUSICPLAYER BY SMRONJU
+// https://github.com/smronju/React-Music-Player
+/* Player */
+
+.play-bar {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    background-color: rgba(60,60,60,1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid gray;
+    height: 50px;
+}
+.player-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.player-cover {
+    height: 50px;
+
+    background-position: top center;
+    background-size: cover;
+    transition: height .4s;
+}
+
+.track-info {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-right: 10px;
+    width: 200px;
+    overflow: hidden;
+    align-items: center;
+}
+
+.artist-info {
+    margin: 0;
+    margin-left: 10px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cover-art-thumbnail {
+  width: 45px;
+  height: 45px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+.artist-name,
+.artist-song-name {
+    margin: 0;
+    color: white;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.progress-and-volume {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.player-progress-container {
+    position: relative;
+    width: 400px;
+    height: 2px;
+    margin: 0 auto;
+
+    background-color: white;
+    border-radius: 40px;
+}
+
+.player-progress-value {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    background-color: rgb(0,200,255);
+    border-radius: 40px;
+
+    &:after {
+        position: absolute;
+        top: -4px;
+        right: -5px;
+        content: '';
+
+        width: 10px;
+        height: 10px;
+
+        border-radius: 50%;
+        background-color: rgb(0,200,255);
+    }
+}
+
+.player-buttons {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+}
+
+.player-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    background-color: transparent;
+    border: 0;
+    border-radius: 50%;
+    outline: 0;
+    transition: all .4s;
+
+    i {
+        font-size: 28px;
+        margin: 0 auto;
+    }
+
+    &.active {
+        color: rgb(0,200,255);
+    }
+
+    &.big {
+        width: 70px;
+        height: 70px;
+
+        i {
+            font-size: 36px;
+        }
+    }
+
+    &.small {
+        width: 40px;
+        height: 40px;
+
+        i {
+            font-size: 15px;
+        }
+    }
+
+    &.volume {
+        width: 40px;
+    }
+
+    &:disabled {
+        opacity: .5;
+    }
+}
+
+.player-controls {
+    width: 200px;
+
+    .player-btn {
+        color: black;
+    }
+}

@@ -49,9 +49,7 @@ class NavBar extends React.Component {
               <Link className="nav-logo" to="/stream"></Link>
               <Link className="nav-btn" to="/stream">Home</Link>
             </div>
-            <div className="nav-buttons">
               { this.renderSessionButtons() }
-            </div>
           </nav>
         </header>
       );

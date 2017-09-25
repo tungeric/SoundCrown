@@ -15,17 +15,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .splash-nav-left {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin: 0;
 }
 .splash-nav-right {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
+  margin: 0;
 }
 
 .splash-nav-logo {

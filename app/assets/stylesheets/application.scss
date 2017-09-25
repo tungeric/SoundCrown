@@ -29,22 +29,12 @@
 
 .main-body {
   display: flex;
-  justify-content: flex-start;
-  font-family: 'Source Sans Pro', sans-serif;
-  max-width: 1240px;
-  min-width: 1080px;
-  width: 100%;
-
-}
-
-.main-body {
-  display: flex;
   justify-content: center;
   font-family: 'Source Sans Pro', sans-serif;
   max-width: 1240px;
   min-width: 1080px;
   width: 100%;
-
+  background-color: rgb(240,240,240);
 }
 
 .track-cover-art {
@@ -65,4 +55,4 @@
 @import "user_page/user_page.scss";
 
 //REACT MUSIC player
-@import 'music_player/ReactMusicPlayer.scss';
+@import 'music_player/music_player.scss';
