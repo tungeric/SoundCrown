@@ -6,7 +6,7 @@ import SignupFormContainer from './main_body/session_form/signup_form_container'
 import NavBarContainer from './nav_bar/nav_bar_container';
 import UserPageMainContainer from './main_body/user_page/user_page_main_container';
 import TrackPageMainContainer from './main_body/track_page/track_page_main_container';
-import MusicPlayer from './play_bar/music_player';
+import MusicPlayerContainer from './play_bar/music_player_container';
 import {
   Route,
   Redirect,
@@ -27,8 +27,8 @@ class App extends React.Component {
   }
 
   onIndexChanged(newState) {
-    console.log(newState);
-    this.setState({ tracks: newState.tracks, track: newState.track, play: newState.play });
+    let tracksDataForPlayer = newState.tracks.map((track => track.dataForPlayer));
+    this.setState({ tracks: tracksDataForPlayer, active: newState.track.dataForPlayer, play: newState.play });
   }
 
 
@@ -52,7 +52,7 @@ class App extends React.Component {
             }/>
           </Switch>
         </div>
-        <MusicPlayer trackData={this.state}/>
+        <MusicPlayerContainer trackData={this.state}/>
       </div>
     );
   }
