@@ -27,14 +27,15 @@ class MusicPlayer extends React.Component {
     this.repeat = this.repeat.bind(this);
     this.setProgress = this.setProgress.bind(this);
     this.updateProgress = this.updateProgress.bind(this);
+    this.toggleMute = this.toggleMute.bind(this);
   }
 
   // componentDidMount () {
   //     let playerElement = this.refs.player;
   //     if (playerElement) {
-  //       playerElement.addEventListener('timeupdate', this.updateProgress);
-  //       playerElement.addEventListener('ended', this.end);
-  //       playerElement.addEventListener('error', this.next);
+        // playerElement.addEventListener('timeupdate', this.updateProgress);
+        // playerElement.addEventListener('ended', this.end);
+        // playerElement.addEventListener('error', this.next);
   //     }
   // }
   //
@@ -56,7 +57,6 @@ class MusicPlayer extends React.Component {
   }
 
   toggle () {
-    console.log(this.state);
       this.state.play ? this.pause() : this.play();
   }
 
@@ -71,7 +71,7 @@ class MusicPlayer extends React.Component {
   }
 
   next () {
-    console.log(this.state.current);
+    console.log(this.state.random);
       let total = this.state.songs.length;
       let current = (this.state.repeat) ? this.state.current : (this.state.current < total - 1) ? this.state.current + 1 : 0;
       let active = this.state.songs[current];
@@ -94,7 +94,6 @@ class MusicPlayer extends React.Component {
   }
 
   toggleRandomize () {
-    console.log(this.state.random);
     if (this.state.random) {
       this.setState({songs: this.props.tracks, random: !this.state.random });
     } else {
@@ -110,27 +109,60 @@ class MusicPlayer extends React.Component {
       this.setState({ repeat: !this.state.repeat });
   }
 
-  setProgress (e) {
-    console.log(e.target);
-      let target = e.target.nodeName === 'SPAN' ? e.target.parentNode : e.target;
-      let width = target.clientWidth;
-      let rect = target.getBoundingClientRect();
-      let offsetX = e.clientX - rect.left;
-      let duration = this.refs.player.duration;
-      let currentTime = (duration * offsetX) / width;
-      let progress = (currentTime * 100) / duration;
+  toggleMute () {
+      let mute = this.state.mute;
 
-      this.refs.player.currentTime = currentTime;
-      this.setState({ progress: progress });
-      this.play();
+      this.setState({ mute: !this.state.mute });
+      this.refs.player.volume = (mute) ? 1 : 0;
+  }
+
+  secondsToHMS (seconds) {
+    let sec = Number(seconds);
+    let h = Math.floor(sec / 3600);
+    let m = ("0" + Math.floor(sec % 3600 / 60)).slice(-2);
+    let s = ("0" + Math.floor(sec % 3600 % 60)).slice(-2);
+    let display = h === 0 ? `${m}:${s}` : `${h}:${m}:${s}`;
+    return display;
+  }
+
+  currentTrackDuration() {
+    if(this.refs.player) {
+      let duration = this.refs.player.duration;
+      return this.secondsToHMS(duration);
+    } else {
+      return "0:00";
+    }
+  }
+
+  currentTrackTime() {
+    if(this.refs.player) {
+      let duration = this.refs.player.currentTime;
+      return this.secondsToHMS(duration);
+    } else {
+      return "0:00";
+    }
+  }
+
+  setProgress (e) {
+    let target = e.target.nodeName === 'SPAN' ? e.target.parentNode : e.target;
+    let width = target.clientWidth;
+    let rect = target.getBoundingClientRect();
+    let offsetX = e.clientX - rect.left;
+    let duration = this.refs.player.duration;
+    let currentTime = (duration * offsetX) / width;
+    let progress = (currentTime * 100) / duration;
+
+    this.refs.player.currentTime = currentTime;
+    this.setState({ progress: progress });
+    this.play();
   }
 
   updateProgress () {
-      let duration = this.refs.player.duration;
-      let currentTime = this.refs.player.currentTime;
-      let progress = (currentTime * 100) / duration;
+    let duration = this.refs.player.duration;
+    let currentTime = this.refs.player.currentTime;
+    let progress = (currentTime * 100) / duration;
 
-      this.setState({ progress: progress });
+    this.setState({ progress: progress });
   }
 
   render() {
@@ -148,8 +180,14 @@ class MusicPlayer extends React.Component {
         return(
           <div className="play-bar">
             <div className="player-container">
-              <audio id="music" src={active.url} autoPlay={this.state.play}
-                     preload="auto" ref="player">
+              <audio id="music"
+                     src={active.url}
+                     autoPlay={this.state.play}
+                     preload="auto"
+                     ref="player"
+                     onTimeUpdate={this.updateProgress}
+                     onEnded={this.next}
+                     onErrors={this.next}>
               </audio>
 
                 <div className="player-buttons">
@@ -174,9 +212,11 @@ class MusicPlayer extends React.Component {
                     </button>
                 </div>
                 <div className="progress-and-volume">
+                  <div className = "track-duration">{this.currentTrackTime()}</div>
                   <div className="player-progress-container" onClick={this.setProgress}>
                       <span className="player-progress-value" style={{width: progress + '%'}}></span>
                   </div>
+                  <div className = "track-duration">{this.currentTrackDuration()}</div>
                   <button className="player-btn small volume" onClick={this.toggleMute} title="Mute/Unmute">
                     <i className={volumeClass} />
                   </button>

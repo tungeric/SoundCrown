@@ -43,7 +43,6 @@ class NavBar extends React.Component {
     } else {
       return (
         <header className='nav-header'>
-
           <nav className="nav-bar">
             <div className="nav-left">
               <Link className="nav-logo" to="/stream"></Link>

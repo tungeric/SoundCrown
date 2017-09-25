@@ -8,6 +8,13 @@
   display: flex;
   justify-content: center;
   margin: auto;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: none;
+  background-color: rgba(60,60,60,1);
 }
 .nav-bar {
   display: flex;

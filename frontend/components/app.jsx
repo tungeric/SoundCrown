@@ -37,11 +37,13 @@ class App extends React.Component {
     return (
       <div>
         <div className="nav-bar-container">
-          <Route path='/' component={NavBarContainer} />
+          <Switch>
+            <AuthRoute exact path="/" component={SplashPageContainer} />
+            <Route path='/' component={NavBarContainer} />
+          </Switch>
         </div>
         <div className="main-body">
           <Switch>
-            <AuthRoute exact path="/" component={SplashPageContainer} />
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <ProtectedRoute exact path="/stream" component={StreamPageContainer} />

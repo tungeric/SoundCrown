@@ -12,7 +12,7 @@ class SplashPage extends React.Component {
   render () {
     const demoUser = {username:"demo", password: "password"};
     return (
-      <div>
+      <div className="splash-page">
         <div className="splash-header">
           <div className="splash-nav">
             <div className="splash-nav-left">
