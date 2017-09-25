@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import MusicPlayer from './music_player';
 
 const mapStateToProps = (state, props) => {
-  console.log(props);
   return {
     tracks: props.trackData.tracks,
     active: props.trackData.active,
