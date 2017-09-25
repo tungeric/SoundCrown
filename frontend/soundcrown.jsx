@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 // for testing purposes
-import { signup, login, logout } from './actions/session_actions';
+import { signup, login, logout, receiveCurrentUser } from './actions/session_actions';
 import { createTrack } from './actions/track_actions';
 import * as SessionAPIUtil from './util/session_api_util';
 
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.login = login;
   window.logout = logout;
   window.signup = signup;
+  window.receiveCurrentUser = receiveCurrentUser;
   window.createTrack = createTrack;
   window.utillogin = SessionAPIUtil.login;
 });

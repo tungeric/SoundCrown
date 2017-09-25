@@ -9,7 +9,6 @@ export const createTrack = (formData) => (
 );
 
 export const updateTrack = (track) => {
-  console.log(track);
   return $.ajax({
     method: 'PATCH',
     url: `api/tracks/${track.id}`,

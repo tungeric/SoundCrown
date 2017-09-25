@@ -6,6 +6,12 @@ import AppModal from '../../misc_tools/modal';
 class UserPageMain extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      tracks: props.tracks,
+      active: props.tracks[0],
+      play: false
+    };
+    console.log(props);
   }
 
   componentDidMount() {
@@ -25,7 +31,6 @@ class UserPageMain extends React.Component {
   renderUserHeader() {
     if (this.props.users.length === 1) {
       let user = this.props.users[0];
-      console.log(user[0]);
       return (
         <div className="user-header-bg">
           <div className="user-header-left">
@@ -44,6 +49,16 @@ class UserPageMain extends React.Component {
     }
   }
 
+  onIndexItemChanged(newState) {
+    console.log(newState);
+    this.setState({ track: newState.track, play: newState.play });
+    this.props.callbackApp({
+      tracks: this.props.tracks,
+      track: newState.track,
+      play: newState.play
+    });
+  }
+
   render () {
     return (
       <div>
@@ -52,7 +67,13 @@ class UserPageMain extends React.Component {
           <h1>Tracks by {this.props.match.params.username}</h1>
           <ul>
             {
-              this.props.tracks.map((track, idx) => <TrackIndexItem key={idx} track={track}/>)
+              this.props.tracks.map((track, idx) => {
+                return <TrackIndexItem key={idx}
+                                       track={track}
+                                       play={this.state.play}
+                                       callbackIndex={(newState) => this.onIndexItemChanged(newState)}
+                       />;
+              })
             }
           </ul>
         </div>
