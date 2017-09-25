@@ -36,15 +36,15 @@ class MusicPlayer extends React.Component {
 
   render() {
     console.log(this.state);
+    const { active, play, progress } = this.state;
     if(this.state.active) {
-      if(this.state.active.length === 1) {
+      if(this.state.songs.length > 0) {
         let coverClass = classnames('player-cover', {'no-height': Boolean(!active.cover) });
         let playPauseClass = classnames('fa', {'fa-pause': play}, {'fa-play': !play});
         let volumeClass = classnames('fa', {'fa-volume-up': !this.state.mute}, {'fa-volume-off': this.state.mute});
         let repeatClass = classnames('player-btn small repeat', {'active': this.state.repeat});
         let randomClass = classnames('player-btn small random', {'active': this.state.random });
         // console.log(this.state);
-        const { active, play, progress } = this.state;
         return(
           <div className="player-container">
             <audio id="music" src={active.url} autoPlay={this.state.play}
