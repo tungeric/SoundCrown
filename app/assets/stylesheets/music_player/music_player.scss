@@ -18,19 +18,11 @@
 }
 .player-container {
     width: 100%;
-    max-width: 1240px;
+    max-width: 1080px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.player-cover {
-    height: 50px;
-
-    background-position: top center;
-    background-size: cover;
-    transition: height .4s;
 }
 
 .track-info {
@@ -77,9 +69,9 @@
 .player-progress-container {
     position: relative;
     width: 400px;
-    height: 2px;
+    height: 3px;
     margin: 0 auto;
-
+    cursor: pointer;
     background-color: white;
     border-radius: 40px;
 }

@@ -23,9 +23,29 @@ class MusicPlayer extends React.Component {
     this.play = this.play.bind(this);
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
-    this.randomize = this.randomize.bind(this);
+    this.toggleRandomize = this.toggleRandomize.bind(this);
     this.repeat = this.repeat.bind(this);
+    this.setProgress = this.setProgress.bind(this);
+    this.updateProgress = this.updateProgress.bind(this);
   }
+
+  // componentDidMount () {
+  //     let playerElement = this.refs.player;
+  //     if (playerElement) {
+  //       playerElement.addEventListener('timeupdate', this.updateProgress);
+  //       playerElement.addEventListener('ended', this.end);
+  //       playerElement.addEventListener('error', this.next);
+  //     }
+  // }
+  //
+  // componentWillUnmount () {
+  //     let playerElement = this.refs.player;
+  //     if (playerElement) {
+  //       playerElement.removeEventListener('timeupdate', this.updateProgress);
+  //       playerElement.removeEventListener('ended', this.end);
+  //       playerElement.removeEventListener('error', this.next);
+  //     }
+  // }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -73,17 +93,48 @@ class MusicPlayer extends React.Component {
       this.play();
   }
 
-  randomize () {
-      let s = shuffle(this.state.songs.slice());
-      this.setState({ songs: (!this.state.random) ? s : this.state.songs, random: !this.state.random });
+  toggleRandomize () {
+    console.log(this.state.random);
+    if (this.state.random) {
+      this.setState({songs: this.props.tracks, random: !this.state.random });
+    } else {
+      let shuffledSongs = shuffle(this.state.songs.slice());
+      this.setState({
+        songs: (!this.state.random) ? shuffledSongs : this.state.songs,
+        random: !this.state.random
+      });
+    }
   }
 
   repeat () {
       this.setState({ repeat: !this.state.repeat });
   }
 
+  setProgress (e) {
+    console.log(e.target);
+      let target = e.target.nodeName === 'SPAN' ? e.target.parentNode : e.target;
+      let width = target.clientWidth;
+      let rect = target.getBoundingClientRect();
+      let offsetX = e.clientX - rect.left;
+      let duration = this.refs.player.duration;
+      let currentTime = (duration * offsetX) / width;
+      let progress = (currentTime * 100) / duration;
+
+      this.refs.player.currentTime = currentTime;
+      this.setState({ progress: progress });
+      this.play();
+  }
+
+  updateProgress () {
+      let duration = this.refs.player.duration;
+      let currentTime = this.refs.player.currentTime;
+      let progress = (currentTime * 100) / duration;
+
+      this.setState({ progress: progress });
+  }
+
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const active = this.state.active;
     const play = this.state.play;
     const progress = this.state.progress;
@@ -118,7 +169,7 @@ class MusicPlayer extends React.Component {
                         <i className="fa fa-repeat" />
                     </button>
 
-                    <button className={randomClass} onClick={this.randomize} title="Shuffle">
+                    <button className={randomClass} onClick={this.toggleRandomize} title="Shuffle">
                         <i className="fa fa-random" />
                     </button>
                 </div>

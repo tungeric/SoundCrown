@@ -43,7 +43,6 @@ class TrackPageMain extends React.Component {
     if(this.state) {
       if (this.state.title.length > 0) {
         return (
-          <div>
             <div className="track-header-bg">
               <div className="track-header-data">
                 <Link className="track-header-username" to={`/${this.state.creator}/`}>{this.state.creator}</Link>
@@ -58,7 +57,6 @@ class TrackPageMain extends React.Component {
               </div>
 
             </div>
-          </div>
         );
       } else {
         return <div></div>;

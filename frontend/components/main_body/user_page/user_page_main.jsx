@@ -33,15 +33,12 @@ class UserPageMain extends React.Component {
       let user = this.props.users[0];
       return (
         <div className="user-header-bg">
-          <div className="user-header-left">
-            <div className="user-avatar-container">
-              <img className="user-avatar" src={user.avatar_url}/>
-            </div>
-            <div className="user-header-username-container">
-              <div className="user-header-username">{user.username}</div>
-            </div>
+          <div className="user-avatar-container">
+            <img className="user-avatar" src={user.avatar_url}/>
           </div>
-          <div className="user-header-right"></div>
+          <div className="user-header-username-container">
+            <div className="user-header-username">{user.username}</div>
+          </div>
         </div>
       );
     } else {
@@ -61,7 +58,7 @@ class UserPageMain extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="user-page">
         { this.renderUserHeader() }
         <div className="user-tracklist">
           <h1>Tracks by {this.props.match.params.username}</h1>

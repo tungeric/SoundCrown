@@ -1,3 +1,7 @@
+.user-page {
+  width: 100%;
+}
+
 .upload-track-btn {
   color: rgb(240,240,240);
   text-decoration: none;
@@ -30,12 +34,10 @@
   background-size: 100%;
    background-image: url('http://res.cloudinary.com/dfafbqoxx/image/upload/v1506158472/cloudy-bg_bb5qqa.jpg');
    background-position: top;
-   max-width: 1240px;
-   min-width: 1080px;
    width: 100%;
    height: 300px;
    display: flex;
-   justify-content: space-between;
+   justify-content: flex-start;
 }
 
 .user-header-left {
@@ -48,15 +50,18 @@
   width: 250px;
   height: 250px;
   border: 1px solid gray;
+  border-radius: 50%;
 }
 
 .user-avatar {
   min-width: 100%;
   min-height: 100%;
+  border-radius: 50%;
 }
 
 .user-header-username-container {
   display: flex;
+  margin: 0;
   flex-direction: column;
   padding: 10px 20px 10px 20px;
   align-text: center;
