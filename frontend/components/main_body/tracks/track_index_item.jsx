@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-// import ReactMusicPlayer from '../../misc_tools/react_music_player';
+import classnames from 'classnames';
 import MusicPlayer from '../../play_bar/music_player';
 import { getTrack} from '../../../actions/track_actions';
 
@@ -11,6 +11,20 @@ class TrackIndexItem extends React.Component{
       track: this.props.track,
       play: this.props.play
     };
+    this.togglePlay = this.togglePlay.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps);
+    console.log(this.state);
+    if(nextProps.active) {
+      if (this.state.track.audio_url === nextProps.active.url &&
+          this.state.play !== nextProps.play) {
+        this.setState({
+          play: nextProps.play
+        });
+      }
+    }
   }
 
   renderElapsedTime() {
@@ -39,6 +53,8 @@ class TrackIndexItem extends React.Component{
   }
 
   togglePlay() {
+    console.log(this.props);
+    console.log(this.state);
     const newState = !this.state.play;
     this.setState({ play: newState });
     this.props.callbackIndex({
@@ -48,23 +64,37 @@ class TrackIndexItem extends React.Component{
   }
 
   render() {
+    const active = this.state.track;
+    const play = this.state.play;
     if(this.state.track) {
       if (this.state.track.title.length > 0) {
+        let playPauseClass = classnames('fa', {'fa-pause': play}, {'fa-play': !play});
         return (
-          <div>
-            <div className="track-index-container">
-              <div>
-                <div>
-                  <img className="track-cover-art" src={this.state.track.cover_art_url}/>
+          <div className="track-index-container">
+            <div className="track-cover-container">
+              <div className="track-cover-art" style={{backgroundImage: 'url(' + this.state.track.cover_art_url+ ')'}}></div>
+            </div>
+            <div className="track-data-container">
+              <div className="track-play-and-data">
+                <div className="track-data-left">
+                  <button onClick={this.togglePlay} className="player-btn big" title="Play/Pause">
+                    <i className={playPauseClass} />
+                  </button>
+                  <div className="track-index-data">
+                    <Link className="track-creator-name" to={`/${this.state.track.creator}/`}>{this.state.track.creator}</Link>
+                    <br/>
+                    <Link className="track-title" to={`/tracks/${this.state.track.id}`}>{this.state.track.title}</Link>
+                  </div>
+                </div>
+                <div className="track-data-right">
+                  <div>{ this.renderElapsedTime()}{' ago'}</div>
                 </div>
               </div>
-              <div className="track-index-data">
-                <Link to={`/${this.state.track.creator}/`}>{this.state.track.creator}</Link>
-                <Link to={`/tracks/${this.state.track.id}`}>{this.state.track.title}</Link>
-                <button onClick={()=>this.togglePlay()}>Click Me</button>
-                <a>{this.state.track.description}</a>
-              </div>
-              <div>{ this.renderElapsedTime()}{' ago'}</div>
+              <br/>
+              <br/>
+                <div className="track-progress-container">
+                    <span className="track-progress-value" style={{width: '0%'}}></span>
+                </div>
             </div>
           </div>
         );

@@ -38,15 +38,7 @@
   background-color: rgb(240,240,240);
 }
 
-.track-cover-art {
-  width: 200px;
-  height: 200px;
-}
 
-.track-header {
-  display: flex;
-  justify-content: flex-start;
-}
 
 
 // SPLASH
@@ -57,3 +49,6 @@
 
 //REACT MUSIC player
 @import 'music_player/music_player.scss';
+
+//tracks
+@import "track_item/track_item.scss";

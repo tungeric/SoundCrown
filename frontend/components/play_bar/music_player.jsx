@@ -65,7 +65,6 @@ class MusicPlayer extends React.Component {
   }
 
   next () {
-    console.log(this.state.random);
       let total = this.state.tracks.length;
       let current = (this.state.repeat) ? this.state.current : (this.state.current < total - 1) ? this.state.current + 1 : 0;
       let active = this.state.tracks[current];

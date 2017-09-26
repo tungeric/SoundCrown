@@ -11,6 +11,7 @@ class UserPageMain extends React.Component {
       active: props.tracks[0],
       play: false
     };
+    console.log(props);
   }
 
   componentDidMount() {
@@ -59,14 +60,17 @@ class UserPageMain extends React.Component {
     return (
       <div className="user-page">
         { this.renderUserHeader() }
-        <div className="user-tracklist">
-          <h1>Tracks by {this.props.match.params.username}</h1>
-          <ul>
+        <div className="user-tracklist-section">
+          <div className="user-track-header">
+            <h1 className="user-track-h1">Tracks by {this.props.match.params.username}</h1>
+          </div>
+          <ul className="user-tracklist">
             {
               this.props.tracks.map((track, idx) => {
                 return <TrackIndexItem key={idx}
                                        track={track}
-                                       play={this.state.play}
+                                       play={this.props.trackData.play}
+                                       active={this.props.trackData.active}
                                        callbackIndex={(newState) => this.onIndexItemChanged(newState)}
                        />;
               })
