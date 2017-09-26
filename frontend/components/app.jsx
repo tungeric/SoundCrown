@@ -20,15 +20,36 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      tracks: [],
-      active: null,
-      play: false
+        active: null,
+        play: false,
+        tracks: []
     };
   }
 
   onIndexChanged(newState) {
     let tracksDataForPlayer = newState.tracks.map((track => track.dataForPlayer));
-    this.setState({ tracks: tracksDataForPlayer, active: newState.track.dataForPlayer, play: newState.play });
+    this.setState({ tracks: tracksDataForPlayer,
+                    active: newState.track.dataForPlayer,
+                    play: newState.play
+                 });
+  }
+
+  onMusicPlayerChanged(newState) {
+    if(newState.active !== this.state.active ) {
+      this.setState({
+        active: newState.active
+      });
+    }
+    if(newState.tracks !== this.state.tracks ) {
+      this.setState({
+        tracks: newState.tracks
+      });
+    }
+    if(newState.play !== this.state.play ) {
+      this.setState({
+        play: newState.play
+      });
+    }
   }
 
 
@@ -49,14 +70,17 @@ class App extends React.Component {
             <ProtectedRoute exact path="/stream" component={StreamPageContainer} />
             <Route path="/tracks/:trackId" component={TrackPageMainContainer} />
             <Route path="/:username" component={() =>
-                <UserPageMainContainer callbackApp={
-                    (newState) => this.onIndexChanged(newState)
-                  }
-                />
+                <UserPageMainContainer trackData={this.state}
+                                       callbackApp={
+                                         (newState) => this.onIndexChanged(newState)
+                                       }/>
             }/>
           </Switch>
         </div>
-        <MusicPlayerContainer trackData={this.state}/>
+        <MusicPlayerContainer trackData={this.state}
+                              callbackApp={
+                                (newState) => this.onMusicPlayerChanged(newState)
+                              }/>
       </div>
     );
   }

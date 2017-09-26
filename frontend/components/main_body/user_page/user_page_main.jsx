@@ -11,7 +11,6 @@ class UserPageMain extends React.Component {
       active: props.tracks[0],
       play: false
     };
-    console.log(props);
   }
 
   componentDidMount() {
@@ -47,7 +46,6 @@ class UserPageMain extends React.Component {
   }
 
   onIndexItemChanged(newState) {
-    console.log(newState);
     this.setState({ track: newState.track, play: newState.play });
     this.props.callbackApp({
       tracks: this.props.tracks,
@@ -57,6 +55,7 @@ class UserPageMain extends React.Component {
   }
 
   render () {
+    console.log(this.props);
     return (
       <div className="user-page">
         { this.renderUserHeader() }

@@ -16,7 +16,7 @@ class MusicPlayer extends React.Component {
         repeat: false,
         mute: false,
         play: this.props.play || false,
-        songs: this.props.tracks || []
+        tracks: this.props.tracks || []
     };
     this.toggle = this.toggle.bind(this);
     this.pause = this.pause.bind(this);
@@ -30,34 +30,28 @@ class MusicPlayer extends React.Component {
     this.toggleMute = this.toggleMute.bind(this);
   }
 
-  // componentDidMount () {
-  //     let playerElement = this.refs.player;
-  //     if (playerElement) {
-        // playerElement.addEventListener('timeupdate', this.updateProgress);
-        // playerElement.addEventListener('ended', this.end);
-        // playerElement.addEventListener('error', this.next);
-  //     }
-  // }
-  //
-  // componentWillUnmount () {
-  //     let playerElement = this.refs.player;
-  //     if (playerElement) {
-  //       playerElement.removeEventListener('timeupdate', this.updateProgress);
-  //       playerElement.removeEventListener('ended', this.end);
-  //       playerElement.removeEventListener('error', this.next);
-  //     }
-  // }
-
   componentWillReceiveProps(nextProps) {
     this.setState({
       active: nextProps.active,
       play: nextProps.play,
-      songs: nextProps.tracks
+      tracks: nextProps.tracks
     });
   }
 
+  componentDidUpdate(prevState) {
+    if(this.state.active !== prevState.active ||
+      this.state.play !== prevState.play ||
+      this.state.tracks !== prevState.tracks ) {
+        this.props.callbackApp({
+          active: this.state.active,
+          play: this.state.play,
+          tracks: this.state.tracks
+        });
+      }
+  }
+
   toggle () {
-      this.state.play ? this.pause() : this.play();
+    this.state.play ? this.pause() : this.play();
   }
 
   play () {
@@ -72,9 +66,9 @@ class MusicPlayer extends React.Component {
 
   next () {
     console.log(this.state.random);
-      let total = this.state.songs.length;
+      let total = this.state.tracks.length;
       let current = (this.state.repeat) ? this.state.current : (this.state.current < total - 1) ? this.state.current + 1 : 0;
-      let active = this.state.songs[current];
+      let active = this.state.tracks[current];
 
       this.setState({ current: current, active: active, progress: 0 });
 
@@ -83,9 +77,9 @@ class MusicPlayer extends React.Component {
   }
 
   previous () {
-      let total = this.state.songs.length;
+      let total = this.state.tracks.length;
       let current = (this.state.current > 0) ? this.state.current - 1 : total - 1;
-      let active = this.state.songs[current];
+      let active = this.state.tracks[current];
 
       this.setState({ current: current, active: active, progress: 0 });
 
@@ -95,11 +89,11 @@ class MusicPlayer extends React.Component {
 
   toggleRandomize () {
     if (this.state.random) {
-      this.setState({songs: this.props.tracks, random: !this.state.random });
+      this.setState({tracks: this.props.tracks, random: !this.state.random });
     } else {
-      let shuffledSongs = shuffle(this.state.songs.slice());
+      let shuffledSongs = shuffle(this.state.tracks.slice());
       this.setState({
-        songs: (!this.state.random) ? shuffledSongs : this.state.songs,
+        tracks: (!this.state.random) ? shuffledSongs : this.state.tracks,
         random: !this.state.random
       });
     }
@@ -171,7 +165,7 @@ class MusicPlayer extends React.Component {
     const play = this.state.play;
     const progress = this.state.progress;
     if(this.state.active) {
-      if(this.state.songs.length > 0) {
+      if(this.state.tracks.length > 0) {
         let playPauseClass = classnames('fa', {'fa-pause': play}, {'fa-play': !play});
         let volumeClass = classnames('fa', {'fa-volume-up': !this.state.mute}, {'fa-volume-off': this.state.mute});
         let repeatClass = classnames('player-btn small repeat', {'active': this.state.repeat});
@@ -187,7 +181,7 @@ class MusicPlayer extends React.Component {
                      ref="player"
                      onTimeUpdate={this.updateProgress}
                      onEnded={this.next}
-                     onErrors={this.next}>
+                     onError={this.next}>
               </audio>
 
                 <div className="player-buttons">
