@@ -8,11 +8,19 @@
   justify-content: space-between;
 }
 
+.track-header-left {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin: 0;
+}
+
 .track-header-data {
   display: flex;
-  flex-direction: column;
-  padding: 10px 20px 10px 20px;
+  padding: 20px;
+  justify-content: space-between;
   align-text: center;
+  margin: 0;
 }
 
 .track-header-username {
@@ -21,8 +29,10 @@
   text-decoration: none;
   background-color: none;
   font-family: 'Source Sans Pro', sans-serif;
-  padding: 10px 20px 10px 20px;
+  padding: 5px 10px 5px 10px;
+  margin-left: 10px;
   margin-right: 10px;
+  margin-bottom: 5px;
   font-size: 18px;
   align-text: center;
 }
@@ -31,17 +41,19 @@
   color: white;
   text-decoration: none;
   background-color: none;
+  margin-left: 10px;
   font-family: 'Source Sans Pro', sans-serif;
   padding: 10px 20px 10px 20px;
   margin-right: 10px;
   margin-top: 5px;
-  font-size: 30px;
+  font-size: 24px;
   align-text: center;
 }
 
 .track-header-right {
   display: flex;
   justify-content: flex-end;
+  margin: 0;
 }
 
 .track-header-time {
@@ -58,4 +70,37 @@
 .track-cover-art {
   min-width: 100%;
   min-height: 100%;
+}
+
+.track-header-progress-container {
+    position: relative;
+    width: 600px;
+    height: 3px;
+    margin: 20px;
+    cursor: pointer;
+    background-color: black;
+    border-radius: 40px;
+}
+
+.track-header-progress-value {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    background-color: rgb(0,200,255);
+    border-radius: 40px;
+
+    &:after {
+        position: absolute;
+        top: -4px;
+        right: -5px;
+        content: '';
+
+        width: 10px;
+        height: 10px;
+
+        border-radius: 50%;
+        background-color: rgb(0,200,255);
+    }
 }

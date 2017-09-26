@@ -1,5 +1,5 @@
 input[type=text], input[type=password] {
-    width: 100%;
+    width: 400px;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -8,12 +8,14 @@ input[type=text], input[type=password] {
 }
 
 textarea {
-  width: 100%;
+  width: 400px;
+  height: 200px;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   border: 1px solid black;
   border-radius: 6px;
+  resize: none;
 }
 
 input[type="submit"] {
@@ -24,6 +26,7 @@ input[type="submit"] {
   margin: 8px 0;
   box-sizing: border-box;
   border-radius: 6px;
+  text-align: center;
 }
 
 .form-header {
@@ -38,11 +41,11 @@ input[type="submit"] {
   text-align: center;
 }
 
-.upload-image-preview {
-  width: 150px;
-  height: 150px;
-}
 
+
+.session-form {
+  width: 500px;
+}
 .track-upload-form {
   display: flex;
   justify-content: center;
@@ -53,9 +56,11 @@ input[type="submit"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 20px;
 }
+
 input[type="file"] {
-    display: none;
+    visibility: hidden;
 }
 
 label.track-upload-label {
@@ -70,22 +75,57 @@ label.track-upload-label {
   cursor: pointer;
 }
 
-label.track-img-upload-label {
+.upload-image-preview {
   width: 200px;
-  color: white;
-  font-size: 16px;
-  border-radius: 8px;
-  background-color: rgba(0,200,255,1);
-  padding: 10px 15px 10px 15px;
+  height: 200px;
+  // -webkit-filter: brightness(80%);
+  // opacity: 0.8;
+  position: relative;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+label.track-img-upload-label {
+  width: 100px;
+  height: 20px;
+  color: black;
+  font-size: 12px;
+  border-radius: 4px;
+  background-color: rgba(240,240,240,0.7);
+  padding: 3px;
   border: 2px solid white;
   text-align: center;
   cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
 }
 
+.track-img-upload-label:hover {
+  -webkit-filter: brightness(110%);
+}
 .loader {
   background: url('http://res.cloudinary.com/dfafbqoxx/image/upload/v1506377535/loading_numhph.gif');
   width: 56px;
   height: 56px;
   background-repeat: no-repeat;
   margin: 0 auto;
+}
+
+.upload-data-container {
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+.upload-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0;
+  align-items: flex-end;
+  align-content:flex-end;
+  padding: 20px;
 }

@@ -72,7 +72,9 @@ class TrackIndexItem extends React.Component{
         return (
           <div className="track-index-container">
             <div className="track-cover-container">
-              <div className="track-cover-art" style={{backgroundImage: 'url(' + this.state.track.cover_art_url+ ')'}}></div>
+              <Link to={`/tracks/${this.state.track.id}`}>
+                <div className="track-cover-art" style={{backgroundImage: 'url(' + this.state.track.cover_art_url+ ')'}}></div>
+              </Link>
             </div>
             <div className="track-data-container">
               <div className="track-play-and-data">

@@ -106,30 +106,33 @@ class UploadTrackForm extends React.Component {
       return (
         <form onSubmit={ this.handleSubmit }>
           <br/>
+          {this.renderLoadingGif()}
           <br/>
-          <br/>
-          <input className="upload-input" type="file" onChange={this.setCoverArt}/>
-          <div className="upload-image">
-            <img className="upload-image-preview" src={this.state.cover_art_url}/>
-            <label htmlFor="track-img-upload" className="track-img-upload-label">
-              Choose track cover art
-            </label>
-            <input id="track-img-upload" type="file" onChange={this.setCoverArt}/>
+          <div className="upload-data-container">
+            <div className="upload-image">
+              <div className="upload-image-preview" style={{backgroundImage: 'url(' + this.state.cover_art_url+ ')'}}>
+                <label className="track-img-upload-label">
+                  <i className="fa fa-camera"/> Update image
+                    <input type="file" onChange={this.setCoverArt}/>
+                </label>
+              </div>
+            </div>
+            <div className="upload-data">
+              <label htmlFor="textInput">Title: </label>
+              <input type="text"
+                     onChange={ this.update('title') }
+                     value={this.state.title}>
+              </input>
+
+              <label htmlFor="descriptionInput">Description: </label>
+              <textarea type="text"
+                     onChange={ this.update('description') }
+                     value={this.state.description}>
+              </textarea>
+              <input type="submit" value="Upload" />
+            </div>
           </div>
-          <br/>
-          <label>Title:
-            <input type="text"
-                   onChange={ this.update('title') }
-                   value={this.state.title}>
-            </input>
-          </label>
-          <label>Description:
-            <textarea type="text"
-                   onChange={ this.update('description') }
-                   value={this.state.description}>
-            </textarea>
-          </label>
-          <input type="submit" value="Upload" />
+
         </form>
       );
     } else {
@@ -138,17 +141,16 @@ class UploadTrackForm extends React.Component {
   }
 
   render () {
-
     return (
       <div className="track-upload-form">
         <div className="form-header"><h1 className="form-label">Upload to SoundCrown</h1></div>
         <br/>
-        {this.renderLoadingGif()}
         <br/>
-          <label htmlFor="track-upload" className="track-upload-label">
-            Choose a file to upload
-          </label>
-          <input id="track-upload" type="file" onChange={this.setAudio}/>
+        <br/>
+        <label htmlFor="track-upload" className="track-upload-label">
+          {this.state.audio === null ? "Choose a file to upload" : this.state.audio.name}
+        </label>
+        <input id="track-upload" type="file" onChange={this.setAudio}/>
         { this.renderRestOfForm() }
       </div>
     );

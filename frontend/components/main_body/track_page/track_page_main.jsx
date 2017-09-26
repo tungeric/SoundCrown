@@ -73,15 +73,23 @@ class TrackPageMain extends React.Component {
         let playPauseClass = classnames('fa', {'fa-pause': play}, {'fa-play': !play});
         return (
             <div className="track-header-bg">
-              <div className="track-header-data">
-                <button onClick={this.togglePlay} className="player-btn big" title="Play/Pause">
-                  <i className={playPauseClass} />
-                </button>
-                <Link className="track-header-username" to={`/${this.state.creator}/`}>{this.state.creator}</Link>
-                <div className="track-header-trackname">{this.state.title}</div>
+              <div className="track-header-left">
+                <div className="track-header-data">
+                  <button onClick={this.togglePlay} className="player-btn big" title="Play/Pause">
+                    <i className={playPauseClass} />
+                  </button>
+                  <div>
+                    <Link className="track-header-username" to={`/${this.state.creator}/`}>{this.state.creator}</Link>
+                    <div className="track-header-trackname">{this.state.title}</div>
+                  </div>
+                  <div className="track-header-time">{ this.renderElapsedTime()}{' ago'}</div>
+                </div>
+                <br/><br/><br/><br/><br/>
+                <div className="track-header-progress-container">
+                    <span className="track-header-progress-value" style={{width: '0%'}}></span>
+                </div>
               </div>
               <div className="track-header-right">
-                <div className="track-header-time">{ this.renderElapsedTime()}{' ago'}</div>
                 <div className="track-cover-art-container">
                   <img className="track-cover-art" src={this.state.cover_art_url}/>
                 </div>
