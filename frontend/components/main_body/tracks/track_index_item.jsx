@@ -9,7 +9,7 @@ class TrackIndexItem extends React.Component{
     super(props);
     this.state = {
       track: this.props.track,
-      play: this.props.play
+      play: false
     };
     this.togglePlay = this.togglePlay.bind(this);
   }

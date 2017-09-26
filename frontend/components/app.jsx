@@ -34,6 +34,14 @@ class App extends React.Component {
                  });
   }
 
+  onTrackPageChanged(newState) {
+    let tracksDataForPlayer = [newState.track.dataForPlayer];
+    this.setState({ tracks: tracksDataForPlayer,
+                    active: newState.track.dataForPlayer,
+                    play: newState.play
+                 });
+  }
+
   onMusicPlayerChanged(newState) {
     if(newState.active !== this.state.active ) {
       this.setState({
@@ -54,6 +62,7 @@ class App extends React.Component {
 
 
   render () {
+    console.log(this.state);
     return (
       <div>
         <div className="nav-bar-container">
@@ -67,7 +76,10 @@ class App extends React.Component {
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <ProtectedRoute exact path="/stream" component={StreamPageContainer} />
-            <Route path="/tracks/:trackId" component={TrackPageMainContainer} />
+            <Route path="/tracks/:trackId" component={() =>
+                <TrackPageMainContainer trackData={this.state}
+                                        callbackApp={
+                (newState) => this.onTrackPageChanged(newState)}/>}/>
             <Route path="/:username" component={() =>
                 <UserPageMainContainer trackData={this.state}
                                        callbackApp={

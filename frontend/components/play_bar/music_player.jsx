@@ -31,11 +31,17 @@ class MusicPlayer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     this.setState({
       active: nextProps.active,
       play: nextProps.play,
       tracks: nextProps.tracks
     });
+    if (nextProps.play){
+      this.refs.player.play();
+    } else {
+      this.refs.player.pause();
+    }
   }
 
   componentDidUpdate(prevState) {
@@ -47,7 +53,7 @@ class MusicPlayer extends React.Component {
           play: this.state.play,
           tracks: this.state.tracks
         });
-      }
+    }
   }
 
   toggle () {
@@ -163,6 +169,7 @@ class MusicPlayer extends React.Component {
     const active = this.state.active;
     const play = this.state.play;
     const progress = this.state.progress;
+
     if(this.state.active) {
       if(this.state.tracks.length > 0) {
         let playPauseClass = classnames('fa', {'fa-pause': play}, {'fa-play': !play});
