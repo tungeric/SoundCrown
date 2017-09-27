@@ -1,7 +1,7 @@
 import React from 'react';
 import DropdownMenu from 'react-dd-menu';
 
-export default class Example extends React.Component {
+export default class TrackMenu extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -22,13 +22,21 @@ export default class Example extends React.Component {
   }
 
   edit() {
-    console.log(this.props);
     // this.props.history.push(`/tracks/${this.props.track.id}/edit`);
     location.href = `/#/tracks/${this.props.track.id}/edit`;
   }
 
   delete() {
-    console.log('You clicked an item');
+    console.log(this.props.track);
+    this.props.deleteTrack(this.props.track)
+    .then((response) => {
+      // this.props.getAllUserTracks(response.track.creator_id).then(()=> {
+      //   location.href=`/#/${this.props.track.creator}`;
+    //   }
+    // );
+      // console.log(response);
+      // location.href=`/#/${this.props.track.creator}`;
+    });
   }
 
   render() {
@@ -42,7 +50,7 @@ export default class Example extends React.Component {
     return (
       <DropdownMenu {...menuOptions}>
         <li><button type="button" onClick={this.edit}>Edit track</button></li>
-        <li><button type="button" onClick={this.click}>Delete track</button></li>
+        <li><button type="button" onClick={this.delete}>Delete track</button></li>
       </DropdownMenu>
     );
   }

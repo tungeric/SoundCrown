@@ -11,6 +11,7 @@ class TrackPageMain extends React.Component {
       track: this.props.track,
       play: false
     };
+    console.log(props);
     this.togglePlay = this.togglePlay.bind(this);
   }
 
@@ -20,8 +21,6 @@ class TrackPageMain extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps);
-    console.log(this.state);
     if(this.state.track){
       if((nextProps.track.id === this.state.track.id)) {
         this.setState({
@@ -66,7 +65,6 @@ class TrackPageMain extends React.Component {
   }
 
   render () {
-    console.log(this.props);
     const active = this.state.track;
     const play = this.state.play;
     if(this.state.title) {
@@ -82,7 +80,9 @@ class TrackPageMain extends React.Component {
                   <div>
                     <Link className="track-header-username" to={`/${this.state.creator}/`}>{this.state.creator}</Link>
                     <div className="track-header-trackname">{this.state.title}</div>
-                    <div className="more-options"><TrackMenu track={this.props.track}/></div>
+                    <div className="more-options">
+                      <TrackMenu track={this.props.track}/>
+                    </div>
 
                   </div>
                   <div className="track-header-time">{ this.renderElapsedTime()}{' ago'}</div>

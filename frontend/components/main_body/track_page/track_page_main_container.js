@@ -5,6 +5,7 @@ import { getTrack} from '../../../actions/track_actions';
 
 const mapStateToProps = (state, props) => {
   let track={title: "", description: ""};
+  console.log(props);
   if (state) {
     return {
       track: state.tracks[props.match.params.trackId]

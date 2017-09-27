@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 class UploadTrackForm extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props.errors);
     this.state = {
       title: "",
       description: "",
@@ -23,7 +22,6 @@ class UploadTrackForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     this.setState({errors: nextProps.errors.tracks, formSubmitted: false});
   }
 
@@ -52,7 +50,7 @@ class UploadTrackForm extends React.Component {
     formData.append("track[cover_art]", this.state.cover_art);
     this.props.createTrack(formData).then(
       (response) =>{
-        if(this.props.errors.tracks.length === 0) {
+        if(this.state.errors.length === 0) {
           this.props.history.push(`/${this.props.currentUser.username}`);
           this.props.closeModal();
         }

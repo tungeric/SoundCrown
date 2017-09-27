@@ -16,10 +16,10 @@ export const updateTrack = (track) => {
   });
 };
 
-export const deleteTrack = (id) => (
+export const deleteTrack = (track) => (
   $.ajax({
     method: 'DELETE',
-    url: `api/tracks/${id}`,
+    url: `api/tracks/${track.id}`,
   })
 );
 

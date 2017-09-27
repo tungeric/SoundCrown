@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import MusicPlayer from '../../play_bar/music_player';
-import TrackMenu from '../../misc_tools/track_menu';
+import TrackMenuContainer from '../../misc_tools/track_menu_container';
 
 class TrackIndexItem extends React.Component{
   constructor(props) {
@@ -59,8 +59,19 @@ class TrackIndexItem extends React.Component{
     });
   }
 
+  renderTrackMenu() {
+    if(this.props.currentUser) {
+      if (this.props.currentUser.username === this.props.track.creator) {
+        return <TrackMenuContainer track={this.state.track}/>;
+      } else {
+        return <div></div>;
+      }
+    } else {
+      return <div></div>;
+    }
+  }
+
   render() {
-    console.log(this.props);
     const active = this.state.track;
     const play = this.state.play;
     if(this.state.track) {
@@ -87,7 +98,7 @@ class TrackIndexItem extends React.Component{
                 </div>
                 <div className="track-data-right">
                   <div>{ this.renderElapsedTime()}{' ago'}</div>
-                  <TrackMenu track={active}/>
+                  { this.renderTrackMenu()}
                 </div>
               </div>
               <br/>

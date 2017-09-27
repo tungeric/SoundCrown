@@ -11,7 +11,6 @@ class UserPageMain extends React.Component {
       active: props.tracks[0],
       play: false
     };
-    console.log(props);
   }
 
   componentDidMount() {
@@ -56,7 +55,6 @@ class UserPageMain extends React.Component {
   }
 
   render () {
-    console.log(this.props);
     return (
       <div className="user-page">
         { this.renderUserHeader() }

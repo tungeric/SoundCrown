@@ -49,7 +49,6 @@ export const createTrack = (track) => dispatch => {
     .then(response => {
       // FOR SOME REASON ERRORS ARE BEING TREATED AS RESPONSES FOR THIS CASE:
       // HERE'S MY WORKAROUND...
-      console.log(response.responseJSON);
       if(response.constructor === Array) {
         if(response.every((entry) => { return typeof entry === "string"; })) {
           dispatch(receiveTrackErrors(response.responseJSON));
@@ -61,8 +60,6 @@ export const createTrack = (track) => dispatch => {
       }
     },
       errors => {
-        console.log("ERRORS:");
-        console.log(errors);
         dispatch(receiveTrackErrors(errors.responseJSON));
     });
 };
@@ -76,8 +73,8 @@ export const updateTrack = (track) => dispatch => {
     );
 };
 
-export const deleteTrack = (id) => dispatch => (
-  TrackApiUtil.deleteTrack(id)
+export const deleteTrack = (track) => dispatch => (
+  TrackApiUtil.deleteTrack(track)
     .then( response => dispatch(removeTrack(response)),
            errors => dispatch(receiveTrackErrors(errors.responseJSON)))
 );

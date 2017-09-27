@@ -13,21 +13,21 @@ class EditTrackForm extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log(this.state);
     this.setState(newProps.track);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
     this.props.updateTrack({track: {
       id: this.state.id,
       title: this.state.title,
       description: this.state.description
       }
+    })
+    .then(()=>{
+      this.props.getTrack(this.props.match.params.trackId);
+      this.props.history.push(`/tracks/${this.props.track.id}/`);
     });
-    this.props.getTrack(this.props.match.params.trackId);
-    this.props.history.push(`/tracks/${this.props.track.id}/`);
   }
 
   renderErrors() {
@@ -51,7 +51,6 @@ class EditTrackForm extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     if(this.state){
       return (
         <div className="track-edit-form">

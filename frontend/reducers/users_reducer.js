@@ -9,11 +9,13 @@ const UsersReducer = (oldState={}, action) => {
       return action.users;
     case RECEIVE_USER:
       const newUser = action.user || null;
-      const newState = merge({}, oldState);
-      if (newUser) {
+      if(newUser === null) {
+        return oldState;
+      } else {
+        const newState = {};
         newState[newUser.username] = newUser;
+        return newState;
       }
-      return newState;
     default:
       return oldState;
   }

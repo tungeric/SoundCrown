@@ -1,4 +1,6 @@
 class Api::TracksController < ApplicationController
+  before_action :verify_logged_in, only: [:create, :update, :destroy]
+
   def index
     user = User.find_by(username: params[:user_username])
     if user
@@ -34,6 +36,8 @@ class Api::TracksController < ApplicationController
 
   def destroy
     @track = Track.find_by(id: params[:id])
+    @track.destroy
+    render :show
   end
 
   def all_tracks
