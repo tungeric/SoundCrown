@@ -11,8 +11,7 @@ Track.destroy_all
 
 u1 = User.create!({
   username: "demo",
-  password: "password",
-  avatar: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/michael_jackson.jpg')
+  password: "password"
 })
 
 t11 = Track.create!({
@@ -27,8 +26,7 @@ t11 = Track.create!({
 
 u2 = User.create!({
   username: "TheKing",
-  password: "michaeljackson",
-  avatar: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/michael_jackson.jpg')
+  password: "michaeljackson"
 })
 
 t21 = Track.create!({
