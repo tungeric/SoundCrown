@@ -15,18 +15,17 @@ u1 = User.create!({
 })
 
 t11 = Track.create!({
-  title: "SO. GOOD.",
-  description: "No seriously that's the song title",
+  title: "Hey what it is",
+  description: "The title doesn't fit the song",
   creator_id: u1.id,
-  audio: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/audios/000/000/005/original/SO._GOOD..mp3'),
-  cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/000/000/005/original/bart.png')
+  audio: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/audios/_default/08+Jazzy+Joint.mp3'),
+  cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/alienguy.jpg')
 })
-
-
 
 u2 = User.create!({
   username: "TheKing",
-  password: "michaeljackson"
+  password: "michaeljackson",
+  avatar: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/michael_jackson.jpg')
 })
 
 t21 = Track.create!({
@@ -72,16 +71,16 @@ u3 = User.create!({
 })
 
 t31 = Track.create!({
-  title: "Rock with You",
-  description: "Allll niiiiight",
-  creator_id: u2.id,
+  title: "Jazzy Joint",
+  description: "HEY YOU GUYS",
+  creator_id: u3.id,
   audio: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/audios/_default/08+Jazzy+Joint.mp3'),
   cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/alienguy.jpg')
 })
 t32 = Track.create!({
-  title: "Off the Wall",
-  description: "How to live life",
-  creator_id: u2.id,
+  title: "What up",
+  description: "Womp womp",
+  creator_id: u3.id,
   audio: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/audios/_default/01+Closing+Time.mp3'),
   cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/bart.png')
 })
