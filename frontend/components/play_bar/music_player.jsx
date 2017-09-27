@@ -31,16 +31,17 @@ class MusicPlayer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     this.setState({
       active: nextProps.active,
       play: nextProps.play,
       tracks: nextProps.tracks
     });
-    if (nextProps.play){
-      this.refs.player.play();
-    } else {
-      this.refs.player.pause();
+    if(this.refs.player) {
+      if(nextProps.play) {
+        this.refs.player.play();
+      } else {
+        this.refs.player.pause();
+      }
     }
   }
 

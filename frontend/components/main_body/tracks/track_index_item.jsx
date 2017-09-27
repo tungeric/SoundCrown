@@ -2,21 +2,19 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import MusicPlayer from '../../play_bar/music_player';
-import { getTrack} from '../../../actions/track_actions';
+import TrackMenu from '../../misc_tools/track_menu';
 
 class TrackIndexItem extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
       track: this.props.track,
-      play: false
+      play: false,
     };
     this.togglePlay = this.togglePlay.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps);
-    console.log(this.state);
     if(nextProps.active) {
       if (this.state.track.audio_url === nextProps.active.url &&
           this.state.play !== nextProps.play) {
@@ -53,8 +51,6 @@ class TrackIndexItem extends React.Component{
   }
 
   togglePlay() {
-    console.log(this.props);
-    console.log(this.state);
     const newState = !this.state.play;
     this.setState({ play: newState });
     this.props.callbackIndex({
@@ -64,6 +60,7 @@ class TrackIndexItem extends React.Component{
   }
 
   render() {
+    console.log(this.props);
     const active = this.state.track;
     const play = this.state.play;
     if(this.state.track) {
@@ -90,6 +87,7 @@ class TrackIndexItem extends React.Component{
                 </div>
                 <div className="track-data-right">
                   <div>{ this.renderElapsedTime()}{' ago'}</div>
+                  <TrackMenu track={active}/>
                 </div>
               </div>
               <br/>

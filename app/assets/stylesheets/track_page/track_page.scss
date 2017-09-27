@@ -19,7 +19,7 @@
   display: flex;
   padding: 20px;
   justify-content: space-between;
-  align-text: center;
+  text-align: left;
   margin: 0;
 }
 
@@ -103,4 +103,14 @@
         border-radius: 50%;
         background-color: rgb(0,200,255);
     }
+}
+
+.track-playbar-and-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.more-options {
+  padding: 20px;
 }

@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 class UploadTrackForm extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props.errors);
     this.state = {
       title: "",
       description: "",
@@ -13,11 +14,17 @@ class UploadTrackForm extends React.Component {
       cover_art: null,
       fireRestOfForm: false,
       uploadedFileName: null,
-      formSubmitted: false
+      formSubmitted: false,
+      errors: this.props.errors.tracks || []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setAudio = this.setAudio.bind(this);
     this.setCoverArt = this.setCoverArt.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    this.setState({errors: nextProps.errors.tracks, formSubmitted: false});
   }
 
   componentDidUpdate() {
@@ -43,10 +50,12 @@ class UploadTrackForm extends React.Component {
     formData.append("track[creator_id]", this.state.creator_id);
     formData.append("track[audio]", this.state.audio);
     formData.append("track[cover_art]", this.state.cover_art);
-    this.props.createTrack(formData)
-      .then(() =>{
-        this.props.history.push(`/${this.props.currentUser.username}`);
-        this.props.closeModal();
+    this.props.createTrack(formData).then(
+      (response) =>{
+        if(this.props.errors.tracks.length === 0) {
+          this.props.history.push(`/${this.props.currentUser.username}`);
+          this.props.closeModal();
+        }
       });
   }
 
@@ -145,7 +154,7 @@ class UploadTrackForm extends React.Component {
       <div className="track-upload-form">
         <div className="form-header"><h1 className="form-label">Upload to SoundCrown</h1></div>
         <br/>
-        <br/>
+        {this.renderErrors()}
         <br/>
         <label htmlFor="track-upload" className="track-upload-label">
           {this.state.audio === null ? "Choose a file to upload" : this.state.audio.name}

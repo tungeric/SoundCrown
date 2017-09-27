@@ -71,6 +71,7 @@ class UserPageMain extends React.Component {
                                        track={track}
                                        play={this.props.trackData.play}
                                        active={this.props.trackData.active}
+                                       currentUser={this.props.currentUser}
                                        callbackIndex={(newState) => this.onIndexItemChanged(newState)}
                        />;
               })

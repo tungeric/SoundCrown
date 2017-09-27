@@ -6,6 +6,7 @@ import SignupFormContainer from './main_body/session_form/signup_form_container'
 import NavBarContainer from './nav_bar/nav_bar_container';
 import UserPageMainContainer from './main_body/user_page/user_page_main_container';
 import TrackPageMainContainer from './main_body/track_page/track_page_main_container';
+import EditTrackFormContainer from './main_body/edit_track_form/edit_track_form_container';
 import MusicPlayerContainer from './play_bar/music_player_container';
 import {
   Route,
@@ -76,6 +77,7 @@ class App extends React.Component {
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <ProtectedRoute exact path="/stream" component={StreamPageContainer} />
+            <ProtectedRoute path="/:tracks/:trackId/edit" component={EditTrackFormContainer} />
             <Route path="/tracks/:trackId" component={() =>
                 <TrackPageMainContainer trackData={this.state}
                                         callbackApp={

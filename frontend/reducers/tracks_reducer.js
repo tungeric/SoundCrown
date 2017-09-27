@@ -4,6 +4,7 @@ import { RECEIVE_TRACKS,
 import merge from 'lodash/merge';
 
 const TracksReducer = (oldState={}, action) => {
+  console.log(action);
   Object.freeze(oldState);
   switch(action.type) {
     case RECEIVE_TRACKS:

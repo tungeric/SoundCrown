@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
+import TrackMenu from '../../misc_tools/track_menu';
 
 class TrackPageMain extends React.Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class TrackPageMain extends React.Component {
   }
 
   render () {
-    console.log(this.state);
+    console.log(this.props);
     const active = this.state.track;
     const play = this.state.play;
     if(this.state.title) {
@@ -81,12 +82,16 @@ class TrackPageMain extends React.Component {
                   <div>
                     <Link className="track-header-username" to={`/${this.state.creator}/`}>{this.state.creator}</Link>
                     <div className="track-header-trackname">{this.state.title}</div>
+                    <div className="more-options"><TrackMenu track={this.props.track}/></div>
+
                   </div>
                   <div className="track-header-time">{ this.renderElapsedTime()}{' ago'}</div>
                 </div>
                 <br/><br/><br/><br/><br/>
-                <div className="track-header-progress-container">
+                <div className="track-playbar-and-options">
+                  <div className="track-header-progress-container">
                     <span className="track-header-progress-value" style={{width: '0%'}}></span>
+                  </div>
                 </div>
               </div>
               <div className="track-header-right">

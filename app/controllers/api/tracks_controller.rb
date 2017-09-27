@@ -24,9 +24,8 @@ class Api::TracksController < ApplicationController
   end
 
   def update
-    debugger;
-    @track = Track.find_by(id: params[:id])
-    if @track.update_attributes
+    @track = Track.find_by(id: params[:track][:id])
+    if @track.update_attributes(track_params)
       render :show
     else
       render json: @track.errors.full_messages
@@ -45,6 +44,6 @@ class Api::TracksController < ApplicationController
   private
 
   def track_params
-    params.require(:track).permit(:title, :description, :creator_id, :audio, :cover_art, :audio_url, :cover_art_url)
+    params.require(:track).permit(:id, :title, :description, :creator_id, :audio, :cover_art, :audio_url, :cover_art_url)
   end
 end

@@ -47,12 +47,24 @@ export const getTrack = (id) => dispatch => {
 export const createTrack = (track) => dispatch => {
   return TrackApiUtil.createTrack(track)
     .then(response => {
-      // response.audio_url = response.audio_url.slice(0,9) + "-us-west-1" + response.audio_url.slice(9);
-      // response.cover_art_url = response.cover_art_url.slice(0,9) + "-us-west-1" + response.cover_art_url.slice(9);
-      dispatch(receiveTrack(response));
+      // FOR SOME REASON ERRORS ARE BEING TREATED AS RESPONSES FOR THIS CASE:
+      // HERE'S MY WORKAROUND...
+      console.log(response.responseJSON);
+      if(response.constructor === Array) {
+        if(response.every((entry) => { return typeof entry === "string"; })) {
+          dispatch(receiveTrackErrors(response.responseJSON));
+        } else {
+        dispatch(receiveTrack(response));
+        }
+      } else {
+        dispatch(receiveTrack(response));
+      }
     },
-      errors => dispatch(receiveTrackErrors(errors.responseJSON))
-    );
+      errors => {
+        console.log("ERRORS:");
+        console.log(errors);
+        dispatch(receiveTrackErrors(errors.responseJSON));
+    });
 };
 
 export const updateTrack = (track) => dispatch => {
