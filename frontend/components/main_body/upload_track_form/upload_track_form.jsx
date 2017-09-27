@@ -9,8 +9,8 @@ class UploadTrackForm extends React.Component {
       description: "",
       creator_id: props.currentUser.id,
       audio: null,
-      cover_art_url: "http://res.cloudinary.com/dfafbqoxx/image/upload/v1505940306/soundcrown-logo_ueiofl.jpg",
-      cover_art: null,
+      cover_art_url: "http://res.cloudinary.com/dfafbqoxx/image/upload/v1506546644/blank_user_oltxpb.png",
+      cover_art: "http://res.cloudinary.com/dfafbqoxx/image/upload/v1506546644/blank_user_oltxpb.png",
       fireRestOfForm: false,
       uploadedFileName: null,
       formSubmitted: false,
@@ -148,6 +148,7 @@ class UploadTrackForm extends React.Component {
   }
 
   render () {
+    console.log(this.state);
     return (
       <div className="track-upload-form">
         <div className="form-header"><h1 className="form-label">Upload to SoundCrown</h1></div>
