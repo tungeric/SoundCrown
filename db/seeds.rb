@@ -7,5 +7,83 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
+Track.destroy_all
 
-User.create(username: "demo", password: "password")
+u1 = User.create!({
+  username: "demo",
+  password: "password",
+  avatar: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/michael_jackson.jpg')
+})
+
+t11 = Track.create!({
+  title: "SO. GOOD.",
+  description: "No seriously that's the song title",
+  creator_id: u1.id,
+  audio: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/audios/000/000/005/original/SO._GOOD..mp3'),
+  cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/000/000/005/original/bart.png')
+})
+
+
+
+u2 = User.create!({
+  username: "TheKing",
+  password: "michaeljackson",
+  avatar: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/michael_jackson.jpg')
+})
+
+t21 = Track.create!({
+  title: "Rock with You",
+  description: "Allll niiiiight",
+  creator_id: u2.id,
+  audio: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/audios/_default/02+-+Rock+with+You+(Single+Version).mp3'),
+  cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/mjax-tracks.png')
+})
+t22 = Track.create!({
+  title: "Off the Wall",
+  description: "How to live life",
+  creator_id: u2.id,
+  audio: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/audios/_default/05+-+Off+the+Wall.mp3'),
+  cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/mjax-tracks.png')
+})
+t23 = Track.create!({
+  title: "Human Nature",
+  description: "it's there",
+  creator_id: u2.id,
+  audio: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/audios/_default/07+-+Human+Nature.mp3'),
+  cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/mjax-tracks.png')
+})
+t24 = Track.create!({
+  title: "Man in the Mirror",
+  description: "Why did I add a description section?",
+  creator_id: u2.id,
+  audio: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/audios/_default/07+-+Man+in+the+Mirror+%5BRemastered%5D.mp3'),
+  cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/mjax-tracks.png')
+})
+t25 = Track.create!({
+  title: "Dirty Diana",
+  description: "But still kinda classy",
+  creator_id: u2.id,
+  audio: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/audios/_default/09+-+Dirty+Diana+%5BRemastered%5D.mp3'),
+  cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/mjax-tracks.png')
+})
+
+
+u3 = User.create!({
+  username: "jakefromStateFarm",
+  password: "goodneighbor"
+})
+
+t31 = Track.create!({
+  title: "Rock with You",
+  description: "Allll niiiiight",
+  creator_id: u2.id,
+  audio: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/audios/_default/08+Jazzy+Joint.mp3'),
+  cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/alienguy.jpg')
+})
+t32 = Track.create!({
+  title: "Off the Wall",
+  description: "How to live life",
+  creator_id: u2.id,
+  audio: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/audios/_default/01+Closing+Time.mp3'),
+  cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/bart.png')
+})

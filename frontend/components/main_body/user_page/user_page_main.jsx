@@ -37,13 +37,17 @@ class UserPageMain extends React.Component {
 
   renderUserUpdateAvatar() {
     console.log(this.props);
-    if (this.props.currentUser.username === this.props.users[0].username) {
-      return (
-        <label className="user-avatar-upload-label">
-          <i className="fa fa-camera"/> Update image
-            <input type="file" onChange={this.setAvatar}/>
-        </label>
-      );
+    if (this.props.currentUser) {
+      if (this.props.currentUser.username === this.props.users[0].username) {
+        return (
+          <label className="user-avatar-upload-label">
+            <i className="fa fa-camera"/> Update image
+              <input type="file" onChange={this.setAvatar}/>
+          </label>
+        );
+      } else {
+        return <div></div>;
+      }
     } else {
       return <div></div>;
     }
