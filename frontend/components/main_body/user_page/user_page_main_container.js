@@ -3,7 +3,7 @@ import { logout } from '../../../actions/session_actions';
 import { withRouter } from 'react-router-dom';
 import UserPageMain from './user_page_main';
 import { getAllUserTracks } from '../../../actions/track_actions';
-import { getUser } from '../../../actions/user_actions';
+import { getUser, updateUser } from '../../../actions/user_actions';
 
 const mapStateToProps = (state, props) => {
   return{
@@ -17,7 +17,8 @@ const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(logout()),
     getUser: (username) => dispatch(getUser(username)),
-    getAllUserTracks: (id) => dispatch(getAllUserTracks(id))
+    getAllUserTracks: (id) => dispatch(getAllUserTracks(id)),
+    updateUser: (username, user) => dispatch(updateUser(username, user))
   };
 };
 

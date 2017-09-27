@@ -5,7 +5,8 @@ export default class TrackMenu extends React.Component {
   constructor() {
     super();
     this.state = {
-        isMenuOpen: false
+        isMenuOpen: false,
+        track: {},
     };
     this.edit = this.edit.bind(this);
     this.delete = this.delete.bind(this);
@@ -13,6 +14,9 @@ export default class TrackMenu extends React.Component {
     this.close = this.close.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({track: this.props.track});
+  }
   toggle() {
     this.setState({ isMenuOpen: !this.state.isMenuOpen });
   }
@@ -27,16 +31,14 @@ export default class TrackMenu extends React.Component {
   }
 
   delete() {
-    console.log(this.props.track);
-    this.props.deleteTrack(this.props.track)
-    .then((response) => {
-      // this.props.getAllUserTracks(response.track.creator_id).then(()=> {
-      //   location.href=`/#/${this.props.track.creator}`;
-    //   }
-    // );
-      // console.log(response);
-      // location.href=`/#/${this.props.track.creator}`;
-    });
+    const result = confirm("Are you sure you want to delete this track?");
+    console.log(this.state.track);
+    if (result) {
+      this.props.deleteTrack(this.state.track)
+      .then((response) => {
+        this.props.history.push(`/${this.state.track.creator}`);
+      });
+    }
   }
 
   render() {

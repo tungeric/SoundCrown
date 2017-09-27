@@ -69,6 +69,27 @@
   min-width: 100%;
   min-height: 100%;
   border-radius: 50%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.user-avatar-upload-label {
+  width: 100px;
+  height: 20px;
+  color: black;
+  font-size: 12px;
+  border-radius: 4px;
+  background-color: rgba(240,240,240,0.4);
+  padding: 3px;
+  border: 2px solid white;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2;
+  position: absolute;
+}
+
+.user-avatar-upload-label:hover {
+  background-color: rgba(240,240,240,1);
 }
 
 .user-header-username-container {

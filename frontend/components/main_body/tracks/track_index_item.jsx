@@ -62,7 +62,9 @@ class TrackIndexItem extends React.Component{
   renderTrackMenu() {
     if(this.props.currentUser) {
       if (this.props.currentUser.username === this.props.track.creator) {
-        return <TrackMenuContainer track={this.state.track}/>;
+        return <TrackMenuContainer key={this.state.id}
+                                   track={this.state.track}
+                                   history={this.props.history}/>;
       } else {
         return <div></div>;
       }
