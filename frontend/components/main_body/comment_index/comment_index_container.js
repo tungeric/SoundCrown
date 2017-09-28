@@ -5,8 +5,9 @@ import { merge } from 'lodash';
 import  { createComment, getAllTrackComments, clearErrors } from '../../../actions/comment_actions';
 
 const mapStateToProps = (state, props) => {
-  const newComments = Object.values(state.comments);
-  const existComments = Object.values(Object.values(state.tracks)[0].comments);
+  const newComments = Object.values(state.comments) || [];
+  const existCommentsObj = Object.values(state.tracks)[0].comments || {};
+  const existComments = Object.values(existCommentsObj) || [];
   const totalComments = existComments.concat(newComments);
   return {
     currentUser: state.session.currentUser,
