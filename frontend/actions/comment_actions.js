@@ -1,9 +1,10 @@
-import * as CommentApiUtil from '../util/track_api_util';
+import * as CommentApiUtil from '../util/comment_api_util';
 
 export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
 export const REMOVE_COMMENT = "REMOVE_COMMENT";
 export const RECEIVE_COMMENT_ERRORS = "RECEIVE_COMMENT_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const receiveComments = (comments) => ({
   type: RECEIVE_COMMENTS,
@@ -23,6 +24,10 @@ export const removeComment = (comment) => ({
 export const receiveCommentErrors = (errors) => ({
   type: RECEIVE_COMMENT_ERRORS,
   errors
+});
+
+export const clearErrors = errors => ({
+  type: CLEAR_ERRORS
 });
 
 export const getAllTrackComments = (track_id) => dispatch => {

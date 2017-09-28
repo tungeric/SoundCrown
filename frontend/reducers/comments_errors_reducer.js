@@ -7,7 +7,7 @@ import {
 
 const _noErrors = [];
 
-const TracksErrorsReducer = (state = _noErrors, action) => {
+const CommentsErrorsReducer = (state = _noErrors, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_COMMENT_ERRORS:

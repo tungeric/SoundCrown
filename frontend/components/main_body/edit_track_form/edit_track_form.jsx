@@ -63,13 +63,13 @@ class EditTrackForm extends React.Component {
               </div>
               <div className="upload-data">
                 <label htmlFor="textInput">Title: </label>
-                <input type="text"
+                <input className="form-text-input" type="text"
                        onChange={ this.update('title') }
                        value={this.state.title}>
                 </input>
 
                 <label htmlFor="descriptionInput">Description: </label>
-                <textarea type="text"
+                <textarea className="form-textarea" type="text"
                        onChange={ this.update('description') }
                        value={this.state.description}>
                 </textarea>

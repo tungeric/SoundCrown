@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import TrackMenu from '../../misc_tools/track_menu';
+import CommentFormContainer from '../comment_form/comment_form_container';
+import CommentIndexContainer from '../comment_index/comment_index_container';
 
 class TrackPageMain extends React.Component {
   constructor(props) {
@@ -11,7 +13,6 @@ class TrackPageMain extends React.Component {
       track: this.props.track,
       play: false
     };
-    console.log(props);
     this.togglePlay = this.togglePlay.bind(this);
   }
 
@@ -23,6 +24,8 @@ class TrackPageMain extends React.Component {
   componentWillReceiveProps(nextProps){
     if(this.state.track){
       if((nextProps.track.id === this.state.track.id)) {
+        console.log("hi hi hi hi hi hi");
+        this.props.getTrack(nextProps.track.id);
         this.setState({
           play: nextProps.trackData.play
         });
@@ -65,6 +68,7 @@ class TrackPageMain extends React.Component {
   }
 
   render () {
+    console.log(this.state);
     const active = this.state.track;
     const play = this.state.play;
     if(this.state.title) {
@@ -101,6 +105,7 @@ class TrackPageMain extends React.Component {
                 </div>
               </div>
             </div>
+            <CommentIndexContainer/>
           </div>
         );
       } else {

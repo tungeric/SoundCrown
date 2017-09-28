@@ -48,7 +48,7 @@
 .cover-art-thumbnail {
   width: 45px;
   height: 45px;
-  background-size: 100%;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   overflow: hidden;

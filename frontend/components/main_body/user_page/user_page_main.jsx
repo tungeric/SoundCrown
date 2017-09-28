@@ -31,12 +31,10 @@ class UserPageMain extends React.Component {
   setAvatar (event) {
     let formData = new FormData();
     formData.append("user[avatar]", event.currentTarget.files[0]);
-    console.log(this.props);
     this.props.updateUser(this.props.currentUser.username, formData);
   }
 
   renderUserUpdateAvatar() {
-    console.log(this.props);
     if (this.props.currentUser) {
       if (this.props.currentUser.username === this.props.users[0].username) {
         return (

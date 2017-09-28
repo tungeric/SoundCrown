@@ -1,4 +1,4 @@
-input[type=text], input[type=password] {
+.form-text-input {
     width: 400px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -7,7 +7,7 @@ input[type=text], input[type=password] {
     border-radius: 6px;
 }
 
-textarea {
+.form-textarea {
   width: 400px;
   height: 200px;
   padding: 12px 20px;
@@ -81,7 +81,7 @@ label.track-upload-label {
   // -webkit-filter: brightness(80%);
   // opacity: 0.8;
   position: relative;
-  background-size: 100%;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 

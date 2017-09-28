@@ -1,9 +1,9 @@
 class Api::CommentsController < ApplicationController
 
   def index
-    track = Track.find_by(track_id: params[:track_id])
+    track = Track.find_by(id: params[:track_id])
     if track
-      @comments = Track.comments
+      @comments = track.comments
     else
       @comments = Comment.all
     end

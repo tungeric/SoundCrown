@@ -85,10 +85,10 @@ class SessionForm extends React.Component {
         { this.renderErrors() }
         <form className="session-form" onSubmit={ this.handleSubmit }>
           <label>Username:
-            <input onChange={ this.update('username') } type="text" value={this.state.username}></input>
+            <input className="form-text-input" onChange={ this.update('username') } type="text" value={this.state.username}></input>
           </label>
-          <label>Password: 
-            <input onChange={ this.update('password') } type="password" value={this.state.password}></input>
+          <label>Password:
+            <input className="form-text-input" onChange={ this.update('password') } type="password" value={this.state.password}></input>
           </label>
           <input type="submit" value={buttonText} />
         </form>
