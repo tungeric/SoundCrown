@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
-import TrackMenu from '../../misc_tools/track_menu';
+import TrackMenuContainer from '../../misc_tools/track_menu_container';
 import CommentFormContainer from '../comment_form/comment_form_container';
 import CommentIndexContainer from '../comment_index/comment_index_container';
 
@@ -69,6 +69,20 @@ class TrackPageMain extends React.Component {
     });
   }
 
+  renderTrackMenu() {
+    if(this.props.currentUser) {
+      if (this.props.currentUser.username === this.props.track.creator) {
+        return <TrackMenuContainer key={this.state.id}
+                                   track={this.state.track}
+                                   history={this.props.history}/>;
+      } else {
+        return <div></div>;
+      }
+    } else {
+      return <div></div>;
+    }
+  }
+
   render () {
     console.log(this.state);
     const active = this.state.track;
@@ -88,7 +102,7 @@ class TrackPageMain extends React.Component {
                     <Link className="track-header-username" to={`/${this.state.creator}/`}>{this.state.creator}</Link>
                     <div className="track-header-trackname">{this.state.title}</div>
                     <div className="more-options">
-                      <TrackMenu track={this.props.track}/>
+                      {this.renderTrackMenu()}
                     </div>
 
                   </div>

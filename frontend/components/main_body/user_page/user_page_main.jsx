@@ -30,14 +30,10 @@ class UserPageMain extends React.Component {
   }
 
   componentWillUpdate(nextProps) {
-    // if(nextProps.match.params.username!==this.props.match.params.username) {
-    //   let pageUser = nextProps.match.params.username;
-    //   console.log(pageUser);
-    //   this.props.getUser(pageUser);
-    //   this.props.getAllUserTracks(pageUser);
-    // }
-    if(nextProps.user !== this.state.user && nextProps.user.username === nextProps.match.params.username) {
-      this.setState({user: nextProps.user});
+    if(nextProps.match.params && nextProps.user) {
+      if(nextProps.user !== this.state.user && nextProps.user.username === nextProps.match.params.username) {
+        this.setState({user: nextProps.user});
+      }
     }
   }
 
