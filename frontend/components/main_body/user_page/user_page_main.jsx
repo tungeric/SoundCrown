@@ -6,25 +6,38 @@ import AppModal from '../../misc_tools/modal';
 class UserPageMain extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
-      tracks: props.tracks,
-      active: props.tracks[0],
+      tracks: [],
+      active: null,
       play: false,
+      user: null
     };
     this.setAvatar = this.setAvatar.bind(this);
   }
 
   componentDidMount() {
     let pageUser = this.props.match.params.username;
+    console.log(pageUser);
     this.props.getAllUserTracks(pageUser);
     this.props.getUser(pageUser);
   }
 
+  componentWillUnmount() {
+    this.setState({
+      user: null
+    });
+  }
+
   componentWillUpdate(nextProps) {
-    if(nextProps.match.params.username!==this.props.match.params.username) {
-      let pageUser = nextProps.match.params.username;
-      this.props.getUser(pageUser);
-      this.props.getAllUserTracks(pageUser);
+    // if(nextProps.match.params.username!==this.props.match.params.username) {
+    //   let pageUser = nextProps.match.params.username;
+    //   console.log(pageUser);
+    //   this.props.getUser(pageUser);
+    //   this.props.getAllUserTracks(pageUser);
+    // }
+    if(nextProps.user !== this.state.user && nextProps.user.username === nextProps.match.params.username) {
+      this.setState({user: nextProps.user});
     }
   }
 
@@ -36,7 +49,7 @@ class UserPageMain extends React.Component {
 
   renderUserUpdateAvatar() {
     if (this.props.currentUser) {
-      if (this.props.currentUser.username === this.props.users[0].username) {
+      if (this.props.currentUser.username === this.props.user.username) {
         return (
           <label className="user-avatar-upload-label">
             <i className="fa fa-camera"/> Update image
@@ -51,27 +64,23 @@ class UserPageMain extends React.Component {
     }
   }
 
-  renderUserHeader() {
-    if (this.props.users.length === 1) {
-      let user = this.props.users[0];
-      return (
-        <div className="user-header-bg">
-          <div className="user-avatar-container">
-            <div className="user-avatar" style={{backgroundImage: 'url(' + user.avatar_url+ ')'}}>
-              { this.renderUserUpdateAvatar() }
-            </div>
-          </div>
-          <div className="user-header-username-container">
-            <div className="user-header-username">{user.username}</div>
+  renderUserHeader(user) {
+    return (
+      <div className="user-header-bg">
+        <div className="user-avatar-container">
+          <div className="user-avatar" style={{backgroundImage: 'url(' + user.avatar_url+ ')'}}>
+            { this.renderUserUpdateAvatar() }
           </div>
         </div>
-      );
-    } else {
-      return <div></div>;
-    }
+        <div className="user-header-username-container">
+          <div className="user-header-username">{user.username}</div>
+        </div>
+      </div>
+    );
   }
 
   onIndexItemChanged(newState) {
+    console.log(newState);
     this.setState({ track: newState.track, play: newState.play });
     this.props.callbackApp({
       tracks: this.props.tracks,
@@ -81,31 +90,38 @@ class UserPageMain extends React.Component {
   }
 
   render () {
+    console.log(this.state);
     console.log(this.props);
-    return (
-      <div className="user-page">
-        { this.renderUserHeader() }
-        <div className="user-tracklist-section">
-          <div className="user-track-header">
-            <h1 className="user-track-h1">Tracks by {this.props.match.params.username}</h1>
+    let user = this.state.user;
+    if (user) {
+      const tracks = Object.values(user.tracks);
+      return (
+        <div className="user-page">
+          { this.renderUserHeader(user) }
+          <div className="user-tracklist-section">
+            <div className="user-track-header">
+              <h1 className="user-track-h1">Tracks by {this.props.match.params.username}</h1>
+            </div>
+            <ul className="user-tracklist">
+              {
+                tracks.map((track, idx) => {
+                  return <TrackIndexItem key={idx}
+                                         track={track}
+                                         play={this.props.trackData.play}
+                                         active={this.props.trackData.active}
+                                         currentUser={this.props.currentUser}
+                                         history={this.props.history}
+                                         callbackIndex={(newState) => this.onIndexItemChanged(newState)}
+                         />;
+                })
+              }
+            </ul>
           </div>
-          <ul className="user-tracklist">
-            {
-              this.props.tracks.map((track, idx) => {
-                return <TrackIndexItem key={idx}
-                                       track={track}
-                                       play={this.props.trackData.play}
-                                       active={this.props.trackData.active}
-                                       currentUser={this.props.currentUser}
-                                       history={this.props.history}
-                                       callbackIndex={(newState) => this.onIndexItemChanged(newState)}
-                       />;
-              })
-            }
-          </ul>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <div></div>;
+    }
   }
 
 }

@@ -1,0 +1,20 @@
+.error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.error-title {
+  font-size: 60px;
+  margin: 10px;
+  margin-top: 150px;
+}
+
+.error-img {
+  font-size: 100px;
+}
+
+.error-description {
+  font-size: 20px;
+  margin-bottom: 150px;
+}

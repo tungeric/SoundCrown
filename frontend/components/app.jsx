@@ -8,6 +8,7 @@ import UserPageMainContainer from './main_body/user_page/user_page_main_containe
 import TrackPageMainContainer from './main_body/track_page/track_page_main_container';
 import EditTrackFormContainer from './main_body/edit_track_form/edit_track_form_container';
 import MusicPlayerContainer from './play_bar/music_player_container';
+import { UserNotFound } from './errors/user_not_found';
 import {
   Route,
   Redirect,
@@ -81,6 +82,7 @@ class App extends React.Component {
                 <TrackPageMainContainer trackData={this.state}
                                         callbackApp={
                 (newState) => this.onTrackPageChanged(newState)}/>}/>
+              <Route path="/user-not-found" component={UserNotFound} />
             <Route path="/:username" component={() =>
                 <UserPageMainContainer trackData={this.state}
                                        callbackApp={

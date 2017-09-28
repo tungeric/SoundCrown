@@ -24,11 +24,12 @@ class TrackPageMain extends React.Component {
   componentWillReceiveProps(nextProps){
     if(this.state.track){
       if((nextProps.track.id === this.state.track.id)) {
-        console.log("hi hi hi hi hi hi");
-        this.props.getTrack(nextProps.track.id);
-        this.setState({
-          play: nextProps.trackData.play
-        });
+        if (this.state.play !== nextProps.trackData.play) {
+          this.props.getTrack(nextProps.track.id);
+          this.setState({
+            play: nextProps.trackData.play
+          });
+        }
       }
     }
   }
@@ -36,29 +37,30 @@ class TrackPageMain extends React.Component {
   renderElapsedTime() {
     let seconds = Math.floor((new Date() - this.state.created_at) / 1000);
     let interval = Math.floor(seconds / 31536000);
-    if (interval > 1) {
+    if (interval > 0) {
       return interval + " years";
     }
     interval = Math.floor(seconds / 2592000);
-    if (interval > 1) {
+    if (interval > 0) {
       return interval + " months";
     }
     interval = Math.floor(seconds / 86400);
-    if (interval > 1) {
+    if (interval > 0) {
       return interval + " days";
     }
     interval = Math.floor(seconds / 3600);
-    if (interval > 1) {
+    if (interval > 0) {
       return interval + " hours";
     }
     interval = Math.floor(seconds / 60);
-    if (interval > 1) {
+    if (interval > 0) {
       return interval + " minutes";
     }
     return Math.floor(seconds) + " seconds";
   }
 
-  togglePlay() {
+  togglePlay(e) {
+    e.preventDefault();
     const newState = !this.state.play;
     this.setState({ play: newState });
     this.props.callbackApp({
