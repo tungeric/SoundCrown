@@ -17,10 +17,7 @@ const TracksReducer = (oldState={}, action) => {
       return newState;
     case REMOVE_TRACK:
       const cleanState = merge({}, oldState);
-      console.log(cleanState);
-      console.log(action);
       delete cleanState[action.track.id];
-      console.log(cleanState);
       return cleanState;
     default:
       return oldState;

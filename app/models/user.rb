@@ -28,6 +28,11 @@ class User < ApplicationRecord
     primary_key: :id,
     foreign_key: :creator_id
 
+    has_many :comments,
+      class_name: "Comment",
+      foreign_key: :author_id,
+      primary_key: :id
+
   # paperclip
   has_attached_file :avatar,
                     default_url: "http://res.cloudinary.com/dfafbqoxx/image/upload/v1506546644/blank_user_oltxpb.png"

@@ -20,6 +20,11 @@ class Track < ApplicationRecord
     foreign_key: :creator_id,
     primary_key: :id
 
+  has_many :comments,
+    class_name: "Comment",
+    foreign_key: :track_id,
+    primary_key: :id
+
   # paperclip
   has_attached_file :audio,
                     # url: ":s3_us_west_url",

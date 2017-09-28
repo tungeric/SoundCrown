@@ -71,6 +71,7 @@ class TrackPageMain extends React.Component {
       if (this.state.title.length > 0) {
         let playPauseClass = classnames('fa', {'fa-pause': play}, {'fa-play': !play});
         return (
+          <div className="track-page">
             <div className="track-header-bg">
               <div className="track-header-left">
                 <div className="track-header-data">
@@ -99,8 +100,8 @@ class TrackPageMain extends React.Component {
                   <img className="track-cover-art" src={this.state.cover_art_url}/>
                 </div>
               </div>
-
             </div>
+          </div>
         );
       } else {
         return <div></div>;
