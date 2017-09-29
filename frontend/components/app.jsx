@@ -9,6 +9,7 @@ import TrackPageMainContainer from './main_body/track_page/track_page_main_conta
 import EditTrackFormContainer from './main_body/edit_track_form/edit_track_form_container';
 import MusicPlayerContainer from './play_bar/music_player_container';
 import TrackIndexNewContainer from './main_body/tracks/track_index_new_container';
+import TrackIndexTopContainer from './main_body/tracks/track_index_top_container';
 import { UserNotFound } from './errors/user_not_found';
 import {
   Route,
@@ -34,7 +35,8 @@ class App extends React.Component {
     let tracksDataForPlayer = newState.tracks.map((track => track.dataForPlayer));
     this.setState({ tracks: tracksDataForPlayer,
                     active: newState.track.dataForPlayer,
-                    play: newState.play
+                    play: newState.play,
+                    track: newState.track
                  });
   }
 
@@ -42,7 +44,8 @@ class App extends React.Component {
     let tracksDataForPlayer = [newState.track.dataForPlayer];
     this.setState({ tracks: tracksDataForPlayer,
                     active: newState.track.dataForPlayer,
-                    play: newState.play
+                    play: newState.play,
+                    track: newState.track
                  });
   }
 
@@ -81,6 +84,10 @@ class App extends React.Component {
             <ProtectedRoute exact path="/stream" component={StreamPageContainer} />
             <ProtectedRoute exact path="/stream/new" component={() =>
                 <TrackIndexNewContainer trackData={this.state}
+                                     callbackApp={
+                (newState) => this.onIndexChanged(newState)}/>}/>
+            <ProtectedRoute exact path="/stream/top" component={() =>
+                <TrackIndexTopContainer trackData={this.state}
                                      callbackApp={
                 (newState) => this.onIndexChanged(newState)}/>}/>
             <ProtectedRoute path="/:tracks/:trackId/edit" component={EditTrackFormContainer} />

@@ -37,6 +37,12 @@ export const getAllNewTracks = () => dispatch => {
              errors => dispatch(receiveTrackErrors(errors.responseJSON)));
 };
 
+export const getAllTopTracks = () => dispatch => {
+  return TrackApiUtil.getAllTopTracks()
+      .then( response => dispatch(receiveTracks(response)),
+             errors => dispatch(receiveTrackErrors(errors.responseJSON)));
+};
+
 
 export const getTrack = (id) => dispatch => {
   return TrackApiUtil.getTrack(id)

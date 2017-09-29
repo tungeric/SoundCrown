@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
     resources :comments, only: [:show, :create, :destroy]
     get '/new_tracks', to: 'tracks#index_new'
+    get '/top_tracks', to: 'tracks#index_top'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

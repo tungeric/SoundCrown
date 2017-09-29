@@ -37,6 +37,13 @@ export const getAllNewTracks = () => (
   })
 );
 
+export const getAllTopTracks = () => (
+  $.ajax({
+    method: 'GET',
+    url: `api/top_tracks`,
+  })
+);
+
 export const getTrack = (id) => (
   $.ajax({
     method: 'GET',

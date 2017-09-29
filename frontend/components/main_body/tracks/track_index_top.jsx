@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 import NavBarContainer from '../../nav_bar/nav_bar_container';
 import TrackIndexItem from '../tracks/track_index_item';
 
-class TrackIndexNew extends React.Component {
+class TrackIndexTop extends React.Component {
   constructor(props) {
     super(props);
-    this.goToTop = this.goToTop.bind(this);
+    this.goToNew = this.goToNew.bind(this);
   }
 
   componentDidMount() {
-    console.log(this.props);
-    this.props.getAllNewTracks();
+    this.props.getAllTopTracks();
   }
 
   onIndexItemChanged(newState) {
@@ -22,8 +21,9 @@ class TrackIndexNew extends React.Component {
       play: newState.play
     });
   }
-  goToTop() {
-    this.props.history.push('/stream/top');
+
+  goToNew() {
+    this.props.history.push('/stream/new');
   }
 
   render () {
@@ -33,8 +33,8 @@ class TrackIndexNew extends React.Component {
       return (
         <div>
           <nav className="stream-nav">
-            <a className = "active-tab" >New</a>
-            <a className = "inactive-tab" onClick={this.goToTop}>Top</a>
+            <a className = "inactive-tab" onClick={this.goToNew}>New</a>
+            <a className = "active-tab">Top</a>
           </nav>
           <div className="stream">
             <ul className="user-tracklist">
@@ -59,4 +59,4 @@ class TrackIndexNew extends React.Component {
 
 }
 
-export default TrackIndexNew;
+export default TrackIndexTop;

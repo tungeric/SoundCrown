@@ -9,7 +9,7 @@ class StreamPage extends React.Component {
   }
 
   componentDidMount() {
-    window.location='/#/stream/new';
+    this.props.history.push('/stream/new');
   }
 
   render () {

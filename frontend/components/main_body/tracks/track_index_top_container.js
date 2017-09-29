@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { logout } from '../../../actions/session_actions';
-import { getAllNewTracks } from '../../../actions/track_actions';
-import TrackIndexNew from './track_index_new';
+import { getAllTopTracks } from '../../../actions/track_actions';
 import { withRouter } from 'react-router-dom';
+import TrackIndexTop from './track_index_top';
 
 const mapStateToProps = (state, props) => {
   console.log(state);
@@ -16,8 +16,8 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(logout()),
-    getAllNewTracks: () => dispatch(getAllNewTracks())
+    getAllTopTracks: () => dispatch(getAllTopTracks())
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TrackIndexNew));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TrackIndexTop));

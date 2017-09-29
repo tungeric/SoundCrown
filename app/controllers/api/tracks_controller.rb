@@ -41,9 +41,14 @@ class Api::TracksController < ApplicationController
     render :index
   end
 
+  def index_top
+    @tracks = Track.all.order('plays DESC').limit(5)
+    render :index
+  end
+
   private
 
   def track_params
-    params.require(:track).permit(:id, :title, :description, :creator_id, :audio, :cover_art, :audio_url, :cover_art_url)
+    params.require(:track).permit(:id, :title, :description, :plays, :creator_id, :audio, :cover_art, :audio_url, :cover_art_url)
   end
 end

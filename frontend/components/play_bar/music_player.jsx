@@ -16,7 +16,8 @@ class MusicPlayer extends React.Component {
         repeat: false,
         mute: false,
         play: this.props.play || false,
-        tracks: this.props.tracks || []
+        tracks: this.props.tracks || [],
+        playCounted: false
     };
     this.toggle = this.toggle.bind(this);
     this.pause = this.pause.bind(this);
@@ -34,7 +35,8 @@ class MusicPlayer extends React.Component {
     this.setState({
       active: nextProps.active,
       play: nextProps.play,
-      tracks: nextProps.tracks
+      tracks: nextProps.tracks,
+      playCounted: false
     });
     if(this.refs.player) {
       if(nextProps.play) {
@@ -49,6 +51,7 @@ class MusicPlayer extends React.Component {
     if(this.state.active !== prevState.active ||
       this.state.play !== prevState.play ||
       this.state.tracks !== prevState.tracks ) {
+        console.log(this.state);
         this.props.callbackApp({
           active: this.state.active,
           play: this.state.play,
@@ -76,7 +79,7 @@ class MusicPlayer extends React.Component {
       let current = (this.state.repeat) ? this.state.current : (this.state.current < total - 1) ? this.state.current + 1 : 0;
       let active = this.state.tracks[current];
 
-      this.setState({ current: current, active: active, progress: 0 });
+      this.setState({ current: current, active: active, progress: 0, playCounted: false });
 
       this.refs.player.src = active.url;
       this.play();
@@ -87,7 +90,7 @@ class MusicPlayer extends React.Component {
       let current = (this.state.current > 0) ? this.state.current - 1 : total - 1;
       let active = this.state.tracks[current];
 
-      this.setState({ current: current, active: active, progress: 0 });
+      this.setState({ current: current, active: active, progress: 0, playCounted: false });
 
       this.refs.player.src = active.url;
       this.play();
@@ -162,6 +165,18 @@ class MusicPlayer extends React.Component {
     let currentTime = this.refs.player.currentTime;
     let progress = (currentTime * 100) / duration;
 
+    let start= this.refs.player.played.start(0);
+    let end = this.refs.player.played.end(0);
+    if (this.state.playCounted === false && (end - start > 3 || end - start > 0.5* duration) ) {
+      this.props.updateTrack({
+        track: {
+          id: this.props.trackData.track.id,
+          plays: this.props.trackData.track.plays+1
+        }
+      });
+      this.setState({playCounted: true});
+    }
+
     this.setState({ progress: progress });
   }
 
@@ -169,7 +184,6 @@ class MusicPlayer extends React.Component {
     const active = this.state.active;
     const play = this.state.play;
     const progress = this.state.progress;
-
     if(this.state.active) {
       if(this.state.tracks.length > 0) {
         let playPauseClass = classnames('fa', {'fa-pause': play}, {'fa-play': !play});
