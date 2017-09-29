@@ -24,7 +24,6 @@ const Protected = ({component: Component, path, loggedIn}) => (
 
 const Props = ({component: Component, path}) => (
   <Route path={path} render={(props) => {
-      console.log(props);
       return <Component {...props} />;
     }}
   />

@@ -15,11 +15,25 @@ class TrackIndexItem extends React.Component{
   }
 
   componentWillReceiveProps(nextProps){
-    let old_id = this.props.track.id;
-    if ((old_id !== nextProps.track.id)) {
-      this.setState({play: false});
+
+    // this.setState({track: nextProps.track});
+    if (nextProps.active &&
+        this.props.track.audio_url === nextProps.active.url &&
+        this.state.play !== nextProps.play){
+      this.setState({ play: nextProps.play});
     }
-    this.setState({track: nextProps.track});
+
+    if (nextProps.active &&
+        this.props.track.audio_url !== nextProps.active.url &&
+        this.state.play === nextProps.play){
+      this.setState({ play: false});
+    }
+    // let old_id = this.props.track.id;
+    // if ((old_id !== nextProps.track.id)) {
+    //   this.setState({play: false});
+    // }
+    // this.setState({track: nextProps.track});
+    // console.log(this.props);
     // this.setState({track: nextProps.track});
     // if(nextProps.active) {
     //   if (this.state.track.audio_url === nextProps.active.url &&
@@ -57,7 +71,6 @@ class TrackIndexItem extends React.Component{
   }
 
   togglePlay() {
-    console.log("hellolegelkelhehlehle");
     const newState = !this.state.play;
     this.setState({ play: newState });
     this.props.callbackIndex({
@@ -81,11 +94,6 @@ class TrackIndexItem extends React.Component{
   }
 
   render() {
-    // const active = this.state.track;
-    // console.log('--------------------');
-    // console.log(this.state.play);
-    // console.log(this.state.track.id);
-    // console.log(this.props.track.id);
     const play = this.state.play && (this.state.track.id === this.props.track.id);
     if(this.props.track) {
       if (this.props.track.title.length > 0) {

@@ -6,7 +6,6 @@ import { getAllUserTracks } from '../../../actions/track_actions';
 import { getUser, updateUser } from '../../../actions/user_actions';
 
 const mapStateToProps = (state, props) => {
-  console.log("container props", props);
   return{
     trackData: props.trackData,
     currentUser: state.session.currentUser,
