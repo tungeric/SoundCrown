@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { logout } from '../../../actions/session_actions';
 import { getAllNewTracks } from '../../../actions/track_actions';
-import StreamPage from './stream_page';
+import TrackIndexNew from './track_index_new';
 
 const mapStateToProps = (state, props) => {
   console.log(state);
@@ -19,4 +19,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StreamPage);
+export default connect(mapStateToProps, mapDispatchToProps)(TrackIndexNew);

@@ -31,8 +31,8 @@ export const getAllUserTracks = (username) => dispatch => {
              errors => dispatch(receiveTrackErrors(errors.responseJSON)));
 };
 
-export const getAllTracks = () => dispatch => {
-  return TrackApiUtil.getAllTracks()
+export const getAllNewTracks = () => dispatch => {
+  return TrackApiUtil.getAllNewTracks()
       .then( response => dispatch(receiveTracks(response)),
              errors => dispatch(receiveTrackErrors(errors.responseJSON)));
 };

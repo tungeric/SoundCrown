@@ -3,11 +3,7 @@ class Api::TracksController < ApplicationController
 
   def index
     user = User.find_by(username: params[:user_username])
-    if user
-      @tracks = user.tracks
-    else
-      @tracks = Track.all
-    end
+    @tracks = user.tracks
     render :index
   end
 
@@ -40,8 +36,8 @@ class Api::TracksController < ApplicationController
     render :show
   end
 
-  def all_tracks
-    @tracks = Track.all
+  def index_new
+    @tracks = Track.all.order('created_at DESC').limit(5)
     render :index
   end
 

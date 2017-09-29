@@ -127,3 +127,31 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+
+//////// STREAM STUFF
+
+.stream-nav {
+  padding-top: 20px;
+  border-bottom: 2px solid gray;
+  padding-bottom: 5px;
+}
+
+.active-tab {
+  font-size: 30px;
+  color: rgb(0,200,255);
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.inactive-tab {
+  font-size: 25px;
+  color: gray;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.inactive-tab:hover {
+  font-size: 25px;
+  color: black;
+}
