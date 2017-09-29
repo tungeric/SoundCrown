@@ -67,7 +67,11 @@ This project uses a few open source, particularly for the music playback portion
 
 ![Alt text](/app/assets/images/ss4.png "ss4")
 
-And of course major design choices and styling were an imitation of the fine work being done at (https://soundcloud.com/).
+I also took a dropdown menu from mlaursen's react-dd-menu (https://github.com/mlaursen/react-dd-menu) to enable users to edit and delete their tracks.
+
+![Alt text](/app/assets/images/ss8.png "ss4")
+
+ And of course major design choices and styling were an imitation of the fine work being done at (https://soundcloud.com/).
 
 In addition, this page uses Paperclip (https://github.com/thoughtbot/paperclip) and Figaro (https://www.npmjs.com/package/figaro) to facilitate the upload of files to Amazon Web Server. I chose Amazon Web Server for its apparent security - the files uploaded cannot be tampered with by anyone other than myself
 
