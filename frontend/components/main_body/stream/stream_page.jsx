@@ -9,32 +9,12 @@ class StreamPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllNewTracks();
-  }
-
-  onIndexItemChanged(newState) {
-    this.setState({ track: newState.track, play: newState.play });
-    this.props.callbackApp({
-      tracks: Object.values(this.props.tracks),
-      track: newState.track,
-      play: newState.play
-    });
+    window.location='/#/stream/new';
   }
 
   render () {
-    console.log(this.props);
-    if (this.props.tracks) {
-      const tracks = Object.values(this.props.tracks);
-      return (
-        <div>
-          <nav className="stream-nav">
-            <a href="#stream/new">New</a>
-          </nav>
-        </div>
-      );
-    }
+    return <div></div>;
   }
-
 }
 
 export default StreamPage;
