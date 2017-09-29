@@ -19,6 +19,8 @@ The splash page is designed to look somewhat like SoundCloud's home page - I use
 
 Users can log in or create an account using the buttons in the top right or in the center of the page - or they can scroll all the way to the bottom of the page and eventually there will be buttons there too! Alternatively, click the "Demo" button for a quick tour around the page with full user capabilities.
 
+Passwords are protected using BCrypt.
+
 ![Alt text](/app/assets/images/ss2.png "ss4")
 
 Once logged in, the site will direct you to our Stream page, which features the newest and most-played tracks on the application. If you click the play button on any of these tracks, a music bar will appear at the bottom of the screen and begin playing music. You can now navigate anywhere in the site and the music will continue to play until you tell it to stop or until the page is refreshed manually.
@@ -26,7 +28,7 @@ Once logged in, the site will direct you to our Stream page, which features the 
 
 ![Alt text](/app/assets/images/ss3.png "ss4")
 
-Users also have their own page where they can freely edit their avatar and tracks. The music essentially plays the existing playlist unless you click out of it so if you started playing a track on the Stream page, it will continue to go down the list of tracks in the stream page (or the order can be randomized if you wish - just click the shuffle button in the play bar!
+Users also have their own page where they can freely edit their avatar and tracks. Note that the url for users is simply `(root directory)/:username`. I chose this so users can have an easier time just typing in other usernames as opposed to trying to remember the user_id. This did pose some challenges as Rails is predisposed to link associations with ids, so during any data transfer both the username as well as the id must be passed through. The music essentially plays the existing playlist unless you click out of it so if you started playing a track on the Stream page, it will continue to go down the list of tracks in the stream page (or the order can be randomized if you wish - just click the shuffle button in the play bar!
 
 ![Alt text](/app/assets/images/ss4.png "ss4")
 
