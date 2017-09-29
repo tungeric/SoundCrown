@@ -4,7 +4,7 @@
 
 [Live page on Heroku](https://soundcrown.herokuapp.com)
 
-This was a project between Week 8 and Week 10 of App Academy and is meant to be a clone of the popular web-streaming service SoundCloud.
+This was a project between Week 8 and Week 10 of App Academy and is meant to be a clone of the popular web-streaming service SoundCloud. This application is built using Ruby on Rails for backend with PostgreSQL for the database and ReactJS for the front end.
 
 ## Key Features:
 
