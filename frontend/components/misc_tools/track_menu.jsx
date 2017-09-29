@@ -32,7 +32,6 @@ export default class TrackMenu extends React.Component {
 
   delete() {
     const result = confirm("Are you sure you want to delete this track?");
-    console.log(this.state.track);
     if (result) {
       this.props.deleteTrack(this.state.track)
       .then((response) => {

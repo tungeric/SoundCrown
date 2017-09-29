@@ -36,7 +36,6 @@ export const getAllUsers = () => dispatch => {
 };
 
 export const updateUser = (username, user) => dispatch => {
-  console.log(user);
   return UserApiUtil.updateUser(username, user)
     .then( response => dispatch(receiveUser(response)),
            errors => dispatch(receiveUserErrors(errors.responseJSON)));

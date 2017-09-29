@@ -6,7 +6,6 @@ import { getAllUserTracks } from '../../../actions/track_actions';
 import { getUser, updateUser } from '../../../actions/user_actions';
 
 const mapStateToProps = (state, props) => {
-  console.log(state);
   return{
     currentUser: state.session.currentUser,
     tracks: Object.values(state.tracks),

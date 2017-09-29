@@ -166,7 +166,6 @@ class MusicPlayer extends React.Component {
   }
 
   render() {
-    // console.log(this.state);
     const active = this.state.active;
     const play = this.state.play;
     const progress = this.state.progress;
@@ -177,7 +176,6 @@ class MusicPlayer extends React.Component {
         let volumeClass = classnames('fa', {'fa-volume-up': !this.state.mute}, {'fa-volume-off': this.state.mute});
         let repeatClass = classnames('player-btn small repeat', {'active': this.state.repeat});
         let randomClass = classnames('player-btn small random', {'active': this.state.random });
-        // console.log(this.state);
         return(
           <div className="play-bar">
             <div className="player-container">

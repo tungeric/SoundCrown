@@ -9,7 +9,6 @@ class CommentIndex extends React.Component {
         track_id: this.props.match.params.trackId,
         author_id: this.props.currentUser.id
     };
-    console.log(this.props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -38,7 +37,6 @@ class CommentIndex extends React.Component {
   }
 
   renderElapsedTime(comment) {
-    // console.log(comment.created_at.getTime());
     let seconds = Math.floor((new Date().getTime() - comment.created_at) / 1000);
     let interval = Math.floor(seconds / 31536000);
     if (interval >= 1) {

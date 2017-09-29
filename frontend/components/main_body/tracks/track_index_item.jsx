@@ -74,7 +74,6 @@ class TrackIndexItem extends React.Component{
   }
 
   render() {
-    console.log(this.state);
     const active = this.state.track;
     const play = this.state.play;
     if(this.state.track) {

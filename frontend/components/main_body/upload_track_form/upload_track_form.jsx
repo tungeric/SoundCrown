@@ -148,7 +148,6 @@ class UploadTrackForm extends React.Component {
   }
 
   render () {
-    console.log(this.state);
     return (
       <div className="track-upload-form">
         <div className="form-header"><h1 className="form-label">Upload to SoundCrown</h1></div>

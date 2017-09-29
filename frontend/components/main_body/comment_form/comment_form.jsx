@@ -21,13 +21,10 @@ class CommentForm extends React.Component {
   }
 
   update(field) {
-    console.log(this.state);
     return event => this.setState({ [field]: event.target.value });
   }
 
   render () {
-    console.log(this.state);
-    console.log(this.props);
     return (
       <div className="comment-form-container">
         <div className="user-avatar-small" style={{backgroundImage: 'url(' + this.props.currentUser.avatar_url+ ')'}}></div>

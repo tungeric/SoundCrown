@@ -6,7 +6,6 @@ import AppModal from '../../misc_tools/modal';
 class UserPageMain extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       tracks: [],
       active: null,
@@ -18,7 +17,6 @@ class UserPageMain extends React.Component {
 
   componentDidMount() {
     let pageUser = this.props.match.params.username;
-    console.log(pageUser);
     this.props.getAllUserTracks(pageUser);
     this.props.getUser(pageUser);
   }
@@ -76,7 +74,6 @@ class UserPageMain extends React.Component {
   }
 
   onIndexItemChanged(newState) {
-    console.log(newState);
     this.setState({ track: newState.track, play: newState.play });
     this.props.callbackApp({
       tracks: this.props.tracks,
@@ -86,8 +83,6 @@ class UserPageMain extends React.Component {
   }
 
   render () {
-    console.log(this.state);
-    console.log(this.props);
     let user = this.state.user;
     if (user) {
       const tracks = Object.values(user.tracks);
