@@ -107,6 +107,8 @@ class TrackIndexItem extends React.Component{
               <br/>
                 <div className="track-progress-container">
                     <span className="track-progress-value" style={{width: '0%'}}></span>
+                    <br/>
+                    <div className="num-plays"><i className="fa fa-play"/> {this.state.track.plays} </div>
                 </div>
             </div>
           </div>

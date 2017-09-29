@@ -2,7 +2,8 @@ import { merge } from 'lodash';
 import {
   RECEIVE_TRACKS,
   RECEIVE_TRACK,
-  RECEIVE_TRACK_ERRORS
+  RECEIVE_TRACK_ERRORS,
+  CLEAR_ERRORS
 } from '../actions/track_actions';
 
 const _noErrors = [];
@@ -15,6 +16,8 @@ const TracksErrorsReducer = (state = _noErrors, action) => {
     case RECEIVE_TRACK:
       return _noErrors;
     case RECEIVE_TRACKS:
+      return _noErrors;
+    case CLEAR_ERRORS:
       return _noErrors;
     default:
       return state;

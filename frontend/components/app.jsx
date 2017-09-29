@@ -31,7 +31,6 @@ class App extends React.Component {
   }
 
   onIndexChanged(newState) {
-    console.log(newState);
     let tracksDataForPlayer = newState.tracks.map((track => track.dataForPlayer));
     this.setState({ tracks: tracksDataForPlayer,
                     active: newState.track.dataForPlayer,

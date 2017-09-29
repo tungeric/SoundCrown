@@ -5,8 +5,6 @@ import { withRouter } from 'react-router-dom';
 import TrackIndexTop from './track_index_top';
 
 const mapStateToProps = (state, props) => {
-  console.log(state);
-  console.log(props);
   return{
     tracks: state.tracks,
     currentUser: state.session.currentUser,

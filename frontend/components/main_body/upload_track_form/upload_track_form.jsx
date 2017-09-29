@@ -31,6 +31,10 @@ class UploadTrackForm extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+      this.props.clearErrors();
+    }
+
   renderLoadingGif() {
     if (this.state.formSubmitted === true) {
       return <div className="loader"></div>;
@@ -125,8 +129,8 @@ class UploadTrackForm extends React.Component {
               </div>
             </div>
             <div className="upload-data">
-              <label className="form-text-input" htmlFor="textInput">Title: </label>
-              <input type="text"
+              <label htmlFor="textInput">Title: </label>
+              <input className="form-text-input"type="text"
                      onChange={ this.update('title') }
                      value={this.state.title}>
               </input>

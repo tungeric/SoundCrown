@@ -27,7 +27,6 @@ class TrackIndexTop extends React.Component {
   }
 
   render () {
-    console.log(this.props);
     if (this.props.tracks) {
       const tracks = Object.values(this.props.tracks);
       return (

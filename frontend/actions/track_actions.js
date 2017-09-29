@@ -4,6 +4,7 @@ export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
 export const RECEIVE_TRACK = "RECEIVE_TRACK";
 export const REMOVE_TRACK = "REMOVE_TRACK";
 export const RECEIVE_TRACK_ERRORS = "RECEIVE_TRACK_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const receiveTracks = (tracks) => ({
   type: RECEIVE_TRACKS,
@@ -23,6 +24,10 @@ export const removeTrack = (track) => ({
 export const receiveTrackErrors = (errors) => ({
   type: RECEIVE_TRACK_ERRORS,
   errors
+});
+
+export const clearErrors = errors => ({
+  type: CLEAR_ERRORS
 });
 
 export const getAllUserTracks = (username) => dispatch => {

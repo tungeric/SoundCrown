@@ -4,11 +4,19 @@ import { Link } from 'react-router-dom';
 class CommentIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state={
-        body: "",
-        track_id: this.props.match.params.trackId,
-        author_id: this.props.currentUser.id
-    };
+    if(this.props.currentUser) {
+      this.state={
+          body: "",
+          track_id: this.props.match.params.trackId,
+          author_id: this.props.currentUser.id
+      };
+    } else {
+      this.state={
+          body: "",
+          track_id: this.props.match.params.trackId,
+          author_id: 0
+      };
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 

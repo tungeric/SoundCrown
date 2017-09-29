@@ -4,8 +4,6 @@ import { getAllNewTracks } from '../../../actions/track_actions';
 import StreamPage from './stream_page';
 
 const mapStateToProps = (state, props) => {
-  console.log(state);
-  console.log(props);
   return{
     tracks: state.tracks,
     currentUser: state.session.currentUser,

@@ -51,7 +51,6 @@ class MusicPlayer extends React.Component {
     if(this.state.active !== prevState.active ||
       this.state.play !== prevState.play ||
       this.state.tracks !== prevState.tracks ) {
-        console.log(this.state);
         this.props.callbackApp({
           active: this.state.active,
           play: this.state.play,

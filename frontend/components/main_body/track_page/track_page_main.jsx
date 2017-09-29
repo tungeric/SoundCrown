@@ -111,6 +111,8 @@ class TrackPageMain extends React.Component {
                 <div className="track-playbar-and-options">
                   <div className="track-header-progress-container">
                     <span className="track-header-progress-value" style={{width: '0%'}}></span>
+                    <br/>
+                    <div className="num-plays"><i className="fa fa-play"/> {this.state.plays} </div>
                   </div>
                 </div>
               </div>
