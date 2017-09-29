@@ -10,28 +10,35 @@ class UserPageMain extends React.Component {
       tracks: [],
       active: null,
       play: false,
-      user: null
+      user: this.props.user
     };
     this.setAvatar = this.setAvatar.bind(this);
   }
 
   componentDidMount() {
+    console.log("i'm mounting");
     let pageUser = this.props.match.params.username;
     this.props.getAllUserTracks(pageUser);
     this.props.getUser(pageUser);
   }
 
-  componentWillUnmount() {
-    this.setState({
-      user: null
-    });
-  }
+  // componentWillUpdate(nextProps) {
+  //   if(nextProps.match.params && nextProps.user) {
+  //     if(nextProps.user !== this.state.user && nextProps.user.username === nextProps.match.params.username) {
+  //       this.setState({user: nextProps.user});
+  //     }
+  //   }
+  // }
 
-  componentWillUpdate(nextProps) {
-    if(nextProps.match.params && nextProps.user) {
-      if(nextProps.user !== this.state.user && nextProps.user.username === nextProps.match.params.username) {
-        this.setState({user: nextProps.user});
-      }
+  componentWillReceiveProps(nextProps){
+    // console.log("this match params", this.props.match.params);
+    // console.log("next match params", nextProps.match.params);
+    console.log("nextProps", nextProps);
+
+    if (this.props.match.params !== nextProps.match.params) {
+      let pageUser = nextProps.match.params.username;
+      this.props.getAllUserTracks(pageUser);
+      this.props.getUser(pageUser);
     }
   }
 
@@ -75,6 +82,7 @@ class UserPageMain extends React.Component {
 
   onIndexItemChanged(newState) {
     this.setState({ track: newState.track, play: newState.play });
+    console.log("user page main props", this.props);
     this.props.callbackApp({
       tracks: this.props.tracks,
       track: newState.track,
@@ -83,8 +91,10 @@ class UserPageMain extends React.Component {
   }
 
   render () {
-    let user = this.state.user;
+    let user = this.props.user;
+    console.log("props users", user);
     if (user) {
+      console.log(" user tracks", user.tracks);
       const tracks = Object.values(user.tracks);
       return (
         <div className="user-page">

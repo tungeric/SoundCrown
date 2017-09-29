@@ -15,18 +15,24 @@ class TrackIndexItem extends React.Component{
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.active) {
-      if (this.state.track.audio_url === nextProps.active.url &&
-          this.state.play !== nextProps.play) {
-        this.setState({
-          play: nextProps.play
-        });
-      }
+    let old_id = this.props.track.id;
+    if ((old_id !== nextProps.track.id)) {
+      this.setState({play: false});
     }
+    this.setState({track: nextProps.track});
+    // this.setState({track: nextProps.track});
+    // if(nextProps.active) {
+    //   if (this.state.track.audio_url === nextProps.active.url &&
+    //       this.state.play !== nextProps.play) {
+    //     this.setState({
+    //       play: nextProps.play
+    //     });
+    //   }
+    // }
   }
 
   renderElapsedTime() {
-    let seconds = Math.floor((new Date() - this.state.track.created_at) / 1000);
+    let seconds = Math.floor((new Date() - this.props.track.created_at) / 1000);
     let interval = Math.floor(seconds / 31536000);
     if (interval >= 1) {
       return interval + " years";
@@ -51,6 +57,7 @@ class TrackIndexItem extends React.Component{
   }
 
   togglePlay() {
+    console.log("hellolegelkelhehlehle");
     const newState = !this.state.play;
     this.setState({ play: newState });
     this.props.callbackIndex({
@@ -62,8 +69,8 @@ class TrackIndexItem extends React.Component{
   renderTrackMenu() {
     if(this.props.currentUser) {
       if (this.props.currentUser.username === this.props.track.creator) {
-        return <TrackMenuContainer key={this.state.id}
-                                   track={this.state.track}
+        return <TrackMenuContainer key={this.props.id}
+                                   track={this.props.track}
                                    history={this.props.history}/>;
       } else {
         return <div></div>;
@@ -74,17 +81,21 @@ class TrackIndexItem extends React.Component{
   }
 
   render() {
-    const active = this.state.track;
-    const play = this.state.play;
-    if(this.state.track) {
-      if (this.state.track.title.length > 0) {
+    // const active = this.state.track;
+    // console.log('--------------------');
+    // console.log(this.state.play);
+    // console.log(this.state.track.id);
+    // console.log(this.props.track.id);
+    const play = this.state.play && (this.state.track.id === this.props.track.id);
+    if(this.props.track) {
+      if (this.props.track.title.length > 0) {
         let playPauseClass = classnames('fa', {'fa-pause': play}, {'fa-play': !play});
         let animationPlayPauseClass = classnames({'now playing': play}, {'paused' : !play });
         return (
           <div className="track-index-container">
             <div className="track-cover-container">
-              <Link to={`/tracks/${this.state.track.id}`}>
-                <div className="track-cover-art" style={{backgroundImage: 'url(' + this.state.track.cover_art_url+ ')'}}></div>
+              <Link to={`/tracks/${this.props.track.id}`}>
+                <div className="track-cover-art" style={{backgroundImage: 'url(' + this.props.track.cover_art_url+ ')'}}></div>
               </Link>
             </div>
             <div className="track-data-container">
@@ -94,9 +105,9 @@ class TrackIndexItem extends React.Component{
                     <i className={playPauseClass} />
                   </button>
                   <div className="track-index-data">
-                    <Link className="track-creator-name" to={`/${this.state.track.creator}/`}>{this.state.track.creator}</Link>
+                    <Link className="track-creator-name" to={`/${this.props.track.creator}/`}>{this.props.track.creator}</Link>
                     <br/>
-                    <Link className="track-title" to={`/tracks/${this.state.track.id}`}>{this.state.track.title}</Link>
+                    <Link className="track-title" to={`/tracks/${this.props.track.id}`}>{this.props.track.title}</Link>
                   </div>
                 </div>
                 <div className="track-data-right">
@@ -107,7 +118,7 @@ class TrackIndexItem extends React.Component{
               <br/>
               <br/>
                 <div className="track-progress-container">
-                  <div className={animationPlayPauseClass} id={`music-animation-${this.state.track.id}`}>
+                  <div className={animationPlayPauseClass} id={`music-animation-${this.props.track.id}`}>
                     <span className="bar n1"></span>
                     <span className="bar n2"></span>
                     <span className="bar n3"></span>
@@ -164,7 +175,7 @@ class TrackIndexItem extends React.Component{
                     <span className="bar n4"></span>
                   </div>
                   <br/>
-                  <div className="num-plays"><i className="fa fa-play"/> {this.state.track.plays} </div>
+                  <div className="num-plays"><i className="fa fa-play"/> {this.props.track.plays} </div>
                 </div>
             </div>
           </div>

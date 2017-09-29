@@ -164,16 +164,18 @@ class MusicPlayer extends React.Component {
     let currentTime = this.refs.player.currentTime;
     let progress = (currentTime * 100) / duration;
 
-    let start= this.refs.player.played.start(0);
-    let end = this.refs.player.played.end(0);
-    if (this.state.playCounted === false && (end - start > 3 || end - start > 0.5* duration) ) {
-      this.props.updateTrack({
-        track: {
-          id: this.props.trackData.track.id,
-          plays: this.props.trackData.track.plays+1
-        }
-      });
-      this.setState({playCounted: true});
+    if(duration > 0) {
+      let start= this.refs.player.played.start(0);
+      let end = this.refs.player.played.end(0);
+      if (this.state.playCounted === false && (end - start > 3 || end - start > 0.5* duration) ) {
+        this.props.updateTrack({
+          track: {
+            id: this.props.trackData.track.id,
+            plays: this.props.trackData.track.plays+1
+          }
+        });
+        this.setState({playCounted: true});
+      }
     }
 
     this.setState({ progress: progress });

@@ -18,7 +18,7 @@ import {
   Link,
   HashRouter
 } from 'react-router-dom';
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import { AuthRoute, ProtectedRoute, PropsRoute } from '../util/route_util';
 
 class App extends React.Component {
   constructor() {
@@ -98,8 +98,8 @@ class App extends React.Component {
                                         callbackApp={
                 (newState) => this.onTrackPageChanged(newState)}/>}/>
               <Route path="/user-not-found" component={UserNotFound} />
-            <Route path="/:username" component={() =>
-                <UserPageMainContainer trackData={this.state}
+            <Route path="/:username" render={() =>
+                <UserPageMainContainer test={"helloworld"} trackData={this.state}
                                        callbackApp={
                                          (newState) => this.onIndexChanged(newState)
                                        }/>
