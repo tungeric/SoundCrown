@@ -298,7 +298,7 @@ Comment.create!({
 Comment.create!({
   body: "lots of cool songs you can put on this site",
   track_id: t51.id,
-  author_id: t1.id
+  author_id: u1.id
 })
 Comment.create!({
   body: "front page is awesome",
