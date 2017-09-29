@@ -73,7 +73,10 @@ class App extends React.Component {
       <div>
         <div className="nav-bar-container">
           <Switch>
-            <AuthRoute exact path="/" component={SplashPageContainer} />
+            <AuthRoute exact path="/" component={() =>
+                <SplashPageContainer trackData={this.state}
+                                     callbackApp={
+                (newState) => this.onIndexChanged(newState)}/>}/>
             <Route path='/' component={NavBarContainer} />
           </Switch>
         </div>

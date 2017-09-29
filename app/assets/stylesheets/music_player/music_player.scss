@@ -148,6 +148,21 @@
       -webkit-filter: brightness(110%);
     }
 
+    &.big-splash {
+        width: 70px;
+        height: 70px;
+        background-color: rgb(0,200,255);
+        opacity: 0;
+        z-index: 5;
+        margin: 0 auto;
+        i {
+            font-size: 36px;
+        }
+    }
+    &.big-splash:hover {
+      opacity: 1;
+    }
+
     &.small {
         width: 40px;
         height: 40px;
