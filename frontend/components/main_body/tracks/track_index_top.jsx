@@ -6,11 +6,29 @@ import TrackIndexItem from '../tracks/track_index_item';
 class TrackIndexTop extends React.Component {
   constructor(props) {
     super(props);
+    this.state={
+      tracks: this.props.tracks,
+      ready: false
+    };
     this.goToNew = this.goToNew.bind(this);
   }
 
   componentDidMount() {
     this.props.getAllTopTracks();
+    this.setState({ready: true});
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.tracks !== this.state.tracks) {
+      this.setState({ tracks: nextProps.tracks});
+    }
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      tracks: null,
+      ready: false
+    });
   }
 
   onIndexItemChanged(newState) {
@@ -27,8 +45,10 @@ class TrackIndexTop extends React.Component {
   }
 
   render () {
-    if (this.props.tracks) {
-      const tracks = Object.values(this.props.tracks);
+    if (this.state.tracks && this.state.ready === true) {
+      const tracks = Object.values(this.state.tracks).sort((a,b) => {
+        return (b.plays - a.plays);
+      });
       return (
         <div>
           <nav className="stream-nav">
@@ -53,6 +73,8 @@ class TrackIndexTop extends React.Component {
           </div>
         </div>
       );
+    } else {
+      return <div></div>;
     }
   }
 

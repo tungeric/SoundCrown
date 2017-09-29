@@ -332,7 +332,7 @@ Comment.create!({
 })
 Comment.create!({
   body: "do you guys brush first or floss first?",
-  track_id: t12.id,
+  track_id: t11.id,
   author_id: u3.id
 })
 Comment.create!({

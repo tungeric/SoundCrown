@@ -89,6 +89,7 @@ class TrackPageMain extends React.Component {
     if(this.state.title) {
       if (this.state.title.length > 0) {
         let playPauseClass = classnames('fa', {'fa-pause': play}, {'fa-play': !play});
+        let animationPlayPauseClass = classnames({'now playing': play}, {'paused' : !play });
         return (
           <div className="track-page">
             <div className="track-header-bg">
@@ -110,7 +111,62 @@ class TrackPageMain extends React.Component {
                 <br/><br/><br/><br/><br/>
                 <div className="track-playbar-and-options">
                   <div className="track-header-progress-container">
-                    <span className="track-header-progress-value" style={{width: '0%'}}></span>
+                    <div className={animationPlayPauseClass} id={`music-animation-${this.state.id}`}>
+                      <span className="bar n1"></span>
+                      <span className="bar n2"></span>
+                      <span className="bar n3"></span>
+                      <span className="bar n4"></span>
+                      <span className="bar n5"></span>
+                      <span className="bar n6"></span>
+                      <span className="bar n7"></span>
+                      <span className="bar n8"></span>
+                      <span className="bar n3"></span>
+                      <span className="bar n2"></span>
+                      <span className="bar n8"></span>
+                      <span className="bar n5"></span>
+                      <span className="bar n3"></span>
+                      <span className="bar n7"></span>
+                      <span className="bar n2"></span>
+                      <span className="bar n4"></span>
+                      <span className="bar n1"></span>
+                      <span className="bar n7"></span>
+                      <span className="bar n6"></span>
+                      <span className="bar n3"></span>
+                      <span className="bar n4"></span>
+                      <span className="bar n2"></span>
+                      <span className="bar n7"></span>
+                      <span className="bar n4"></span>
+                      <span className="bar n1"></span>
+                      <span className="bar n5"></span>
+                      <span className="bar n3"></span>
+                      <span className="bar n6"></span>
+                      <span className="bar n2"></span>
+                      <span className="bar n3"></span>
+                      <span className="bar n7"></span>
+                      <span className="bar n4"></span>
+                      <span className="bar n1"></span>
+                      <span className="bar n6"></span>
+                      <span className="bar n3"></span>
+                      <span className="bar n6"></span>
+                      <span className="bar n2"></span>
+                      <span className="bar n5"></span>
+                      <span className="bar n1"></span>
+                      <span className="bar n7"></span>
+                      <span className="bar n4"></span>
+                      <span className="bar n6"></span>
+                      <span className="bar n3"></span>
+                      <span className="bar n2"></span>
+                      <span className="bar n6"></span>
+                      <span className="bar n8"></span>
+                      <span className="bar n7"></span>
+                      <span className="bar n6"></span>
+                      <span className="bar n5"></span>
+                      <span className="bar n4"></span>
+                      <span className="bar n3"></span>
+                      <span className="bar n2"></span>
+                      <span className="bar n1"></span>
+                      <span className="bar n4"></span>
+                    </div>
                     <br/>
                     <div className="num-plays"><i className="fa fa-play"/> {this.state.plays} </div>
                   </div>
