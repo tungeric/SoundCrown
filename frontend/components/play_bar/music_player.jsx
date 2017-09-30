@@ -182,6 +182,7 @@ class MusicPlayer extends React.Component {
   }
 
   render() {
+
     const active = this.state.active;
     const play = this.state.play;
     const progress = this.state.progress;

@@ -34,7 +34,9 @@ class TrackIndexTop extends React.Component {
   onIndexItemChanged(newState) {
     this.setState({ track: newState.track, play: newState.play });
     this.props.callbackApp({
-      tracks: Object.values(this.props.tracks),
+      tracks: Object.values(this.state.tracks).sort((a,b) => {
+        return (b.plays - a.plays);
+      }),
       track: newState.track,
       play: newState.play
     });

@@ -88,31 +88,40 @@ class UserPageMain extends React.Component {
   render () {
     let user = this.props.user;
     if (user) {
-      const tracks = Object.values(user.tracks);
-      return (
-        <div className="user-page">
-          { this.renderUserHeader(user) }
-          <div className="user-tracklist-section">
-            <div className="user-track-header">
-              <h1 className="user-track-h1">Tracks by {this.props.match.params.username}</h1>
+      if(user.tracks) {
+        const tracks = Object.values(user.tracks);
+        return (
+          <div className="user-page">
+            { this.renderUserHeader(user) }
+            <div className="user-tracklist-section">
+              <div className="user-track-header">
+                <h1 className="user-track-h1">Tracks by {this.props.match.params.username}</h1>
+              </div>
+              <ul className="user-tracklist">
+                {
+                  tracks.map((track, idx) => {
+                    return <TrackIndexItem key={idx}
+                                           track={track}
+                                           play={this.props.trackData.play}
+                                           active={this.props.trackData.active}
+                                           currentUser={this.props.currentUser}
+                                           history={this.props.history}
+                                           callbackIndex={(newState) => this.onIndexItemChanged(newState)}
+                           />;
+                  })
+                }
+              </ul>
             </div>
-            <ul className="user-tracklist">
-              {
-                tracks.map((track, idx) => {
-                  return <TrackIndexItem key={idx}
-                                         track={track}
-                                         play={this.props.trackData.play}
-                                         active={this.props.trackData.active}
-                                         currentUser={this.props.currentUser}
-                                         history={this.props.history}
-                                         callbackIndex={(newState) => this.onIndexItemChanged(newState)}
-                         />;
-                })
-              }
-            </ul>
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div className="user-page">
+            { this.renderUserHeader(user) }
+            {user.username} doesn't seem to have any tracks yet!
+          </div>
+        );
+      }
     } else {
       return <div></div>;
     }

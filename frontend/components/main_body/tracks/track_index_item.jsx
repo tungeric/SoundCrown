@@ -28,21 +28,6 @@ class TrackIndexItem extends React.Component{
         this.state.play === nextProps.play){
       this.setState({ play: false});
     }
-    // let old_id = this.props.track.id;
-    // if ((old_id !== nextProps.track.id)) {
-    //   this.setState({play: false});
-    // }
-    // this.setState({track: nextProps.track});
-    // console.log(this.props);
-    // this.setState({track: nextProps.track});
-    // if(nextProps.active) {
-    //   if (this.state.track.audio_url === nextProps.active.url &&
-    //       this.state.play !== nextProps.play) {
-    //     this.setState({
-    //       play: nextProps.play
-    //     });
-    //   }
-    // }
   }
 
   renderElapsedTime() {

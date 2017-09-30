@@ -34,7 +34,7 @@ class TrackIndexNew extends React.Component {
   onIndexItemChanged(newState) {
     this.setState({ track: newState.track, play: newState.play });
     this.props.callbackApp({
-      tracks: Object.values(this.props.tracks),
+      tracks: Object.values(this.props.tracks).reverse(),
       track: newState.track,
       play: newState.play
     });
