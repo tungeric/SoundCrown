@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TrackIndexItem from '../tracks/track_index_item';
 import AppModal from '../../misc_tools/modal';
+const queryString = require('query-string');
 
 class SearchResultsPage extends React.Component {
   constructor(props) {
@@ -15,8 +16,9 @@ class SearchResultsPage extends React.Component {
   }
 
   componentDidMount() {
-    let query = this.props.match.params.query;
-    this.props.getSearchTracks(query);
+    let query = queryString.parse(this.props.location.search);
+    console.log(query);
+    this.props.getSearchTracks(query.q);
   }
 
   onIndexItemChanged(newState) {
@@ -29,7 +31,9 @@ class SearchResultsPage extends React.Component {
   }
 
   render() {
+    // console.log(this.props.location.search)
     const tracks = Object.values(this.props.tracks);
+    console.log(tracks);
     return (
       <div className="search-page">
         <div className="search-tracklist-section">

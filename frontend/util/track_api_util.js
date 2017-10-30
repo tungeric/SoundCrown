@@ -37,10 +37,13 @@ export const getAllNewTracks = () => (
   })
 );
 
-export const getSearchTracks = (search) => {
+export const getSearchTracks = (query) => {
+  console.log("query in util: ", query);
   $.ajax({
     method: 'GET',
     url: `api/tracks`,
+    data:  {query: query},
+    dataType: "json"
   });
 };
 
