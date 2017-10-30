@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
-import { logout } from '../../../actions/session_actions';
 import { withRouter } from 'react-router-dom';
-import UserPageMain from './user_page_main';
+import SearchResultsPage from './search_results_page';
 import { getSearchTracks } from '../../../actions/track_actions';
-import { getUser, updateUser } from '../../../actions/user_actions';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -17,11 +15,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(logout()),
-    getUser: (username) => dispatch(getUser(username)),
     getSearchTracks: (search) => dispatch(getSearchTracks(search)),
-    updateUser: (username, user) => dispatch(updateUser(username, user))
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserPageMain));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchResultsPage));
