@@ -34,6 +34,11 @@ class Track < ApplicationRecord
     foreign_key: :track_id,
     primary_key: :id
 
+  has_many :tags,
+    class_name: "Tag",
+    foreign_key: :track_id,
+    primary_key: :id
+
   def self.search(search)
     where("title @@ :s or creator @@ :s or audio_file_name @@ :s", s: search)
   end
