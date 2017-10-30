@@ -49,7 +49,6 @@ export const getAllTopTracks = () => dispatch => {
 };
 
 export const getSearchTracks = (query) => dispatch => {
-  console.log("Query ",query);
   return TrackApiUtil.getSearchTracks(query)
     .then( response => dispatch(receiveTracks(response)),
            errors => dispatch(receiveTrackErrors(errors.responseJSON)));
