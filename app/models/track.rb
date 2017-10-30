@@ -40,7 +40,7 @@ class Track < ApplicationRecord
     primary_key: :id
 
   def self.search(query)
-    from('tracks').where("title @@ :q or audio_file_name @@ :q", q: query)
+    from('tracks').where("title @@ :q or audio_file_name @@ :q or description @@ :q", q: query)
   end
 
   # paperclip

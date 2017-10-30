@@ -17,7 +17,6 @@ class SearchResultsPage extends React.Component {
 
   componentDidMount() {
     let query = queryString.parse(this.props.location.search);
-    console.log(query);
     this.props.getSearchTracks(query.q);
   }
 
@@ -31,9 +30,7 @@ class SearchResultsPage extends React.Component {
   }
 
   render() {
-    // console.log(this.props.location.search)
     const tracks = Object.values(this.props.tracks);
-    console.log(tracks);
     return (
       <div className="search-page">
         <div className="search-tracklist-section">
