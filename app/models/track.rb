@@ -39,8 +39,8 @@ class Track < ApplicationRecord
     foreign_key: :track_id,
     primary_key: :id
 
-  def self.search(search)
-    where("title @@ :s or creator @@ :s or audio_file_name @@ :s", s: search)
+  def self.search(query)
+    where("title @@ :q or creator @@ :q or audio_file_name @@ :q", q: query)
   end
 
   # paperclip

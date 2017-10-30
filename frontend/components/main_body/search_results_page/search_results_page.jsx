@@ -15,8 +15,8 @@ class SearchResultsPage extends React.Component {
   }
 
   componentDidMount() {
-    let search = this.props.match.params.search;
-    this.props.getSearchTracks(search);
+    let query = this.props.match.params.query;
+    this.props.getSearchTracks(query);
   }
 
   onIndexItemChanged(newState) {

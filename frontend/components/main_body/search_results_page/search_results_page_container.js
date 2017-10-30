@@ -13,7 +13,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getSearchTracks: (search) => dispatch(getSearchTracks(search)),
+    getSearchTracks: (query) => dispatch(getSearchTracks(query)),
   };
 };
 

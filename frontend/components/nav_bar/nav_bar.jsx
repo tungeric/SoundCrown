@@ -7,8 +7,11 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedOut: false
+      loggedOut: false,
+      search: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -40,11 +43,23 @@ class NavBar extends React.Component {
       );
     }
   }
+  
+  handleChange (event) {
+    event.preventDefault();
+    this.setState({search: event.target.value});
+    console.log(this.state.search);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this);
+    this.props.history.push({ pathname: `/search`, search: `?q=${this.refs.searchText.value}`});
+  }
 
   renderSearchBar() {
     return (
-      <form className='search-bar'>
-        <input className='search-text' id="search-text" type="text" name="search" placeholder="Search"/>
+      <form className='search-bar' onSubmit={this.handleSubmit} onChange={this.handleChange}>
+        <input className='search-text' ref='searchText' id="search-text" type="text" name="search" placeholder="Search"/>
         <span className="fa fa-search"></span>
       </form>
     );
