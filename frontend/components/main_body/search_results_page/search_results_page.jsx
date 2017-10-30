@@ -13,6 +13,7 @@ class SearchResultsPage extends React.Component {
       play: false,
       user: this.props.user
     };
+    this.renderTrackList = this.renderTrackList.bind(this);
   }
 
   componentDidMount() {
@@ -29,28 +30,40 @@ class SearchResultsPage extends React.Component {
     });
   }
 
+  renderTrackList () {
+    const tracks = Object.values(this.props.tracks);
+    if (tracks.length > 0) {
+      return (
+        <ul className="search-tracklist">
+          {
+            tracks.map((track, idx) => {
+              return <TrackIndexItem key={idx}
+                track={track}
+                play={this.props.trackData.play}
+                active={this.props.trackData.active}
+                currentUser={this.props.currentUser}
+                history={this.props.history}
+                callbackIndex={(newState) => this.onIndexItemChanged(newState)}
+              />;
+            })
+          }
+        </ul>
+      );
+    } else {
+      return <div className="search-no-results-text">No tracks match your search</div>;
+    }
+  }
+
   render() {
+    let query = queryString.parse(this.props.location.search);
     const tracks = Object.values(this.props.tracks);
     return (
       <div className="search-page">
         <div className="search-tracklist-section">
           <div className="search-track-header">
-            <h1 className="search-track-h1">Tracks that match {this.props.match.params.search}</h1>
+            <h1 className="search-track-h1">Tracks that match "{query.q}"</h1>
           </div>
-          <ul className="search-tracklist">
-            {
-              tracks.map((track, idx) => {
-                return <TrackIndexItem key={idx}
-                  track={track}
-                  play={this.props.trackData.play}
-                  active={this.props.trackData.active}
-                  currentUser={this.props.currentUser}
-                  history={this.props.history}
-                  callbackIndex={(newState) => this.onIndexItemChanged(newState)}
-                />;
-              })
-            }
-          </ul>
+          { this.renderTrackList() }
         </div>
       </div>
     );

@@ -52,6 +52,7 @@ class NavBar extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.history.push({ pathname: `/search`, search: `?q=${this.refs.searchText.value}`});
+    this.refs.searchText.value = '';
   }
 
   renderSearchBar() {

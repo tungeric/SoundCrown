@@ -1,0 +1,27 @@
+.search-page {
+  width: 100%;
+  min-height: 95vh;
+}
+
+.search-tracklist-section {
+  width: 100%;
+}
+
+.search-track-h1 {
+  color: rgb(0,200,255);
+  font-size: 20px;
+  width: 100%;
+}
+
+.search-no-results-text {
+  font-size: 16px;
+  padding-top: 10px;
+}
+
+.search-track-header {
+  border-bottom: 2px solid gray;
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
