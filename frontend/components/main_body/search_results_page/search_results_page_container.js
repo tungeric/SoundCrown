@@ -8,8 +8,6 @@ const mapStateToProps = (state, props) => {
     trackData: props.trackData,
     currentUser: state.session.currentUser,
     tracks: Object.values(state.tracks),
-    user: Object.values(state.users)[0]
-    // user_tracks: Object.values(state.users)[0].tracks
   };
 };
 

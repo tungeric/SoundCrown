@@ -10,6 +10,7 @@ import EditTrackFormContainer from './main_body/edit_track_form/edit_track_form_
 import MusicPlayerContainer from './play_bar/music_player_container';
 import TrackIndexNewContainer from './main_body/tracks/track_index_new_container';
 import TrackIndexTopContainer from './main_body/tracks/track_index_top_container';
+import SearchResultsPageContainer from './main_body/search_results_page/search_results_page_container';
 import { UserNotFound } from './errors/user_not_found';
 import {
   Route,
@@ -93,11 +94,15 @@ class App extends React.Component {
                                      callbackApp={
                 (newState) => this.onIndexChanged(newState)}/>}/>
             <ProtectedRoute path="/:tracks/:trackId/edit" component={EditTrackFormContainer} />
+            <Route path="/search" component={() => 
+              <SearchResultsPageContainer trackData={this.state}
+                                          callBackApp={
+                  (newState) => this.onTrackPageChanged(newState)} />} />                              
             <Route path="/tracks/:trackId" component={() =>
-                <TrackPageMainContainer trackData={this.state}
-                                        callbackApp={
-                (newState) => this.onTrackPageChanged(newState)}/>}/>
-              <Route path="/user-not-found" component={UserNotFound} />
+              <TrackPageMainContainer trackData={this.state}
+                                      callbackApp={
+              (newState) => this.onTrackPageChanged(newState)}/>}/>
+            <Route path="/user-not-found" component={UserNotFound} />
             <Route path="/:username" render={() =>
                 <UserPageMainContainer test={"helloworld"} trackData={this.state}
                                        callbackApp={
