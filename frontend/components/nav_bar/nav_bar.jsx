@@ -11,6 +11,10 @@ class NavBar extends React.Component {
     };
   }
 
+  componentDidMount() {
+    
+  }
+
   renderSessionButtons() {
     const currentUser = this.props.currentUser;
     const demoUser = {username:"demo", password: "password"};
@@ -39,10 +43,10 @@ class NavBar extends React.Component {
 
   renderSearchBar() {
     return (
-      <div className='search-bar'>
-        <input className='search-text' type="text" name="search" placeholder="Search"/>
+      <form className='search-bar'>
+        <input className='search-text' id="search-text" type="text" name="search" placeholder="Search"/>
         <span className="fa fa-search"></span>
-      </div>
+      </form>
     );
   }
 

@@ -34,6 +34,10 @@ class Track < ApplicationRecord
     foreign_key: :track_id,
     primary_key: :id
 
+  def self.search(search)
+    where("title @@ :s or creator @@ :s or audio_file_name @@ :s", s: search)
+  end
+
   # paperclip
   has_attached_file :audio,
                     # url: ":s3_us_west_url",
@@ -54,19 +58,19 @@ class Track < ApplicationRecord
   #                      'audio/mpg',
   #                      'audio/x-mpg',
   #                      'audio/x-mpegaudio' ]
- validates_with AttachmentSizeValidator, attributes: :audio, less_than: 40.megabytes
+  validates_with AttachmentSizeValidator, attributes: :audio, less_than: 40.megabytes
 
- has_attached_file :cover_art,
+  has_attached_file :cover_art,
                    default_url: "http://res.cloudinary.com/dfafbqoxx/image/upload/v1505940306/soundcrown-logo_ueiofl.jpg"
- validates_attachment_content_type :cover_art, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :cover_art, content_type: /\Aimage\/.*\Z/
 
 
- private
+  private
 
- # interpolate in paperclip
- Paperclip.interpolates :env_folder  do |attachment, style|
-   Rails.env.production? ? 'production' : 'development'
- end
+  # interpolate in paperclip
+  Paperclip.interpolates :env_folder  do |attachment, style|
+    Rails.env.production? ? 'production' : 'development'
+  end
 
 
 end

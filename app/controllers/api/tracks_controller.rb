@@ -2,8 +2,12 @@ class Api::TracksController < ApplicationController
   before_action :verify_logged_in, only: [:create, :update, :destroy]
 
   def index
-    user = User.find_by(username: params[:user_username])
-    @tracks = user.tracks
+    if params[:search]
+      @tracks = Track.search(params[:search]).order("created_at DESC")
+    else
+      user = User.find_by(username: params[:user_username])
+      @tracks = user.tracks
+    end
     render :index
   end
 
@@ -49,6 +53,6 @@ class Api::TracksController < ApplicationController
   private
 
   def track_params
-    params.require(:track).permit(:id, :title, :description, :plays, :creator_id, :audio, :cover_art, :audio_url, :cover_art_url)
+    params.require(:track).permit(:id, :title, :description, :plays, :creator_id, :audio, :cover_art, :audio_url, :cover_art_url, :search)
   end
 end
