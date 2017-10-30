@@ -37,6 +37,15 @@ class NavBar extends React.Component {
     }
   }
 
+  renderSearchBar() {
+    return (
+      <div className='search-bar'>
+        <input className='search-text' type="text" name="search" placeholder="Search"/>
+        <span className="fa fa-search"></span>
+      </div>
+    );
+  }
+
   render() {
     if(this.props.location.pathname === "/") {
       return <div></div>;
@@ -48,6 +57,7 @@ class NavBar extends React.Component {
               <Link className="nav-logo" to="/stream"></Link>
               <Link className="nav-btn" to="/stream">Home</Link>
             </div>
+              { this.renderSearchBar() }
               { this.renderSessionButtons() }
           </nav>
         </header>

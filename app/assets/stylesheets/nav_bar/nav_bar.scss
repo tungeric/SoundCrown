@@ -161,3 +161,19 @@
   cursor: pointer;
   border: 2px solid white;
 }
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  width: 40%;
+  height: 60%;
+  margin-top: 10px;
+  padding-left: 5px;
+  border-radius: 5px;
+}
+
+.search-text {
+  width: 90%;
+}
