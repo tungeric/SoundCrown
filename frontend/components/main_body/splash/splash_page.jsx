@@ -9,6 +9,11 @@ import SplashTrackItem from './splash_track_item';
 class SplashPage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      search: '',
+    };
+    this.handleChangeSearch = this.handleChangeSearch.bind(this);
+    this.handleSubmitSearch = this.handleSubmitSearch.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +53,28 @@ class SplashPage extends React.Component {
     }
   }
 
+  handleChangeSearch(event) {
+    event.preventDefault();
+    this.setState({ search: event.target.value });
+  }
+
+  handleSubmitSearch(event) {
+    event.preventDefault();
+    this.props.history.push({ pathname: `/search`, search: `?q=${this.refs.searchText.value}` });
+    this.refs.searchText.value = '';
+  }
+
+  renderSearchBar() {
+    return (
+      <div className="splash-search-container">
+        <form className='splash-search-bar' onSubmit={this.handleSubmitSearch} onChange={this.handleChangeSearch}>
+          <input className='splash-search-text' ref='searchText' id="search-text" type="text" name="search" placeholder="Search for artists, tracks" />
+          <span id="splash-search-icon" className="fa fa-search" onClick={this.handleSubmitSearch}></span>
+        </form>
+      </div>
+    );
+  }
+
   render () {
     const demoUser = {username:"demo", password: "password"};
     return (
@@ -73,6 +100,7 @@ class SplashPage extends React.Component {
               from emerging and major artists around the world.</p>
             </div>
         </div>
+        {this.renderSearchBar()}
         <div className="splash-free-section">Hear what's trending for free in the realm</div>
         {this.renderFreeTracks()}
         <div className="splash-connect">

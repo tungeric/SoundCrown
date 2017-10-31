@@ -60,7 +60,7 @@ class NavBar extends React.Component {
     return (
       <form className='search-bar' onSubmit={this.handleSubmit} onChange={this.handleChange}>
         <input className='search-text' ref='searchText' id="search-text" type="text" name="search" placeholder="Search"/>
-        <span className="fa fa-search"></span>
+        <span id="search-icon" className="fa fa-search" onClick={this.handleSubmit}></span>
       </form>
     );
   }
