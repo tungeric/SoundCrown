@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, Redirect } from 'react-router-dom';
 import AppModal from '../misc_tools/modal';
+import Autosuggest from 'react-autosuggest';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class NavBar extends React.Component {
   }
 
   componentDidMount() {
-    
+
   }
 
   renderSessionButtons() {

@@ -40,11 +40,11 @@ class Track < ApplicationRecord
     primary_key: :id
 
   def self.search(query)
-    from('tracks').where("title @@ :q or audio_file_name @@ :q", q: query)
+    from('tracks').where("lower(title) @@ :q or lower(audio_file_name) @@ :q", q: query.downcase)
   end
 
   def self.search_by_user(query)
-    from('tracks').joins("INNER JOIN users ON users.id = tracks.creator_id").where("username @@ :q", q: query)
+    from('tracks').joins("INNER JOIN users ON users.id = tracks.creator_id").where("lower(username) @@ :q", q: query.downcase)
   end
 
   # paperclip
