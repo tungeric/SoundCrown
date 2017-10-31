@@ -11,6 +11,7 @@ This was a project between Week 8 and Week 10 of App Academy and is meant to be 
 * User Authentication and secure sign-in
 * User uploaded pictures and audio files
 * Continuous playback of music while navigating the site
+* Search feature with functionality to search for tracks both by title and by artist
 * Users can leave comments on tracks
 
 ![Alt text](/app/assets/images/ss1.png "ss4")

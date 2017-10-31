@@ -104,8 +104,9 @@ class SplashPage extends React.Component {
         <div className="splash-free-section">Hear what's trending for free in the realm</div>
         {this.renderFreeTracks()}
         <div className="splash-connect">
-          <a className="splash-connect-text1">Lead the Kingdom</a>
-          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+          <a className="splash-connect-text1">Build the empire</a>
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+          <br />
           <a className="splash-connect-text2">SoundCrown is available on Github and LinkedIn.</a>
           <br/><br/><br/>
           <a className="splash-connect-icons" href="https://github.com/tungeric/SoundCrown"><i className="fa fa-github"/></a>
