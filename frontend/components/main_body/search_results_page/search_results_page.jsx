@@ -21,6 +21,19 @@ class SearchResultsPage extends React.Component {
     this.props.getSearchTracks(query.q);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.tracks !== this.state.tracks) {
+      this.setState({ tracks: nextProps.tracks });
+    }
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      tracks: null,
+      ready: false
+    });
+  }
+
   onIndexItemChanged(newState) {
     this.setState({ track: newState.track, play: newState.play });
     this.props.callbackApp({

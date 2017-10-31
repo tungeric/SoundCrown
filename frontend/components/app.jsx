@@ -96,18 +96,18 @@ class App extends React.Component {
             <ProtectedRoute path="/:tracks/:trackId/edit" component={EditTrackFormContainer} />
             <Route path="/search" component={() => 
               <SearchResultsPageContainer trackData={this.state}
-                                          callBackApp={
-                  (newState) => this.onTrackPageChanged(newState)} />} />                              
+                                    callbackApp={
+                  (newState) => this.onIndexChanged(newState)} />} />                          
             <Route path="/tracks/:trackId" component={() =>
               <TrackPageMainContainer trackData={this.state}
                                       callbackApp={
               (newState) => this.onTrackPageChanged(newState)}/>}/>
             <Route path="/user-not-found" component={UserNotFound} />
             <Route path="/:username" render={() =>
-                <UserPageMainContainer test={"helloworld"} trackData={this.state}
-                                       callbackApp={
-                                         (newState) => this.onIndexChanged(newState)
-                                       }/>
+              <UserPageMainContainer test={"helloworld"} trackData={this.state}
+                                      callbackApp={
+                  (newState) => this.onIndexChanged(newState)
+                                      }/>
             }/>
           </Switch>
         </div>
