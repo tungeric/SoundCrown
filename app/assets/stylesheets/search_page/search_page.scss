@@ -11,17 +11,39 @@
   color: rgb(0,200,255);
   font-size: 20px;
   width: 100%;
-}
-
-.search-no-results-text {
-  font-size: 16px;
   padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 5px;
 }
 
 .search-track-header {
   border-bottom: 2px solid gray;
-  margin-top: 10px;
-  width: 100%;
+  margin: 10px;
   display: flex;
   justify-content: flex-start;
+}
+
+.search-no-results-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 85vh;
+}
+
+.search-no-results-title {
+  font-size: 60px;
+  margin: 10px;
+  margin-top: 150px;
+  color: gray;
+}
+
+.search-no-results-img {
+  font-size: 120px;
+  color: gray;
+}
+
+.search-no-results-description {
+  font-size: 20px;
+  color: gray;
+  margin-top: 20px;
 }

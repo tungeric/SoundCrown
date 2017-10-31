@@ -45,6 +45,7 @@ class SearchResultsPage extends React.Component {
 
   renderTrackList () {
     const tracks = Object.values(this.props.tracks);
+    let query = queryString.parse(this.props.location.search);
     if (tracks.length > 0) {
       return (
         <ul className="search-tracklist">
@@ -63,7 +64,13 @@ class SearchResultsPage extends React.Component {
         </ul>
       );
     } else {
-      return <div className="search-no-results-text">No tracks match your search</div>;
+      return (
+        <div className="search-no-results-page">
+          <div className="search-no-results-img"><i className="fa fa-search" /></div>
+          <div className="search-no-results-description">Sorry we didn't find any results for "{query.q}"</div>
+          <div className="search-no-results-description">Check the spelling, or try a different search.</div>
+        </div>
+      );
     }
   }
 
@@ -74,7 +81,7 @@ class SearchResultsPage extends React.Component {
       <div className="search-page">
         <div className="search-tracklist-section">
           <div className="search-track-header">
-            <h1 className="search-track-h1">Tracks that match "{query.q}"</h1>
+            <h1 className="search-track-h1">Search results for "{query.q}"</h1>
           </div>
           { this.renderTrackList() }
         </div>

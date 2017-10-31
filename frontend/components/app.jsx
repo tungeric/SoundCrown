@@ -104,7 +104,7 @@ class App extends React.Component {
               (newState) => this.onTrackPageChanged(newState)}/>}/>
             <Route path="/user-not-found" component={UserNotFound} />
             <Route path="/:username" render={() =>
-              <UserPageMainContainer test={"helloworld"} trackData={this.state}
+              <UserPageMainContainer trackData={this.state}
                                       callbackApp={
                   (newState) => this.onIndexChanged(newState)
                                       }/>
