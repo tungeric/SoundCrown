@@ -12,6 +12,7 @@
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-transition-group": "^15.6.2",
     "react-audio-visualizer": "^1.0.3",
+    "react-autosuggest": "^9.3.2",
     "react-bootstrap-dropdown-menu": "^1.1.11",
     "react-cl-audio-player": "^2.0.0",
     "react-dd-menu": "^2.0.2",

@@ -30,6 +30,13 @@ export const getUserTracks = (username) => (
   })
 );
 
+export const getAllTracks = () => (
+  $.ajax({
+    method: 'GET',
+    url: `api/tracks`,
+  })
+);
+
 export const getAllNewTracks = () => (
   $.ajax({
     method: 'GET',
