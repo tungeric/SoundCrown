@@ -15,7 +15,7 @@ class UserPageMain extends React.Component {
     this.setAvatar = this.setAvatar.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     let pageUser = this.props.match.params.username;
     this.props.getAllUserTracks(pageUser);
     this.props.getUser(pageUser);
@@ -86,6 +86,7 @@ class UserPageMain extends React.Component {
   }
 
   render () {
+    console.log(this.props);
     let user = this.props.user;
     if (user) {
       if(user.tracks) {
