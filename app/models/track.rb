@@ -34,10 +34,9 @@ class Track < ApplicationRecord
     foreign_key: :track_id,
     primary_key: :id
 
-  has_many :tags,
-    class_name: "Tag",
-    foreign_key: :track_id,
-    primary_key: :id
+  has_many :taggings, dependent: :destroy
+  
+  has_many :tags, through: :taggings
 
   def self.search(query)
     from('tracks').where("lower(title) @@ :q or lower(audio_file_name) @@ :q", q: query.downcase)
