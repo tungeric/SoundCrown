@@ -6,9 +6,11 @@ class Api::TracksController < ApplicationController
       tracks = Track.search(params[:query]).order("created_at DESC")
       tracks_by_user = Track.search_by_user(params[:query]).order("created_at DESC")
       @tracks = tracks + tracks_by_user
-    else
+    elsif params[:user_username]
       user = User.find_by(username: params[:user_username])
       @tracks = user.tracks
+    else
+      @tracks = Track.all
     end
     render :index
   end

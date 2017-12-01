@@ -6,6 +6,7 @@ class UploadTrackForm extends React.Component {
     super(props);
     this.state = {
       title: "",
+      tags: "",
       description: "",
       creator_id: props.currentUser.id,
       audio: null,
@@ -58,13 +59,13 @@ class UploadTrackForm extends React.Component {
           this.props.history.push(`/${this.props.currentUser.username}`);
           this.props.closeModal();
         }
+        console.log(response);
       });
   }
 
   renderErrors() {
     return (
       <div>
-        <br/>
           <ul>
             {this.props.errors.tracks.map((error, i) => (
                 <li key={`error-${i}`}>
@@ -72,7 +73,6 @@ class UploadTrackForm extends React.Component {
                 </li>
             ))}
           </ul>
-        <br/>
       </div>
     );
   }
@@ -133,6 +133,12 @@ class UploadTrackForm extends React.Component {
               <input className="form-text-input"type="text"
                      onChange={ this.update('title') }
                      value={this.state.title}>
+              </input>
+
+              <label htmlFor="textInput">Tags (separate by commas): </label>
+              <input className="form-text-input" type="text"
+                onChange={this.update('tags')}
+                value={this.state.tags}>
               </input>
 
               <label htmlFor="descriptionInput">Description: </label>
