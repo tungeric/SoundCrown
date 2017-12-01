@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :tags, only: [:index]
     end
     resources :comments, only: [:show, :create, :destroy]
-    resources :tags, only: [:show, :create, :destroy]
+    resources :tags, only: [:index, :show, :create, :destroy]
     get '/new_tracks', to: 'tracks#index_new'
     get '/top_tracks', to: 'tracks#index_top'
   end
