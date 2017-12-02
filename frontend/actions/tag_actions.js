@@ -30,13 +30,14 @@ export const clearErrors = errors => ({
   type: CLEAR_ERRORS
 });
 
-export const getAllTrackTags = (track_id) => dispatch => {
-  return TagApiUtil.getTrackTags(track_id)
+export const getAllTrackTags = (tag_id) => dispatch => {
+  return TagApiUtil.getTrackTags(tag_id)
     .then(response => dispatch(receiveTags(response)),
     errors => dispatch(receiveTagErrors(errors.responseJSON)));
 };
 
 export const createTag = (tag) => dispatch => {
+  console.log(tag)
   return TagApiUtil.createTag(tag)
     .then(response => dispatch(receiveTag(response)),
     errors => dispatch(receiveTagErrors(errors.responseJSON)));

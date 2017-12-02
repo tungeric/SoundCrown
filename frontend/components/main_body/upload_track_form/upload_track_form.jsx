@@ -20,6 +20,7 @@ class UploadTrackForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setAudio = this.setAudio.bind(this);
     this.setCoverArt = this.setCoverArt.bind(this);
+    this.createTrack = this.createTrack.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,6 +48,17 @@ class UploadTrackForm extends React.Component {
   handleSubmit(event) {
     this.setState({formSubmitted: true});
     event.preventDefault();
+    this.createTags();
+    // this.createTrack();
+  }
+
+  createTags() {
+    const tagArray = this.state.tags.split(' ').join('').split(',');
+    tagArray.forEach ((tagName) => {
+      this.props.createTag({ tag: { name: tagName } });
+    });
+  }
+  createTrack() {
     const formData = new FormData();
     formData.append("track[title]", this.state.title);
     formData.append("track[description]", this.state.description);
@@ -54,12 +66,11 @@ class UploadTrackForm extends React.Component {
     formData.append("track[audio]", this.state.audio);
     formData.append("track[cover_art]", this.state.cover_art);
     this.props.createTrack(formData).then(
-      (response) =>{
-        if(this.state.errors.length === 0) {
+      (response) => {
+        if (this.state.errors.length === 0) {
           this.props.history.push(`/${this.props.currentUser.username}`);
           this.props.closeModal();
         }
-        console.log(response);
       });
   }
 

@@ -1,22 +1,27 @@
 class Api::TagsController < ApplicationController
   def create
-    @tagging = Tagging.new(tagging_params)
-    if @tagging.save
+    @tag = Tag.find_by_name(params[:tag][:name])
+    if @tag
       render :show
     else
-      render json: @tagging.errors.full_messages
+      @tag = Tag.new(tag_params)
+      if @tag.save
+        render :show
+      else
+        render json: @tag.errors.full_messages
+      end
     end
   end
 
   def destroy
-    @tagging = Tagging.find_by(id: params[:id])
-    @tagging.destroy
+    @tag = Tag.find_by(id: params[:id])
+    @tag.destroy
     render :show
   end
 
   private
 
-  def tagging_params
-    params.require(:tagging).permit(:track_id, :tag_id)
+  def tag_params
+    params.require(:tag).permit(:name)
   end
 end

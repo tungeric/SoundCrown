@@ -1,2 +1,2 @@
-module TaggingsHelper
+module Api::TaggingsHelper
 end

@@ -86,7 +86,6 @@ class UserPageMain extends React.Component {
   }
 
   render () {
-    console.log(this.props);
     let user = this.props.user;
     if (user) {
       if(user.tracks) {

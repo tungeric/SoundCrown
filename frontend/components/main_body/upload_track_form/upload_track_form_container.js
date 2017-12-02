@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import UploadTrackForm from './upload_track_form';
 import { createTrack } from '../../../actions/track_actions';
 import { createTag } from '../../../actions/tag_actions';
+import { createTagging } from '../../../actions/tagging_actions';
 import { clearErrors } from '../../../actions/track_actions';
 
 const mapStateToProps = ({session, errors}, props) => {
@@ -14,6 +15,7 @@ const mapStateToProps = ({session, errors}, props) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     createTag: tag => dispatch(createTag(tag)),
+    createTagging: tagging => dispatch(createTagging(tagging)),
     createTrack: post => dispatch(createTrack(post)),
     clearErrors: () => dispatch(clearErrors())
   };
