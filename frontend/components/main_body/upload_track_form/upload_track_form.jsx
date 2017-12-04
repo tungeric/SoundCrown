@@ -7,6 +7,8 @@ class UploadTrackForm extends React.Component {
     this.state = {
       title: "",
       tags: "",
+      tagIDs: [],
+      trackID: null,
       description: "",
       creator_id: props.currentUser.id,
       audio: null,
@@ -48,14 +50,17 @@ class UploadTrackForm extends React.Component {
   handleSubmit(event) {
     this.setState({formSubmitted: true});
     event.preventDefault();
-    this.createTags();
-    // this.createTrack();
+    // this.createTags();
+    this.createTrack();
   }
 
   createTags() {
     const tagArray = this.state.tags.split(' ').join('').split(',');
     tagArray.forEach ((tagName) => {
-      this.props.createTag({ tag: { name: tagName } });
+      this.props.createTag({ tag: { name: tagName } }).then(
+        (response) => {
+          console.log("Tag ID: ", response.tag.id);
+        });
     });
   }
   createTrack() {
@@ -67,11 +72,13 @@ class UploadTrackForm extends React.Component {
     formData.append("track[cover_art]", this.state.cover_art);
     this.props.createTrack(formData).then(
       (response) => {
+        console.log(response);
         if (this.state.errors.length === 0) {
+          this.createTags();
           this.props.history.push(`/${this.props.currentUser.username}`);
           this.props.closeModal();
         }
-      });
+    });
   }
 
   renderErrors() {

@@ -11,10 +11,13 @@ export const receiveTags = (tags) => ({
   tags
 });
 
-export const receiveTag = (tag) => ({
-  type: RECEIVE_TAG,
-  tag
-});
+export const receiveTag = (tag) => {
+  console.log(tag)
+  return ({
+    type: RECEIVE_TAG,
+    tag
+  })
+}
 
 export const removeTag = (tag) => ({
   type: REMOVE_TAG,

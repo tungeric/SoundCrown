@@ -11,10 +11,13 @@ export const receiveTracks = (tracks) => ({
   tracks
 });
 
-export const receiveTrack = (track) => ({
-  type: RECEIVE_TRACK,
-  track
-});
+export const receiveTrack = (track) => {
+  console.log(track)
+  return ({
+    type: RECEIVE_TRACK,
+    track
+  });
+}
 
 export const removeTrack = (track) => ({
   type: REMOVE_TRACK,
@@ -71,6 +74,7 @@ export const createTrack = (track) => dispatch => {
     .then(response => {
       // FOR SOME REASON ERRORS ARE BEING TREATED AS RESPONSES FOR THIS CASE:
       // HERE'S MY WORKAROUND...
+      console.log(response);
       if(response.constructor === Array) {
         if(response.every((entry) => { return typeof entry === "string"; })) {
           dispatch(receiveTrackErrors(response.responseJSON));
