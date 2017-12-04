@@ -7,8 +7,12 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :tracks, only: [:index, :show, :update, :create, :destroy] do
       resources :comments, only: [:index]
+      resources :tags, only: [:index]
     end
     resources :comments, only: [:show, :create, :destroy]
+    resources :tags, only: [:index, :show, :create, :destroy]
+    resources :taggings, only: [:create, :destroy]
+    
     get '/new_tracks', to: 'tracks#index_new'
     get '/top_tracks', to: 'tracks#index_top'
   end

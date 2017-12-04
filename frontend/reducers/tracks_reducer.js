@@ -9,6 +9,7 @@ const TracksReducer = (oldState={}, action) => {
     case RECEIVE_TRACKS:
       return action.tracks;
     case RECEIVE_TRACK:
+      console.log("action.track, ",action.track);
       const newTrack = action.track || null;
       const newState = merge({}, oldState);
       if (newTrack) {

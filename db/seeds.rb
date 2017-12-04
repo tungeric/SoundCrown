@@ -26,6 +26,10 @@ t11 = Track.create!({
   cover_art: open('https://s3-us-west-1.amazonaws.com/soundcrown-pro/tracks/cover_arts/_defaults/alienguy.jpg')
 })
 
+tag1 = Tag.create!({name: "rock"})
+
+tagging1 = Tagging.create!({tag_id: tag1.id, track_id: t11.id})
+
 # u2 = User.create!({
 #   username: "TheKing",
 #   password: "michaeljackson",

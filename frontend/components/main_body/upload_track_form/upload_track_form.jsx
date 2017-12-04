@@ -6,6 +6,9 @@ class UploadTrackForm extends React.Component {
     super(props);
     this.state = {
       title: "",
+      tags: "",
+      tagIDs: [],
+      trackID: null,
       description: "",
       creator_id: props.currentUser.id,
       audio: null,
@@ -19,6 +22,7 @@ class UploadTrackForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setAudio = this.setAudio.bind(this);
     this.setCoverArt = this.setCoverArt.bind(this);
+    this.createTrack = this.createTrack.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,6 +50,20 @@ class UploadTrackForm extends React.Component {
   handleSubmit(event) {
     this.setState({formSubmitted: true});
     event.preventDefault();
+    // this.createTags();
+    this.createTrack();
+  }
+
+  createTags() {
+    const tagArray = this.state.tags.split(' ').join('').split(',');
+    tagArray.forEach ((tagName) => {
+      this.props.createTag({ tag: { name: tagName } }).then(
+        (response) => {
+          console.log("Tag ID: ", response.tag.id);
+        });
+    });
+  }
+  createTrack() {
     const formData = new FormData();
     formData.append("track[title]", this.state.title);
     formData.append("track[description]", this.state.description);
@@ -53,18 +71,19 @@ class UploadTrackForm extends React.Component {
     formData.append("track[audio]", this.state.audio);
     formData.append("track[cover_art]", this.state.cover_art);
     this.props.createTrack(formData).then(
-      (response) =>{
-        if(this.state.errors.length === 0) {
+      (response) => {
+        console.log(response);
+        if (this.state.errors.length === 0) {
+          this.createTags();
           this.props.history.push(`/${this.props.currentUser.username}`);
           this.props.closeModal();
         }
-      });
+    });
   }
 
   renderErrors() {
     return (
       <div>
-        <br/>
           <ul>
             {this.props.errors.tracks.map((error, i) => (
                 <li key={`error-${i}`}>
@@ -72,7 +91,6 @@ class UploadTrackForm extends React.Component {
                 </li>
             ))}
           </ul>
-        <br/>
       </div>
     );
   }
@@ -133,6 +151,12 @@ class UploadTrackForm extends React.Component {
               <input className="form-text-input"type="text"
                      onChange={ this.update('title') }
                      value={this.state.title}>
+              </input>
+
+              <label htmlFor="textInput">Tags (separate by commas): </label>
+              <input className="form-text-input" type="text"
+                onChange={this.update('tags')}
+                value={this.state.tags}>
               </input>
 
               <label htmlFor="descriptionInput">Description: </label>
