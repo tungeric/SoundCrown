@@ -12,7 +12,6 @@ export const receiveTags = (tags) => ({
 });
 
 export const receiveTag = (tag) => {
-  console.log(tag)
   return ({
     type: RECEIVE_TAG,
     tag
@@ -40,7 +39,6 @@ export const getAllTrackTags = (tag_id) => dispatch => {
 };
 
 export const createTag = (tag) => dispatch => {
-  console.log(tag)
   return TagApiUtil.createTag(tag)
     .then(response => dispatch(receiveTag(response)),
     errors => dispatch(receiveTagErrors(errors.responseJSON)));
