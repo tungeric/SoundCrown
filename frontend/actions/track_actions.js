@@ -74,7 +74,7 @@ export const createTrack = (track) => dispatch => {
     .then(response => {
       // FOR SOME REASON ERRORS ARE BEING TREATED AS RESPONSES FOR THIS CASE:
       // HERE'S MY WORKAROUND...
-      console.log(response);
+      console.log(response)
       if(response.constructor === Array) {
         if(response.every((entry) => { return typeof entry === "string"; })) {
           dispatch(receiveTrackErrors(response.responseJSON));

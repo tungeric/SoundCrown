@@ -1,13 +1,14 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { WithContext as ReactTags } from 'react-tag-input';
 
 class UploadTrackForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       title: "",
-      tags: "",
-      tagIDs: [],
+      tags: [],
+      tagSuggestions: ["rock","pop", "jazz"],
       trackID: null,
       description: "",
       creator_id: props.currentUser.id,
@@ -23,7 +24,11 @@ class UploadTrackForm extends React.Component {
     this.setAudio = this.setAudio.bind(this);
     this.setCoverArt = this.setCoverArt.bind(this);
     this.createTrack = this.createTrack.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleAddition = this.handleAddition.bind(this);
+    this.handleDrag = this.handleDrag.bind(this);
   }
+
 
   componentWillReceiveProps(nextProps) {
     this.setState({errors: nextProps.errors.tracks, formSubmitted: false});
@@ -50,19 +55,45 @@ class UploadTrackForm extends React.Component {
   handleSubmit(event) {
     this.setState({formSubmitted: true});
     event.preventDefault();
-    // this.createTags();
+    this.createTags();
     this.createTrack();
   }
 
+  handleDelete(i) {
+    let tags = this.state.tags;
+    tags.splice(i, 1);
+    this.setState({ tags: tags });
+  }
+
+  handleAddition(tag) {
+    let tags = this.state.tags;
+    tags.push({
+      id: tags.length + 1,
+      text: tag
+    });
+    this.setState({ tags: tags });
+  }
+
+  handleDrag(tag, currPos, newPos) {
+    let tags = this.state.tags;
+
+    // mutate array
+    tags.splice(currPos, 1);
+    tags.splice(newPos, 0, tag);
+
+    // re-render
+    this.setState({ tags: tags });
+  }
+
   createTags() {
-    const tagArray = this.state.tags.split(' ').join('').split(',');
-    tagArray.forEach ((tagName) => {
-      this.props.createTag({ tag: { name: tagName } }).then(
+    this.state.tags.forEach ((tag) => {
+      this.props.createTag({ tag: { name: tag.text } }).then(
         (response) => {
           console.log("Tag ID: ", response.tag.id);
         });
     });
   }
+
   createTrack() {
     const formData = new FormData();
     formData.append("track[title]", this.state.title);
@@ -131,6 +162,8 @@ class UploadTrackForm extends React.Component {
   }
 
   renderRestOfForm() {
+    const tags = this.state.tags;
+    const tagSuggestions = this.state.tagSuggestions;
     if(this.state.fireRestOfForm === true) {
       return (
         <form onSubmit={ this.handleSubmit }>
@@ -153,11 +186,15 @@ class UploadTrackForm extends React.Component {
                      value={this.state.title}>
               </input>
 
-              <label htmlFor="textInput">Tags (separate by commas): </label>
-              <input className="form-text-input" type="text"
-                onChange={this.update('tags')}
-                value={this.state.tags}>
-              </input>
+              <label htmlFor="textInput">Tags: </label>
+              <div className="tagsContainer">
+                <ReactTags 
+                  tags={tags}
+                  suggestions={tagSuggestions}
+                  handleDelete={this.handleDelete}
+                  handleAddition={this.handleAddition}
+                  handleDrag={this.handleDrag} />
+              </div>
 
               <label htmlFor="descriptionInput">Description: </label>
               <textarea className="form-textarea" type="text"

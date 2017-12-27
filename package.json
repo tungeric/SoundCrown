@@ -23,6 +23,7 @@
     "react-redux-loading-bar": "^2.9.2",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
+    "react-tag-input": "^4.7.2",
     "react-transition-group": "^1.1.2",
     "reactstrap": "^4.8.0",
     "redux": "^3.7.2",
