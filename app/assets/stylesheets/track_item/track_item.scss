@@ -105,3 +105,37 @@
   font-size: 14px;
   color: gray;
 }
+
+.track-options-bar {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.track-options-bar div {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.track-item-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.track-item-info div {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.tag-container {
+
+}
+
+.tag {
+  background-color: rgb(76,76,76);
+  color: white;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 8px;
+}

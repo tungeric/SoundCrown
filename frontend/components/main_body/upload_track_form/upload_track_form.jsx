@@ -92,11 +92,8 @@ class UploadTrackForm extends React.Component {
           const tagID = parseInt(response.tag.id);
           let tracks = window.getState().tracks;
           const trackID = parseInt(Object.keys(tracks)[Object.keys(tracks).length-1]);
-          console.log("tagID:", tagID)
-          console.log("trackID:", trackID)
           this.props.createTagging({ tagging: { track_id: trackID, tag_id: tagID } }).then(
             (res) => {
-              console.log(res);
             }
           );
         });

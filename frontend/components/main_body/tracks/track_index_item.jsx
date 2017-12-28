@@ -77,8 +77,24 @@ class TrackIndexItem extends React.Component{
       return <div></div>;
     }
   }
+  
+  renderTags() {
+    const tags = Object.values(this.props.track.tags).map((tagObject) => tagObject.name);
+    // console.log(tags);
+    return(
+      <div className="tag-container">
+        { tags.map((name) => {
+          return(
+            <div className="tag">#{name}</div>
+          );
+        })
+       }
+      </div>
+    );
+  }
 
   render() {
+    console.log("CURRENT TRACK: ",this.state.track)
     const play = this.state.play && (this.state.track.id === this.props.track.id);
     if(this.props.track) {
       if (this.props.track.title.length > 0) {
@@ -105,7 +121,7 @@ class TrackIndexItem extends React.Component{
                 </div>
                 <div className="track-data-right">
                   <div>{ this.renderElapsedTime()}{' ago'}</div>
-                  { this.renderTrackMenu()}
+                  <div>{ this.renderTags()}</div>
                 </div>
               </div>
               <br/>
@@ -168,7 +184,12 @@ class TrackIndexItem extends React.Component{
                     <span className="bar n4"></span>
                   </div>
                   <br/>
-                  <div className="num-plays"><i className="fa fa-play"/> {this.props.track.plays} </div>
+                  <div className="track-item-info">
+                    <div className="track-options-bar">
+                      {this.renderTrackMenu()}
+                    </div>
+                    <div className="num-plays"><i className="fa fa-play" /> {this.props.track.plays} </div>
+                  </div>
                 </div>
             </div>
           </div>

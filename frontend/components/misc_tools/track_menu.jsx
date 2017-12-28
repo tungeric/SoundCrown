@@ -44,7 +44,7 @@ export default class TrackMenu extends React.Component {
     const menuOptions = {
       isOpen: this.state.isMenuOpen,
       close: this.close,
-      toggle: <button type="button" onClick={this.toggle}>{<i className="fa fa-pencil" />}</button>,
+      toggle: <button type="button" onClick={this.toggle}>{<i className="fa fa-pencil" />} More</button>,
       align: 'left'
     };
 
