@@ -89,13 +89,16 @@ class UploadTrackForm extends React.Component {
     this.state.tags.forEach ((tag) => {
       this.props.createTag({ tag: { name: tag.text } }).then(
         (response) => {
-          console.log("Tag ID: ", parseInt(response.tag.id));
+          const tagID = parseInt(response.tag.id);
           let tracks = window.getState().tracks;
-          console.log("Last track ID", parseInt(Object.keys(tracks)[Object.keys(tracks).length-1]));
-          // create Tagging!
-          //
-          //           
-          //
+          const trackID = parseInt(Object.keys(tracks)[Object.keys(tracks).length-1]);
+          console.log("tagID:", tagID)
+          console.log("trackID:", trackID)
+          this.props.createTagging({ tagging: { track_id: trackID, tag_id: tagID } }).then(
+            (res) => {
+              console.log(res);
+            }
+          );
         });
     });
   }
