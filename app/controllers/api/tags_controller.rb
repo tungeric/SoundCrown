@@ -1,4 +1,9 @@
 class Api::TagsController < ApplicationController
+  def index
+    @tags = Tag.all
+    render :index
+  end
+
   def create
     @tag = Tag.find_by_name(params[:tag][:name])
     if @tag

@@ -15,6 +15,7 @@ const TracksReducer = (oldState={}, action) => {
       if (newTrack) {
         newState[newTrack.id] = newTrack;
       }
+      console.log("NEW STATE:", newState)
       return newState;
     case REMOVE_TRACK:
       const cleanState = merge({}, oldState);

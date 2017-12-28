@@ -11,10 +11,13 @@ export const receiveTaggings = (taggings) => ({
   taggings
 });
 
-export const receiveTagging = (tagging) => ({
-  type: RECEIVE_TAGGING,
-  tagging
-});
+export const receiveTagging = (tagging) => {
+  console.log("receiving tagging:", tagging)
+  return({
+    type: RECEIVE_TAGGING,
+    tagging
+  });
+};
 
 export const removeTagging = (tagging) => ({
   type: REMOVE_TAGGING,
@@ -31,7 +34,8 @@ export const clearErrors = errors => ({
 });
 
 export const createTagging = (tagging) => dispatch => {
-  return TaggingApiUtil.createTag(tagging)
+    console.log("creating tagging: ", tagging);
+  return TaggingApiUtil.createTagging(tagging)
     .then(response => dispatch(receiveTagging(response)),
     errors => dispatch(receiveTaggingErrors(errors.responseJSON)));
 };
