@@ -46,6 +46,13 @@ class Track < ApplicationRecord
     from('tracks').joins("INNER JOIN users ON users.id = tracks.creator_id").where("lower(username) @@ :q", q: query.downcase)
   end
 
+  def self.search_by_tag(query)
+    from('tracks')
+      .joins("INNER JOIN taggings ON taggings.track_id = tracks.id")
+      .joins("INNER JOIN tags ON tags.id = taggings.tag_id")
+      .where("lower(name) @@ :q", q: query.downcase)
+  end
+
   # paperclip
   has_attached_file :audio,
                     # url: ":s3_us_west_url",
