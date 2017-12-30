@@ -111,7 +111,7 @@ class UploadTrackForm extends React.Component {
       (response) => {
         if (this.state.errors.length === 0) {
           this.createTags();
-          // this.props.history.push(`/${this.props.currentUser.username}`);
+          this.props.history.push(`/${this.props.currentUser.username}`);
           this.props.closeModal();
         }
     });

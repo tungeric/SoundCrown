@@ -85,7 +85,7 @@ class TrackIndexItem extends React.Component{
       <div className="tag-container">
         { tags.map((name) => {
           return(
-            <div className="tag">#{name}</div>
+            <Link to={`/search?q=${name}`} className="tag">#{name}</Link>
           );
         })
        }
