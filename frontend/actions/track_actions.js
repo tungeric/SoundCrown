@@ -69,6 +69,12 @@ export const getTrack = (id) => dispatch => {
            errors => dispatch(receiveTrackErrors(errors.responseJSON)));
 };
 
+export const getSimilarTracks = (id) => dispatch => {
+  return TrackApiUtil.getSimilarTrack(id)
+    .then(response => dispatch(receiveTracks(response)),
+    errors => dispatch(receiveTrackErrors(errors.responseJSON)));
+};
+
 export const createTrack = (track) => dispatch => {
   return TrackApiUtil.createTrack(track)
     .then(response => {
