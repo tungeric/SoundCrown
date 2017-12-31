@@ -58,9 +58,11 @@ class Track < ApplicationRecord
   def similar_tracks(max_num)
     result = []
     self.tags.each do |tag|
-      result << Track.search_by_tag(tag.name).order("plays DESC").limit(max_num)
+      result << Track.search_by_tag(tag.name).order("plays DESC")
     end
-    return result.flatten
+    sorted_result = result.flatten.sort_by{ |track| track.plays }.reverse
+    max_num = [max_num, sorted_result.count].min
+    sorted_result[0...max_num]
   end
 
   # paperclip
