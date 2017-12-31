@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :tracks, only: [:index, :show, :update, :create, :destroy] do
       resources :comments, only: [:index]
       resources :tags, only: [:index]
+      get '/similar_tracks', to: 'tracks#show_similar_tracks'
     end
     resources :comments, only: [:show, :create, :destroy]
     resources :tags, only: [:index, :show, :create, :destroy]

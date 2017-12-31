@@ -21,6 +21,12 @@ class Api::TracksController < ApplicationController
     render :show
   end
 
+  def show_similar_tracks
+    track = Track.find_by(id: params[:track_id])
+    @tracks = track.similar_tracks(5)
+    render :index
+  end
+
   def create
     @track = Track.new(track_params)
     if @track.save
