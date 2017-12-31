@@ -66,3 +66,10 @@ export const getTrack = (id) => (
     url: `api/tracks/${id}`,
   })
 );
+
+export const getSimilarTracks = (id) => (
+  $.ajax({
+    method: 'GET',
+    url: `api/tracks/${id}/similar_tracks`,
+  })
+);
