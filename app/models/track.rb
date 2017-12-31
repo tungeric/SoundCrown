@@ -38,6 +38,7 @@ class Track < ApplicationRecord
   
   has_many :tags, through: :taggings
 
+  # SEARCH METHODS
   def self.search(query)
     from('tracks').where("lower(title) @@ :q or lower(audio_file_name) @@ :q", q: query.downcase)
   end
@@ -51,6 +52,15 @@ class Track < ApplicationRecord
       .joins("INNER JOIN taggings ON taggings.track_id = tracks.id")
       .joins("INNER JOIN tags ON tags.id = taggings.tag_id")
       .where("lower(name) @@ :q", q: query.downcase)
+  end
+
+  # Similar Tracks Methods
+  def similar_tracks(max_num)
+    result = []
+    self.tags.each do |tag|
+      result << Track.search_by_tag(tag.name).order("plays DESC").limit(max_num)
+    end
+    return result.flatten
   end
 
   # paperclip
